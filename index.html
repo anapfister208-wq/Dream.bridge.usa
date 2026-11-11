@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Bridge USA | Estude nas Melhores Faculdades dos EUA</title>
+    <meta name="description" content="Ajudamos estudantes brasileiros a conquistar bolsas de estudo e vagas nas melhores faculdades dos EUA. Consultoria completa para a sua candidatura e visto F-1.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #0b1c3d 0%, #1e3a8a 100%);
+            color: white;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-area h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+        .logo-area span {
+            color: #f59e0b;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #f59e0b;
+        }
+        .hero {
+            background: linear-gradient(135deg, #0b1c3d 0%, #1e3a8a 100%);
+            color: white;
+            padding: 5rem 5%;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero h2 span {
+            color: #f59e0b;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            color: #cbd5e1;
+        }
+        .btn {
+            background-color: #f59e0b;
+            color: #0b1c3d;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+        }
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-2px);
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 3rem 5%;
+            background: white;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-item h3 {
+            font-size: 2rem;
+            color: #1e3a8a;
+            font-weight: 800;
+        }
+        .stat-item p {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            font-size: 2rem;
+            color: #0b1c3d;
+            margin-bottom: 0.5rem;
+        }
+        .section-title p {
+            color: #64748b;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-top: 4px solid #1e3a8a;
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-card h3 {
+            color: #0b1c3d;
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+        .service-card p {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+        footer {
+            background: #0b1c3d;
+            color: white;
+            text-align: center;
+            padding: 3rem 5%;
+            margin-top: 4rem;
+        }
+        footer p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        @media(max-width: 768px) {
+            nav { display: none; }
+            .hero h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1>DREAM BRIDGE <span>USA</span></h1>
+        </div>
+        <nav>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#contato" class="btn" style="padding: 8px 16px; font-size: 0.85rem;">Fale Conosco</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Connecting Dreams & <span>Opportunities</span></h2>
+        <p>O seu passaporte para estudar nas melhores universidades dos Estados Unidos. Planeamento completo, candidaturas e bolsas de estudo.</p>
+        <a href="#contato" class="btn">Comece o seu Planeamento</a>
+    </section>
+
+    <div class="stats">
+        <div class="stat-item">
+            <h3>+500</h3>
+            <p>Alunos Apoiados</p>
+        </div>
+        <div class="stat-item">
+            <h3>98%</h3>
+            <p>Taxa de Sucesso</p>
+        </div>
+        <div class="stat-item">
+            <h3>+$2.5M</h3>
+            <p>Bolsas Conquistadas</p>
+        </div>
+    </div>
+
+    <section class="section" id="servicos">
+        <div class="section-title">
+            <h2>Como Ajudamos a Realizar o Seu Sonho</h2>
+            <p>Soluções completas para cada etapa da sua jornada rumo aos EUA</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Planeamento Académico</h3>
+                <p>Escolha das universidades americanas ideais para o seu perfil, orçamento e área de estudo desejada.</p>
+            </div>
+            <div class="service-card">
+                <h3>Candidaturas & Essays</h3>
+                <p>Apoio na construção de application essays de destaque, cartas de recomendação e histórico escolar.</p>
+            </div>
+            <div class="service-card">
+                <h3>Assessoria para Visto F-1</h3>
+                <p>Preparação completa para a entrevista consular, documentação necessária e suporte burocrático.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Dream Bridge USA. Todos os direitos reservados.</p>
+        <p style="margin-top: 10px; color: #f59e0b; font-weight: 600;">Connecting Dreams & Opportunities</p>
+    </footer>
+
+</body>
+</html>
