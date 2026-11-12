@@ -5,454 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dream Bridge USA | Plataforma de Inglês para Brasileiros</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-    <!-- Biblioteca html2canvas para gerar imagem do certificado para a galeria -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-        body {
-            background-color: #f1f5f9;
-            color: #0f172a;
-            line-height: 1.6;
-        }
-        header {
-            background: #0b1329;
-            color: white;
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid #f59e0b;
-            position: relative;
-            z-index: 100;
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .menu-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            padding: 5px;
-            display: none;
-        }
-        .menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: #ffffff;
-            border-radius: 2px;
-        }
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #ffffff;
-        }
-        .logo span {
-            color: #f59e0b;
-        }
-        .btn-primary {
-            background-color: #f59e0b;
-            color: #0b1329;
-            padding: 14px 32px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-            text-align: center;
-        }
-        .btn-primary:active {
-            transform: scale(0.98);
-        }
-        .btn-secondary {
-            background-color: #ffffff;
-            color: #0b1329;
-            border: 2px solid #0b1329;
-            padding: 12px 24px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: center;
-            display: inline-block;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background-color: #f1f5f9; color: #0f172a; line-height: 1.6; }
+        header { background: #0b1329; color: white; padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #f59e0b; }
+        .logo { font-size: 1.6rem; font-weight: 700; color: #ffffff; }
+        .logo span { color: #f59e0b; }
+        .btn-primary { background-color: #f59e0b; color: #0b1329; padding: 14px 28px; font-weight: 700; font-size: 1rem; border-radius: 8px; border: none; cursor: pointer; text-align: center; display: inline-block; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
+        .btn-secondary { background-color: #ffffff; color: #0b1329; border: 2px solid #0b1329; padding: 12px 20px; font-weight: 700; font-size: 0.9rem; border-radius: 8px; cursor: pointer; text-align: center; display: inline-block; }
+        
+        .hero { background: #0b1329; color: white; text-align: center; padding: 70px 20px; border-bottom: 4px solid #f59e0b; }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.1rem; color: #f59e0b; font-weight: 600; max-width: 650px; margin: 0 auto; }
 
-        /* MENU LATERAL */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 300px;
-            height: 100%;
-            background: #0b1329;
-            color: white;
-            z-index: 3000;
-            transition: left 0.3s ease;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
-        }
-        .sidebar.open {
-            left: 0;
-        }
-        .sidebar-header {
-            padding: 20px;
-            background: #070c1b;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #f59e0b;
-        }
-        .sidebar-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        .sidebar-menu {
-            list-style: none;
-            padding: 20px 0;
-            flex-grow: 1;
-        }
-        .sidebar-menu li {
-            padding: 12px 25px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            cursor: pointer;
-            font-weight: 600;
-        }
-        .sidebar-menu li:hover {
-            background: #1e293b;
-            color: #f59e0b;
-        }
-        .sidebar-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 2500;
-            display: none;
-        }
-        .sidebar-overlay.open {
-            display: block;
-        }
+        .about-section { background: white; padding: 50px 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .about-container { max-width: 850px; margin: 0 auto; }
+        .about-container h2 { color: #0b1329; font-size: 1.8rem; margin-bottom: 15px; }
+        .about-container p { color: #475569; font-size: 1.05rem; margin-bottom: 30px; }
 
-        /* SEÇÕES DA APLICAÇÃO */
-        .app-view {
-            display: none;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
-        }
-        .profile-card {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-            margin-bottom: 20px;
-        }
-        .profile-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: #0b1329;
-            color: #f59e0b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            border: 2px solid #f59e0b;
-        }
-        .progress-bar-container {
-            background: #e2e8f0;
-            border-radius: 8px;
-            height: 14px;
-            width: 100%;
-            overflow: hidden;
-            margin: 6px 0 15px 0;
-        }
-        .progress-bar-fill {
-            background: #10b981;
-            height: 100%;
-            width: 0%;
-            transition: width 0.5s ease;
-        }
+        .container { max-width: 850px; margin: 30px auto; padding: 0 20px; }
+        .login-box, .app-view, .quiz-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 20px; }
+        
+        .login-box input, .login-box select { width: 100%; padding: 12px; margin: 8px 0 16px 0; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; }
+        .login-box label { font-weight: 600; font-size: 0.9rem; color: #0b1329; }
 
-        /* Hero */
-        .hero {
-            background: #0b1329;
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
-            border-bottom: 4px solid #f59e0b;
-        }
-        .hero h1 {
-            font-size: 2.4rem;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-        .hero p {
-            font-size: 1.15rem;
-            color: #f59e0b;
-            font-weight: 600;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
+        .blocks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; margin-bottom: 20px; }
+        .block-btn { background: white; border: 2px solid #cbd5e1; border-radius: 8px; padding: 10px; text-align: center; font-weight: 700; color: #0b1329; cursor: pointer; }
+        .block-btn.unlocked { border-color: #10b981; background: #ecfdf5; }
+        .block-btn.locked { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; }
 
-        .about-section {
-            background: white;
-            padding: 60px 20px;
-            border-bottom: 1px solid #e2e8f0;
-            text-align: center;
-        }
-        .about-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .about-container h2 {
-            color: #0b1329;
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        .about-container p {
-            color: #475569;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            line-height: 1.8;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            text-align: left;
-            margin-bottom: 40px;
-        }
-        .feature-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid #f59e0b;
-        }
-        .feature-card h4 {
-            color: #0b1329;
-            margin-bottom: 10px;
-            font-size: 1.15rem;
-        }
-        .feature-card p {
-            font-size: 0.95rem;
-            color: #64748b;
-            margin-bottom: 0;
-        }
+        .quiz-option { display: block; width: 100%; text-align: left; padding: 12px; margin: 8px 0; background: #f8fafc; color: #0b1329; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+        .quiz-option:hover { background: #e2e8f0; }
 
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
+        .modal-card { background: white; padding: 25px; border-radius: 12px; max-width: 600px; width: 100%; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
 
-        .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border-top: 5px solid #0b1329;
-            display: none;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .login-box input, .login-box select {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0 20px 0;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-        .login-box label {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #0b1329;
-        }
-
-        .dashboard-header {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .blocks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-        .block-btn {
-            background: white;
-            border: 2px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 12px 8px;
-            text-align: center;
-            font-weight: 700;
-            color: #0b1329;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        .block-btn.unlocked:hover {
-            border-color: #f59e0b;
-            background: #fffbeb;
-        }
-        .block-btn.locked {
-            background: #e2e8f0;
-            color: #94a3b8;
-            border-color: #cbd5e1;
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-        .quiz-container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            display: none;
-        }
-        .quiz-option {
-            display: block;
-            width: 100%;
-            text-align: left;
-            padding: 12px 15px;
-            margin: 10px 0;
-            background: #f8fafc;
-            color: #0b1329;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .quiz-option:hover {
-            background: #e2e8f0;
-        }
-
-        /* MODAIS */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 4000;
-            padding: 15px;
-        }
-        .modal-card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            max-width: 700px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            border-top: 6px solid #f59e0b;
-            max-height: 95vh;
-            overflow-y: auto;
-        }
-        .certificado-diploma {
-            border: 8px double #0b1329;
-            padding: 30px;
-            margin: 15px 0;
-            background: #fffdf9;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.03);
-        }
-        .certificado-diploma h3 {
-            font-family: 'Playfair Display', serif;
-            color: #0b1329;
-            font-size: 1.6rem;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-        }
-        .certificado-diploma h4 {
-            font-family: 'Playfair Display', serif;
-            color: #f59e0b;
-            font-size: 1.8rem;
-            margin: 15px 0;
-            border-bottom: 2px solid #e2e8f0;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        footer {
-            background: #0b1329;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 60px;
-        }
-        footer a {
-            color: #f59e0b;
-            text-decoration: none;
-            font-weight: 600;
-        }
+        footer { background: #0b1329; color: white; text-align: center; padding: 25px 20px; margin-top: 50px; }
+        footer a { color: #f59e0b; text-decoration: none; font-weight: 600; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="header-left">
-            <button class="menu-toggle" id="menu-btn" onclick="toggleSidebar()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="logo">Dream Bridge <span>USA</span></div>
-        </div>
+        <div class="logo">Dream Bridge <span>USA</span></div>
         <span id="user-greeting" style="font-size: 0.9rem; color: #f59e0b; font-weight: 600;"></span>
     </header>
-
-    <!-- MENU LATERAL -->
-    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h3 style="font-size: 1.1rem; color: #f59e0b;">Menu da Plataforma</h3>
-            <button class="sidebar-close" onclick="toggleSidebar()">×</button>
-        </div>
-        <ul class="sidebar-menu">
-            <li onclick="mostrarSecao('sala-aula')">📚 Sala de Aula (Blocos)</li>
-            <li onclick="mostrarSecao('perfil')">👤 Meu Perfil e Gráficos</li>
-            <li onclick="mostrarSecao('lembretes')">⏰ Lembretes e Calendário</li>
-            <li onclick="indicarCurso()">💡 Indicar Curso</li>
-            <li onclick="sairDaPlataforma()" style="color: #ef4444;">🚪 Sair / Trocar Conta</li>
-        </ul>
-    </div>
 
     <!-- PÁGINA INICIAL -->
     <div id="landing-page">
         <section class="hero">
-            <h1>Dream Bridge USA 🇧🇷 🛫 🇺🇸</h1>
+            <h1>Dream Bridge USA 🇺🇸</h1>
             <p>Conectando brasileiros e transformando vidas para ajudar você a realizar o grande sonho de morar, trabalhar ou viajar para fora do país!</p>
         </section>
 
@@ -463,42 +66,21 @@
                     A <strong>Dream Bridge USA</strong> foi criada para tornar a fluência em inglês acessível, prática e dinâmica. 
                     Nosso objetivo é guiar você passo a passo, do básico ao avançado, preparando-o para vencer barreiras linguísticas e conquistar novas oportunidades no exterior.
                 </p>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h4>🎯 Trilha Progressiva por Blocos</h4>
-                        <p>O aluno começa com o Bloco 1 liberado. Conclua os desafios de cada etapa para desbloquear sequencialmente o próximo bloco.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>📚 Perguntas Segmentadas</h4>
-                        <p>Conteúdos divididos entre Níveis Básico, Intermediário e Avançado para acompanhar exatamente o seu ritmo de evolução.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>🎓 Certificado Oficial</h4>
-                        <p>Ao concluir todos os blocos do seu nível, conquiste um certificado digital completo, com download em PDF ou imagem para a galeria.</p>
-                    </div>
-                </div>
-
-                <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 15px;">
-                    <p style="color: #64748b; font-size: 0.95rem; font-weight: 600;">Já conhece a nossa proposta? Entre agora e comece a estudar:</p>
-                    <button class="btn-primary" onclick="irParaLogin()">Fazer Login</button>
-                    <button class="btn-secondary" onclick="indicarCurso()" style="margin-top: 5px;">Indicar Curso para Amigos</button>
-                </div>
+                <button type="button" class="btn-primary" onclick="irParaLogin()">Fazer Login</button>
             </div>
         </section>
     </div>
 
     <div class="container">
         <!-- TELA DE LOGIN -->
-        <div class="login-box" id="login-box">
+        <div class="login-box" id="login-box" style="display: none;">
             <h2 style="color: #0b1329; margin-bottom: 10px; text-align: center;">Acessar Plataforma</h2>
-            <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Insira seus dados para entrar na sala de aula</p>
             <form onsubmit="iniciarCursoDoAluno(event)">
                 <label>Seu Nome Completo</label>
                 <input type="text" id="aluno-nome" placeholder="Digite seu nome" required>
                 
                 <label>Como você quer ser chamado? (Apelido)</label>
-                <input type="text" id="aluno-apelido" placeholder="Ex: João, Mari, Teacher..." required>
+                <input type="text" id="aluno-apelido" placeholder="Ex: João, Mari..." required>
                 
                 <label>E-mail</label>
                 <input type="email" id="aluno-email" placeholder="seu@email.com" required>
@@ -511,45 +93,232 @@
                 </select>
 
                 <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Iniciar Curso</button>
-                <button type="button" class="btn-secondary" style="width: 100%; margin-top: 10px;" onclick="indicarCurso()">Indicar Curso</button>
             </form>
         </div>
 
-        <!-- TELA DE PERFIL E GRÁFICOS DETALHADOS POR BLOCO -->
-        <div class="app-view" id="view-perfil">
-            <h2 style="color: #0b1329; margin-bottom: 20px;">👤 Meu Perfil e Gráficos de Evolução</h2>
-            
-            <div class="profile-card">
-                <div class="profile-avatar" id="profile-initials">AB</div>
+        <!-- ÁREA DO CURSO -->
+        <div id="course-area" style="display: none;">
+            <div class="dashboard-header" style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                    <h3 id="pf-nome" style="color: #0b1329; font-size: 1.2rem;">Nome do Aluno</h3>
-                    <p style="color: #64748b; font-size: 0.9rem;">Apelido: <strong id="pf-apelido" style="color: #f59e0b;">-</strong></p>
-                    <p style="color: #64748b; font-size: 0.9rem;" id="pf-email">email@exemplo.com</p>
+                    <h3 id="display-nivel-titulo" style="color: #0b1329;">Nível Básico</h3>
+                    <p style="font-size: 0.85rem; color: #64748b;">Complete o Bloco 1 para desbloquear os seguintes.</p>
                 </div>
+                <button type="button" class="btn-secondary" onclick="trocarNivelManual()">Trocar Nível</button>
             </div>
 
-            <div style="background: #f8fafc; padding: 25px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
-                <h4 style="color: #0b1329; margin-bottom: 15px;">📊 Progresso Detalhado por Bloco (1 ao 9)</h4>
-                <div id="lista-graficos-blocos"></div>
-            </div>
+            <h4 style="margin-bottom: 15px; color: #0b1329;">Trilha de Blocos (1 a 9):</h4>
+            <div class="blocks-grid" id="grid-blocos"></div>
 
-            <button class="btn-primary" onclick="mostrarSecao('sala-aula')">Voltar para os Estudos</button>
+            <!-- QUIZ -->
+            <div class="quiz-container" id="quiz-container">
+                <h3 id="quiz-titulo" style="color: #0b1329; margin-bottom: 10px;">Bloco 1</h3>
+                <p id="quiz-pergunta" style="font-size: 1.05rem; margin-bottom: 20px; font-weight: 600;"></p>
+                <div id="quiz-opcoes"></div>
+                <div id="quiz-feedback" style="margin-top: 15px; font-weight: 700;"></div>
+            </div>
         </div>
+    </div>
 
-        <!-- TELA DE LEMBRETES E CALENDÁRIO -->
-        <div class="app-view" id="view-lembretes">
-            <h2 style="color: #0b1329; margin-bottom: 10px;">⏰ Lembretes de Aula e Calendário</h2>
-            <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 25px;">Personalize os dias e horários em que deseja receber lembretes para manter o foco nos estudos.</p>
+    <!-- MODAL BLOCO CONCLUÍDO -->
+    <div class="modal-overlay" id="modal-bloco-concluido">
+        <div class="modal-card">
+            <h2 style="color: #10b981; margin-bottom: 10px;">🎉 Parabéns!</h2>
+            <p id="mensagem-bloco-concluido" style="color: #475569; margin-bottom: 20px;"></p>
+            <button type="button" class="btn-primary" onclick="avancarParaProximoBloco()">Ir para o Próximo Bloco</button>
+        </div>
+    </div>
+
+    <!-- MODAL CERTIFICADO -->
+    <div class="modal-overlay" id="modal-certificado">
+        <div class="modal-card">
+            <div class="certificado-diploma" id="area-certificado-pdf" style="border: 6px double #0b1329; padding: 20px; background: #fffdf9;">
+                <h3 style="color: #0b1329;">CERTIFICADO DE CONCLUSÃO</h3>
+                <p style="font-size: 0.85rem; margin: 10px 0;">Certificamos que</p>
+                <h4 id="cert-nome" style="color: #f59e0b; font-size: 1.5rem;">Nome</h4>
+                <p style="font-size: 0.85rem; margin-top: 10px;">concluiu com sucesso o <span id="cert-nivel" style="font-weight: 700;">Básico</span> na Dream Bridge USA.</p>
+            </div>
+            <div style="display: flex; gap: 10px; flex-direction: column; margin-top: 15px;">
+                <button type="button" class="btn-primary" onclick="window.print()">📥 Baixar PDF</button>
+                <button type="button" class="btn-secondary" onclick="fecharModalECconcluir()">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Dream Bridge USA. Todos os direitos reservados.</p>
+        <p style="margin-top: 8px; font-size: 0.9rem;">Fale Conosco: <a href="mailto:anapfister208@gmail.com">anapfister208@gmail.com</a></p>
+    </footer>
+
+    <script>
+        let aluno = { nome: "", apelido: "", email: "", nivelAtual: "basico", blocoAtual: 1, questaoAtual: 0, progressoMaximo: 1 };
+
+        const bancoPerguntas = {
+            basico: [
+                { p: "Como se diz 'Bom dia' em inglês?", o: ["Good night", "Good morning", "Goodbye"], r: 1 },
+                { p: "Traduza 'I am a student':", o: ["Eu sou um estudante", "Eu tenho um carro", "Eu moro aqui"], r: 0 },
+                { p: "Como perguntar 'Como você está?'", o: ["Who are you?", "How are you?", "What is this?"], r: 1 },
+                { p: "Qual o significado de 'Thank you'?", o: ["Por favor", "Com licença", "Obrigado"], r: 2 },
+                { p: "Como se diz 'Água'?", o: ["Water", "Milk", "Juice"], r: 0 },
+                { p: "Qual o verbo To Be correto para 'You'?", o: ["Am", "Is", "Are"], r: 2 },
+                { p: "Como dizer 'Até logo'?", o: ["Hello", "Goodbye", "Please"], r: 1 },
+                { p: "Traduza 'Cat':", o: ["Cachorro", "Gato", "Pássaro"], r: 1 },
+                { p: "Como responder a 'Thank you'?", o: ["You're welcome", "Good morning", "Sorry"], r: 0 },
+                { p: "Qual número é 'Five'?", o: ["4", "5", "6"], r: 1 }
+            ],
+            intermediario: [
+                { p: "Passado simples do verbo 'go':", o: ["goed", "went", "gone"], r: 1 },
+                { p: "Complete: 'If I ___ rich...'", o: ["am", "were", "be"], r: 1 },
+                { p: "Significado de 'Look forward to':", o: ["Olhar para trás", "Aguardar ansiosamente", "Desistir"], r: 1 },
+                { p: "Frase no Present Perfect:", o: ["I played", "I have played", "I will play"], r: 1 },
+                { p: "Traduza 'Business':", o: ["Negócio", "Loja", "Casa"], r: 0 },
+                { p: "Sinônimo de 'Glad':", o: ["Sad", "Happy", "Angry"], r: 1 },
+                { p: "Traduza 'By the way':", o: ["A propósito", "No caminho", "Até logo"], r: 0 },
+                { p: "Complete: 'She ___ every day.'", o: ["study", "studies", "studying"], r: 1 },
+                { p: "Oposto de 'Expensive':", o: ["Big", "Cheap", "Fast"], r: 1 },
+                { p: "Traduza 'Airport':", o: ["Estação", "Aeroporto", "Porto"], r: 1 }
+            ],
+            avancado: [
+                { p: "Significado de 'Piece of cake':", o: ["Pedaço de bolo", "Muito fácil", "Difícil"], r: 1 },
+                { p: "Frase na voz passiva:", o: ["He chased", "It was chased", "He runs"], r: 1 },
+                { p: "Significado de 'Break a leg':", o: ["Machucar", "Boa sorte", "Correr"], r: 1 },
+                { p: "Significado de 'Nonetheless':", o: ["Portanto", "No entanto", "Antes"], r: 1 },
+                { p: "Pronome relativo: 'The man ___ spoke...'", o: ["which", "who", "whose"], r: 1 },
+                { p: "O que é 'Touch base'?", o: ["Fazer contato", "Jogar", "Tocar"], r: 0 },
+                { p: "Palavra de incerteza:", o: ["Certainly", "Perhaps", "Definitely"], r: 1 },
+                { p: "Significado de 'Out of the blue':", o: ["De repente", "Azul", "Triste"], r: 0 },
+                { p: "Conditionals: 'Had I known...'", o: ["would do", "would have done", "will do"], r: 1 },
+                { p: "Significado de 'Call it a day':", o: ["Ligar", "Encerrar expediente", "Trabalhar"], r: 1 }
+            ]
+        };
+
+        function irParaLogin() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('login-box').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function iniciarCursoDoAluno(event) {
+            event.preventDefault();
+            aluno.nome = document.getElementById('aluno-nome').value;
+            aluno.apelido = document.getElementById('aluno-apelido').value;
+            aluno.email = document.getElementById('aluno-email').value;
+            aluno.nivelAtual = document.getElementById('aluno-nivel').value;
+            aluno.progressoMaximo = 1;
+
+            document.getElementById('user-greeting').innerText = 'Olá, ' + aluno.apelido + '!';
+            document.getElementById('login-box').style.display = 'none';
+            document.getElementById('course-area').style.display = 'block';
+
+            atualizarPainelNivel();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function atualizarPainelNivel() {
+            const titulos = { basico: "Nível 1: Básico", intermediario: "Nível 2: Intermediário", avancado: "Nível 3: Avançado" };
+            document.getElementById('display-nivel-titulo').innerText = titulos[aluno.nivelAtual];
             
-            <form onsubmit="salvarLembretes(event)">
-                <label style="font-weight: 600; color: #0b1329; font-size: 0.9rem;">Horário do Lembrete Diário</label>
-                <input type="time" id="input-horario" value="19:00" style="width: 100%; padding: 12px; margin: 8px 0 20px 0; border: 1px solid #cbd5e1; border-radius: 6px;">
+            const grid = document.getElementById('grid-blocos');
+            grid.innerHTML = '';
 
-                <label style="font-weight: 600; color: #0b1329; font-size: 0.9rem;">Dias da Semana para Estudar</label>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 10px 0 25px 0;">
-                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Segunda" checked> Segunda</label>
-                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Terça" checked> Terça</label>
-                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Quarta" checked> Quarta</label>
-                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Quinta" checked> Quinta</label>
-                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Sexta" checked> Sexta</label>
-             
+            for (let i = 1; i <= 9; i++) {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'block-btn';
+                
+                if (i <= aluno.progressoMaximo) {
+                    btn.classList.add('unlocked');
+                    btn.innerHTML = `Bloco ${i}<br><span style="font-size:0.7rem; color:#10b981;">Liberado</span>`;
+                    btn.onclick = () => carregarBloco(i);
+                } else {
+                    btn.classList.add('locked');
+                    btn.innerHTML = `Bloco ${i}<br><span style="font-size:0.7rem;">🔒</span>`;
+                    btn.onclick = () => alert("Complete o bloco anterior!");
+                }
+                grid.appendChild(btn);
+            }
+            document.getElementById('quiz-container').style.display = 'none';
+        }
+
+        function carregarBloco(numBloco) {
+            aluno.blocoAtual = numBloco;
+            aluno.questaoAtual = 0;
+            document.getElementById('quiz-container').style.display = 'block';
+            exibirQuestao();
+        }
+
+        function exibirQuestao() {
+            const qList = bancoPerguntas[aluno.nivelAtual];
+            const questao = qList[aluno.questaoAtual % qList.length];
+
+            document.getElementById('quiz-titulo').innerText = `Bloco ${aluno.blocoAtual} — Questão ${aluno.questaoAtual + 1} de 10`;
+            document.getElementById('quiz-pergunta').innerText = questao.p;
+            document.getElementById('quiz-feedback').innerText = '';
+
+            const divOp = document.getElementById('quiz-opcoes');
+            divOp.innerHTML = '';
+
+            questao.o.forEach((texto, idx) => {
+                const btnOp = document.createElement('button');
+                btnOp.type = 'button';
+                btnOp.className = 'quiz-option';
+                btnOp.innerText = texto;
+                btnOp.onclick = () => verificarResp(idx, questao.r);
+                divOp.appendChild(btnOp);
+            });
+        }
+
+        function verificarResp(selecionada, correta) {
+            const fb = document.getElementById('quiz-feedback');
+            if (selecionada === correta) {
+                fb.style.color = '#10b981';
+                fb.innerText = '✅ Resposta Correta!';
+            } else {
+                fb.style.color = '#ef4444';
+                fb.innerText = '❌ Resposta Incorreta!';
+            }
+
+            setTimeout(() => {
+                aluno.questaoAtual++;
+                if (aluno.questaoAtual < 10) {
+                    exibirQuestao();
+                } else {
+                    document.getElementById('quiz-container').style.display = 'none';
+                    if (aluno.blocoAtual === 9) {
+                        mostrarCertificado();
+                    } else {
+                        document.getElementById('mensagem-bloco-concluido').innerText = `Parabéns ${aluno.apelido}! Você concluiu o Bloco ${aluno.blocoAtual}.`;
+                        document.getElementById('modal-bloco-concluido').style.display = 'flex';
+                    }
+                }
+            }, 1000);
+        }
+
+        function avancarParaProximoBloco() {
+            document.getElementById('modal-bloco-concluido').style.display = 'none';
+            if (aluno.blocoAtual + 1 > aluno.progressoMaximo) {
+                aluno.progressoMaximo = aluno.blocoAtual + 1;
+            }
+            atualizarPainelNivel();
+            carregarBloco(aluno.blocoAtual);
+        }
+
+        function mostrarCertificado() {
+            document.getElementById('cert-nome').innerText = aluno.nome;
+            document.getElementById('modal-certificado').style.display = 'flex';
+        }
+
+        function fecharModalECconcluir() {
+            document.getElementById('modal-certificado').style.display = 'none';
+        }
+
+        function trocarNivelManual() {
+            const n = prompt("Escolha o nível (basico, intermediario ou avancado):");
+            if (n && bancoPerguntas[n]) {
+                aluno.nivelAtual = n;
+                aluno.progressoMaximo = 1;
+                atualizarPainelNivel();
+            }
+        }
+    </script>
+</body>
+</html>
