@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dream Bridge USA | Plataforma de Inglês para Brasileiros</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Biblioteca html2canvas para gerar imagem do certificado para a galeria -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         * {
@@ -95,7 +96,7 @@
             background-color: #f1f5f9;
         }
 
-        /* MENU LATERAL */
+        /* MENU LATERAL (SIDEBAR) */
         .sidebar {
             position: fixed;
             top: 0;
@@ -480,12 +481,12 @@
                         <p>O aluno começa com o Bloco 1 liberado. Conclua os desafios de cada etapa para desbloquear sequencialmente o próximo bloco.</p>
                     </div>
                     <div class="feature-card">
-                        <h4>📚 Temas e Histórias</h4>
-                        <p>Escolha entre Gramática, Verbos ou História Americana bilingue para acelerar sua compreensão e leitura.</p>
+                        <h4>📚 Perguntas Segmentadas</h4>
+                        <p>Conteúdos divididos entre Níveis Básico, Intermediário e Avançado para acompanhar exatamente o seu ritmo de evolução.</p>
                     </div>
                     <div class="feature-card">
                         <h4>🎓 Certificado Oficial</h4>
-                        <p>Ao concluir todos os blocos do seu nível, conquiste um certificado digital completo com opção de PDF ou imagem para a galeria.</p>
+                        <p>Ao concluir todos os blocos do seu nível, conquiste um certificado digital completo, com download em PDF ou imagem para a galeria.</p>
                     </div>
                 </div>
 
@@ -499,7 +500,7 @@
     </div>
 
     <div class="container">
-        <!-- TELA DE LOGIN COM ESCOLHA DE TEMA -->
+        <!-- TELA DE LOGIN -->
         <div class="login-box" id="login-box">
             <h2 style="color: #0b1329; margin-bottom: 10px; text-align: center;">Acessar Plataforma</h2>
             <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Insira seus dados para entrar na sala de aula</p>
@@ -520,19 +521,12 @@
                     <option value="avancado">Nível 3: Avançado</option>
                 </select>
 
-                <label>Tema Principal das Aulas</label>
-                <select id="aluno-tema">
-                    <option value="gramatica">Gramática de Inglês</option>
-                    <option value="verbos">Verbos em Inglês</option>
-                    <option value="historia">História Americana (Bilingue)</option>
-                </select>
-
                 <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Iniciar Curso</button>
                 <button type="button" class="btn-secondary" style="width: 100%; margin-top: 10px;" onclick="indicarCurso()">Indicar Curso</button>
             </form>
         </div>
 
-        <!-- TELA DE PERFIL E GRÁFICOS DETALHADOS -->
+        <!-- TELA DE PERFIL E GRÁFICOS DETALHADOS POR BLOCO -->
         <div class="app-view" id="view-perfil">
             <h2 style="color: #0b1329; margin-bottom: 20px;">👤 Meu Perfil e Gráficos de Evolução</h2>
             
@@ -542,13 +536,15 @@
                     <h3 id="pf-nome" style="color: #0b1329; font-size: 1.2rem;">Nome do Aluno</h3>
                     <p style="color: #64748b; font-size: 0.9rem;">Apelido: <strong id="pf-apelido" style="color: #f59e0b;">-</strong></p>
                     <p style="color: #64748b; font-size: 0.9rem;" id="pf-email">email@exemplo.com</p>
-                    <p style="color: #64748b; font-size: 0.9rem;">Tema Escolhido: <strong id="pf-tema" style="color: #0b1329;">Gramática</strong></p>
                 </div>
             </div>
 
             <div style="background: #f8fafc; padding: 25px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
                 <h4 style="color: #0b1329; margin-bottom: 15px;">📊 Progresso Detalhado por Bloco (1 ao 9)</h4>
-                <div id="lista-graficos-blocos"></div>
+                
+                <div id="lista-graficos-blocos">
+                    <!-- Gerado dinamicamente via JS -->
+                </div>
             </div>
 
             <button class="btn-primary" onclick="mostrarSecao('sala-aula')">Voltar para os Estudos</button>
@@ -564,4 +560,6 @@
                 <input type="time" id="input-horario" value="19:00" style="width: 100%; padding: 12px; margin: 8px 0 20px 0; border: 1px solid #cbd5e1; border-radius: 6px;">
 
                 <label style="font-weight: 600; color: #0b1329; font-size: 0.9rem;">Dias da Semana para Estudar</label>
-                <div style="display: grid; grid-template-columns: repeat
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 10px 0 25px 0;">
+                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Segunda" checked> Segunda</label>
+                    <label style="font-weight: normal; font-size: 0.9rem;"><input type=
