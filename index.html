@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dream Bridge USA | Plataforma de Inglês para Brasileiros</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Biblioteca html2canvas para gerar imagem do certificado para a galeria -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -32,7 +34,6 @@
             align-items: center;
             gap: 15px;
         }
-        /* Botão do Menu Hamburguer (3 risquinhos) */
         .menu-toggle {
             background: none;
             border: none;
@@ -41,7 +42,7 @@
             flex-direction: column;
             gap: 5px;
             padding: 5px;
-            display: none; /* Só aparece quando logado */
+            display: none;
         }
         .menu-toggle span {
             display: block;
@@ -95,7 +96,7 @@
             background-color: #f1f5f9;
         }
 
-        /* MENU LATERAL ESTILO APLICATIVO (SIDEBAR) */
+        /* MENU LATERAL (SIDEBAR) */
         .sidebar {
             position: fixed;
             top: 0;
@@ -155,7 +156,7 @@
             display: block;
         }
 
-        /* SEÇÕES DO MENU (PERFIL, LEMBRETES, ETC) */
+        /* SEÇÕES DO APLICATIVO */
         .app-view {
             display: none;
             background: white;
@@ -190,10 +191,10 @@
         .progress-bar-container {
             background: #e2e8f0;
             border-radius: 8px;
-            height: 16px;
+            height: 14px;
             width: 100%;
             overflow: hidden;
-            margin: 10px 0;
+            margin: 6px 0 15px 0;
         }
         .progress-bar-fill {
             background: #10b981;
@@ -202,7 +203,7 @@
             transition: width 0.5s ease;
         }
 
-        /* Hero e Apresentação */
+        /* Hero */
         .hero {
             position: relative;
             background: #0b1329;
@@ -301,9 +302,6 @@
             color: #0b1329;
         }
 
-        #course-area {
-            display: none;
-        }
         .dashboard-header {
             background: white;
             padding: 20px;
@@ -370,6 +368,7 @@
             background: #e2e8f0;
         }
 
+        /* MODAL DE CERTIFICADO */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -435,7 +434,6 @@
 
     <header>
         <div class="header-left">
-            <!-- Botão dos 3 Risquinhos (Menu Hambúrguer) -->
             <button class="menu-toggle" id="menu-btn" onclick="toggleSidebar()">
                 <span></span>
                 <span></span>
@@ -446,7 +444,7 @@
         <span id="user-greeting" style="font-size: 0.9rem; color: #f59e0b; font-weight: 600;"></span>
     </header>
 
-    <!-- MENU LATERAL (SIDEBAR) ESTILO APLICATIVO -->
+    <!-- MENU LATERAL -->
     <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -455,14 +453,14 @@
         </div>
         <ul class="sidebar-menu">
             <li onclick="mostrarSecao('sala-aula')">📚 Sala de Aula (Blocos)</li>
-            <li onclick="mostrarSecao('perfil')">👤 Meu Perfil</li>
+            <li onclick="mostrarSecao('perfil')">👤 Meu Perfil e Gráficos</li>
             <li onclick="mostrarSecao('lembretes')">⏰ Lembretes e Calendário</li>
             <li onclick="indicarCurso()">💡 Indicar Curso</li>
             <li onclick="sairDaPlataforma()" style="color: #ef4444;">🚪 Sair / Trocar Conta</li>
         </ul>
     </div>
 
-    <!-- PÁGINA INICIAL COM FRASE INSPIRADORA E EXPLICAÇÃO -->
+    <!-- PÁGINA INICIAL -->
     <div id="landing-page">
         <section class="hero">
             <h1>Dream Bridge USA 🇺🇸</h1>
@@ -488,7 +486,7 @@
                     </div>
                     <div class="feature-card">
                         <h4>🎓 Certificado Oficial</h4>
-                        <p>Ao concluir todos os blocos do seu nível, conquiste um certificado digital completo com o seu nome e data oficial.</p>
+                        <p>Ao concluir todos os blocos do seu nível, conquiste um certificado digital completo, com download em PDF ou imagem para a galeria.</p>
                     </div>
                 </div>
 
@@ -502,7 +500,7 @@
     </div>
 
     <div class="container">
-        <!-- TELA DE LOGIN COM APELIDO -->
+        <!-- TELA DE LOGIN -->
         <div class="login-box" id="login-box">
             <h2 style="color: #0b1329; margin-bottom: 10px; text-align: center;">Acessar Plataforma</h2>
             <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Insira seus dados para entrar na sala de aula</p>
@@ -510,7 +508,7 @@
                 <label>Seu Nome Completo</label>
                 <input type="text" id="aluno-nome" placeholder="Digite seu nome" required>
                 
-                <label>Como você quer ser chamado? (Apelido / Nome de Exibição)</label>
+                <label>Como você quer ser chamado? (Apelido)</label>
                 <input type="text" id="aluno-apelido" placeholder="Ex: João, Mari, Teacher..." required>
                 
                 <label>E-mail</label>
@@ -528,9 +526,9 @@
             </form>
         </div>
 
-        <!-- TELA DO PERFIL DO ALUNO (MENU) -->
+        <!-- TELA DE PERFIL E GRÁFICOS DETALHADOS POR BLOCO -->
         <div class="app-view" id="view-perfil">
-            <h2 style="color: #0b1329; margin-bottom: 20px;">Meu Perfil na Plataforma</h2>
+            <h2 style="color: #0b1329; margin-bottom: 20px;">👤 Meu Perfil e Gráficos de Evolução</h2>
             
             <div class="profile-card">
                 <div class="profile-avatar" id="profile-initials">AB</div>
@@ -541,27 +539,18 @@
                 </div>
             </div>
 
-            <div style="background: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
-                <h4 style="color: #0b1329; margin-bottom: 10px;">📊 Estatísticas e Progresso</h4>
-                <p style="font-size: 0.95rem; color: #475569;">Nível Atual: <strong id="pf-nivel-txt" style="text-transform: uppercase; color: #f59e0b;">Básico</strong></p>
-                <p style="font-size: 0.95rem; color: #475569; margin-top: 5px;">Bloco Atual: <strong id="pf-bloco-txt">Bloco 1 de 9</strong></p>
+            <div style="background: #f8fafc; padding: 25px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
+                <h4 style="color: #0b1329; margin-bottom: 15px;">📊 Progresso Detalhado por Bloco (1 ao 9)</h4>
                 
-                <div style="margin-top: 15px;">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600;">
-                        <span>Evolução no Nível</span>
-                        <span id="pf-porcentagem">11%</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar-fill" id="pf-progress-fill"></div>
-                    </div>
-                    <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;" id="pf-status-evolucao">Ritmo constante! Continue praticando todos os dias.</p>
+                <div id="lista-graficos-blocos">
+                    <!-- Gerado dinamicamente via JS -->
                 </div>
             </div>
 
             <button class="btn-primary" onclick="mostrarSecao('sala-aula')">Voltar para os Estudos</button>
         </div>
 
-        <!-- TELA DE LEMBRETES E CALENDÁRIO (MENU) -->
+        <!-- TELA DE LEMBRETES E CALENDÁRIO -->
         <div class="app-view" id="view-lembretes">
             <h2 style="color: #0b1329; margin-bottom: 10px;">⏰ Lembretes de Aula e Calendário</h2>
             <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 25px;">Personalize os dias e horários em que deseja receber lembretes para manter o foco nos estudos.</p>
@@ -603,7 +592,10 @@
 
             <!-- QUIZ DO BLOCO -->
             <div class="quiz-container" id="quiz-container">
-                <h3 id="quiz-titulo" style="color: #0b1329; margin-bottom: 10px;">Bloco 1</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3 id="quiz-titulo" style="color: #0b1329;">Bloco 1</h3>
+                    <button onclick="ouvirPronuncia()" class="btn-secondary" style="padding: 6px 12px; font-size: 0.8rem;">🔊 Ouvir Áudio</button>
+                </div>
                 <p id="quiz-pergunta" style="font-size: 1.05rem; margin-bottom: 20px; font-weight: 600;"></p>
                 <div id="quiz-opcoes"></div>
                 <div id="quiz-feedback" style="margin-top: 15px; font-weight: 700;"></div>
@@ -611,10 +603,19 @@
         </div>
     </div>
 
-    <!-- MODAL DE CERTIFICADO DE VERDADE -->
+    <!-- MODAL DE CONCLUSÃO DE BLOCO COM BOTÃO "IR PARA O PRÓXIMO BLOCO" -->
+    <div class="modal-overlay" id="modal-bloco-concluido">
+        <div class="modal-card">
+            <h2 style="color: #10b981; margin-bottom: 10px;">🎉 Parabéns!</h2>
+            <p id="mensagem-bloco-concluido" style="color: #475569; font-size: 1rem; margin-bottom: 20px;"></p>
+            <button class="btn-primary" onclick="avancarParaProximoBloco()">Ir para o Próximo Bloco</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE CERTIFICADO FINAL COM OPÇÃO DE BAIXAR PDF OU SALVAR NA GALERIA -->
     <div class="modal-overlay" id="modal-certificado">
         <div class="modal-card">
-            <div class="certificado-diploma">
+            <div class="certificado-diploma" id="area-certificado-pdf">
                 <p style="font-size: 0.75rem; color: #64748b; letter-spacing: 2px;">DREAM BRIDGE USA 🇺🇸</p>
                 <h3 style="margin-top: 5px;">CERTIFICADO DE CONCLUSÃO</h3>
                 <p style="font-size: 0.85rem; font-style: italic; color: #475569; margin: 15px 0;">Parabéns pelo excelente desempenho e dedicação!</p>
@@ -640,8 +641,9 @@
             </div>
 
             <div style="display: flex; gap: 10px; flex-direction: column; margin-top: 15px;">
-                <button class="btn-primary" onclick="avancarProximoNivel()">Avançar para Próximo Nível</button>
-                <button onclick="indicarCurso()" class="btn-secondary" style="width: 100%; margin: 0;">Indicar Curso para Amigos</button>
+                <button class="btn-primary" onclick="baixarCertificadoPDF()">📥 Baixar Certificado em PDF</button>
+                <button class="btn-secondary" onclick="salvarNaGaleria()" style="width: 100%; margin: 0;">🖼️ Salvar Certificado na Galeria</button>
+                <button class="btn-primary" onclick="avancarProximoNivel()" style="background: #10b981; color: white;">Avançar para Próximo Nível</button>
                 <button onclick="fecharModalECconcluir()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">Finalizar e Sair</button>
             </div>
         </div>
@@ -654,7 +656,16 @@
     </footer>
 
     <script>
-        let aluno = { nome: "", apelido: "", email: "", nivelAtual: "basico", blocoAtual: 1, questaoAtual: 0, progressoMaximo: 1 };
+        let aluno = { 
+            nome: "", 
+            apelido: "", 
+            email: "", 
+            nivelAtual: "basico", 
+            blocoAtual: 1, 
+            questaoAtual: 0, 
+            progressoMaximo: 1,
+            questoesAcertadasNoBloco: 0 // Conta de 0 a 10 para o gráfico do bloco ativo
+        };
 
         const bancoPerguntas = {
             basico: [
@@ -694,6 +705,77 @@
                 { p: "Significado de 'Call it a day':", o: ["Ligar", "Encerrar expediente", "Trabalhar"], r: 1 }
             ]
         };
+
+        // SINTETIZADOR DE VOZ PARA PRONÚNCIA EM INGLÊS
+        function ouvirPronuncia() {
+            const texto = document.getElementById('quiz-pergunta').innerText;
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(texto);
+                utterance.lang = 'en-US';
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("Seu navegador não suporta reprodução de áudio.");
+            }
+        }
+
+        // EFEITOS SONOROS (WEB AUDIO API - SEM ARQUIVOS EXTERNOS)
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function tocarSomAcerto() {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+            osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1); // A5
+            
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.4);
+        }
+
+        function tocarSomErro() {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(150, audioCtx.currentTime + 0.15);
+            
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+
+        function tocarSomParabensBloco() {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const notas = [523.25, 659.25, 783.99, 1046.50]; // Acorde C Major
+            notas.forEach((freq, idx) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (idx * 0.1));
+                
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime + (idx * 0.1));
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + (idx * 0.1) + 0.4);
+                
+                osc.start(audioCtx.currentTime + (idx * 0.1));
+                osc.stop(audioCtx.currentTime + (idx * 0.1) + 0.4);
+            });
+        }
 
         function irParaLogin() {
             document.getElementById('landing-page').style.display = 'none';
@@ -737,14 +819,16 @@
             aluno.email = document.getElementById('aluno-email').value;
             aluno.nivelAtual = document.getElementById('aluno-nivel').value;
             aluno.progressoMaximo = 1;
+            aluno.questoesAcertadasNoBloco = 0;
 
             document.getElementById('user-greeting').innerText = 'Olá, ' + aluno.apelido + '!';
-            document.getElementById('menu-btn').style.display = 'flex'; // Exibe o menu de 3 risquinhos
+            document.getElementById('menu-btn').style.display = 'flex';
 
             alert(`📧 Um e-mail de boas-vindas foi enviado com sucesso para: ${aluno.email}`);
             mostrarSecao('sala-aula');
         }
 
+        // ATUALIZAÇÃO DOS GRÁFICOS DETALHADOS POR BLOCO (0% se novo, 100% no concluído, proporcional no ativo)
         function atualizarDadosPerfil() {
             document.getElementById('pf-nome').innerText = aluno.nome;
             document.getElementById('pf-apelido').innerText = aluno.apelido;
@@ -755,27 +839,42 @@
 
             const titulosNivel = { basico: "Básico", intermediario: "Intermediário", avancado: "Avançado" };
             document.getElementById('pf-nivel-txt').innerText = titulosNivel[aluno.nivelAtual];
-            document.getElementById('pf-bloco-txt').innerText = `Bloco ${aluno.progressoMaximo} de 9`;
 
-            // Cálculo do gráfico de porcentagem (baseado no progresso dos 9 blocos)
-            const porcentagem = Math.round((aluno.progressoMaximo / 9) * 100);
-            document.getElementById('pf-porcentagem').innerText = porcentagem + '%';
-            document.getElementById('pf-progress-fill').style.width = porcentagem + '%';
+            const containerGraficos = document.getElementById('lista-graficos-blocos');
+            containerGraficos.innerHTML = '';
 
-            const statusEvolucao = document.getElementById('pf-status-evolucao');
-            if (aluno.progressoMaximo <= 3) {
-                statusEvolucao.innerText = "Início consistente! Continue focado para acelerar sua fluência.";
-            } else if (aluno.progressoMaximo <= 6) {
-                statusEvolucao.innerText = "Excelente ritmo de estudo! Você está evoluindo muito bem.";
-            } else {
-                statusEvolucao.innerText = "Ritmo avançado fantástico! Reta final para o diploma!";
+            for (let i = 1; i <= 9; i++) {
+                let porcentagem = 0;
+                let statusTxt = "0% (Não iniciado)";
+
+                if (i < aluno.progressoMaximo) {
+                    porcentagem = 100;
+                    statusTxt = "concluído 100%";
+                } else if (i === aluno.progressoMaximo) {
+                    // Cada questão acertada vale 10% no bloco atual
+                    porcentagem = aluno.questoesAcertadasNoBloco * 10;
+                    statusTxt = `${porcentagem}%`;
+                }
+
+                const divBloco = document.createElement('div');
+                divBloco.style.marginBottom = "15px";
+                divBloco.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600; color: #0b1329;">
+                        <span>Bloco ${i}</span>
+                        <span style="color: #475569;">${statusTxt}</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: ${porcentagem}%;"></div>
+                    </div>
+                `;
+                containerGraficos.appendChild(divBloco);
             }
         }
 
         function salvarLembretes(event) {
             event.preventDefault();
             const horario = document.getElementById('input-horario').value;
-            alert(`⏰ Lembretes configurados com sucesso para as ${horario} nos dias selecionados! O site irá avisar você.`);
+            alert(`⏰ Lembretes configurados com sucesso para as ${horario} nos dias selecionados!`);
             mostrarSecao('sala-aula');
         }
 
@@ -826,6 +925,7 @@
         function carregarBloco(numBloco) {
             aluno.blocoAtual = numBloco;
             aluno.questaoAtual = 0;
+            aluno.questoesAcertadasNoBloco = 0;
             document.getElementById('quiz-container').style.display = 'block';
             exibirQuestao();
             window.scrollTo({ top: document.getElementById('quiz-container').offsetTop - 50, behavior: 'smooth' });
@@ -854,9 +954,12 @@
         function verificarResp(selecionada, correta) {
             const fb = document.getElementById('quiz-feedback');
             if (selecionada === correta) {
+                tocarSomAcerto();
+                aluno.questoesAcertadasNoBloco++;
                 fb.style.color = '#10b981';
-                fb.innerText = '✅ Resposta Correta!';
+                fb.innerText = '✅ Parabéns! Resposta Correta!';
             } else {
+                tocarSomErro();
                 fb.style.color = '#ef4444';
                 fb.innerText = '❌ Resposta Incorreta!';
             }
@@ -867,17 +970,27 @@
                     exibirQuestao();
                 } else {
                     document.getElementById('quiz-container').style.display = 'none';
+                    tocarSomParabensBloco();
+
                     if (aluno.blocoAtual === 9) {
                         mostrarCertificado();
                     } else {
-                        alert(`Parabéns! Bloco ${aluno.blocoAtual} concluído com sucesso! Próximo bloco desbloqueado.`);
-                        if (aluno.blocoAtual + 1 > aluno.progressoMaximo) {
-                            aluno.progressoMaximo = aluno.blocoAtual + 1;
-                        }
-                        atualizarPainelNivel();
+                        // Exibe modal de parabéns com o botão funcional "Ir para o próximo bloco"
+                        document.getElementById('mensagem-bloco-concluido').innerText = `Parabéns ${aluno.apelido}! Você concluiu o Bloco ${aluno.blocoAtual} com sucesso e já pode avançar.`;
+                        document.getElementById('modal-bloco-concluido').style.display = 'flex';
                     }
                 }
-            }, 1000);
+            }, 1200);
+        }
+
+        function avancarParaProximoBloco() {
+            document.getElementById('modal-bloco-concluido').style.display = 'none';
+            if (aluno.blocoAtual + 1 > aluno.progressoMaximo) {
+                aluno.progressoMaximo = aluno.blocoAtual + 1;
+            }
+            aluno.questoesAcertadasNoBloco = 0;
+            atualizarPainelNivel();
+            carregarBloco(aluno.blocoAtual + 1);
         }
 
         function mostrarCertificado() {
@@ -893,11 +1006,28 @@
             mod.style.display = 'flex';
         }
 
+        // BAIXAR CERTIFICADO EM PDF (via Impressão do Navegador)
+        function baixarCertificadoPDF() {
+            window.print();
+        }
+
+        // SALVAR CERTIFICADO NA GALERIA (Converte para imagem PNG baixável para telemóvel/PC)
+        function salvarNaGaleria() {
+            const elemento = document.getElementById('area-certificado-pdf');
+            html2canvas(elemento, { scale: 2 }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Certificado_DreamBridge_${aluno.nome.replace(/\s+/g, '_')}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+
         function avancarProximoNivel() {
             document.getElementById('modal-certificado').style.display = 'none';
             if (aluno.nivelAtual === 'basico') aluno.nivelAtual = 'intermediario';
             else if (aluno.nivelAtual === 'intermediario') aluno.nivelAtual = 'avancado';
             aluno.progressoMaximo = 1;
+            aluno.questoesAcertadasNoBloco = 0;
             mostrarSecao('sala-aula');
         }
 
@@ -911,6 +1041,7 @@
             if (n && bancoPerguntas[n]) {
                 aluno.nivelAtual = n;
                 aluno.progressoMaximo = 1;
+                aluno.questoesAcertadasNoBloco = 0;
                 atualizarPainelNivel();
             }
         }
