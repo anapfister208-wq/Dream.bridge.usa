@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dream Bridge USA 🇺🇲 | Plataforma de Inglês para Brasileiros</title>
+    <title>Dream Bridge USA | Plataforma de Inglês para Brasileiros</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -54,10 +54,10 @@
             background: #0b1329;
             color: white;
             text-align: center;
-            padding: 70px 20px;
+            padding: 60px 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto;
             padding: 0 20px;
         }
@@ -85,12 +85,99 @@
             border-radius: 6px;
             font-size: 1rem;
         }
+        /* Área do Curso */
         #course-area {
             display: none;
+        }
+        .dashboard-header {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .blocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .block-btn {
+            background: white;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            font-weight: 700;
+            color: #0b1329;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .block-btn:hover {
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+        }
+        .quiz-container {
             background: white;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: none;
+        }
+        .quiz-option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px 15px;
+            margin: 10px 0;
+            background: #f8fafc;
+            color: #0b1329;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .quiz-option:hover {
+            background: #e2e8f0;
+        }
+        /* Modal de Certificado */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-top: 6px solid #f59e0b;
+        }
+        .certificado-box {
+            border: 4px double #0b1329;
+            padding: 20px;
+            margin: 20px 0;
+            background: #fdfbf7;
+        }
+        footer {
+            background: #0b1329;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
         }
     </style>
 </head>
@@ -98,65 +185,251 @@
 
     <header>
         <div class="logo">Dream Bridge <span>USA</span></div>
+        <span id="user-greeting" style="font-size: 0.9rem; color: #f59e0b; font-weight: 600;"></span>
     </header>
 
-    <section class="hero">
-        <h1>Plataforma de Inglês para Brasileiros</h1>
-        <p>Do Básico ao Avançado</p>
+    <section class="hero" id="hero-banner">
+        <h1 style="font-size: 2rem; margin-bottom: 10px;">Plataforma de Inglês para Brasileiros</h1>
+        <p>Do Básico ao Avançado no seu Ritmo</p>
     </section>
 
     <div class="container">
         <!-- TELA 1: BOTÃO INICIAL -->
         <div id="welcome-section">
-            <h2 style="color: #0b1329; margin-bottom: 15px;">Comece a sua jornada</h2>
-            <p style="color: #64748b; margin-bottom: 25px;">Faça login e escolha o seu nível para iniciar os estudos.</p>
+            <h2 style="color: #0b1329; margin-bottom: 15px;">Pronto para Fluência?</h2>
+            <p style="color: #64748b; margin-bottom: 25px;">Clique abaixo para iniciar sua jornada e escolher seu nível.</p>
             <button class="btn-primary" onclick="mostrarLogin()">Começar curso</button>
         </div>
 
         <!-- TELA 2: LOGIN E NÍVEL -->
         <div class="login-box" id="login-box">
             <h2 style="color: #0b1329; margin-bottom: 15px; text-align: center;">Acessar Plataforma</h2>
-            <form onsubmit="iniciarCurso(event)">
+            <form onsubmit="iniciarCursoDoAluno(event)">
                 <label style="font-weight: 600; font-size: 0.9rem;">Seu Nome</label>
-                <input type="text" id="nome" placeholder="Digite seu nome" required>
+                <input type="text" id="aluno-nome" placeholder="Digite seu nome" required>
                 
                 <label style="font-weight: 600; font-size: 0.9rem;">E-mail</label>
                 <input type="email" placeholder="seu@email.com" required>
                 
-                <label style="font-weight: 600; font-size: 0.9rem;">Nível de Inglês</label>
-                <select id="nivel">
-                    <option value="Básico (Nível 1)">Básico (Nível 1)</option>
-                    <option value="Intermediário (Nível 2)">Intermediário (Nível 2)</option>
-                    <option value="Avançado (Nível 3)">Avançado (Nível 3)</option>
+                <label style="font-weight: 600; font-size: 0.9rem;">Nível Inicial de Inglês</label>
+                <select id="aluno-nivel">
+                    <option value="basico">Nível 1: Básico</option>
+                    <option value="intermediario">Nível 2: Intermediário</option>
+                    <option value="avancado">Nível 3: Avançado</option>
                 </select>
 
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px;">Entrar no Curso</button>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px;">Entrar na Sala de Aula</button>
             </form>
         </div>
 
-        <!-- TELA 3: CURSO -->
+        <!-- TELA 3: ÁREA DO CURSO (9 BLOCOS) -->
         <div id="course-area">
-            <h2 id="titulo-curso" style="color: #0b1329; margin-bottom: 15px;">Bem-vindo ao Curso!</h2>
-            <p style="color: #475569;">Os blocos de estudo e questões do seu nível estão prontos. Vamos começar!</p>
+            <div class="dashboard-header">
+                <div>
+                    <h3 id="display-nivel-titulo" style="color: #0b1329;">Nível Básico</h3>
+                    <p style="font-size: 0.85rem; color: #64748b;">9 Blocos de estudo (10 questões interativas cada).</p>
+                </div>
+                <button class="btn-primary" style="padding: 6px 12px; font-size: 0.8rem; background: #e2e8f0; color: #0f172a;" onclick="trocarNivelManual()">Trocar Nível</button>
+            </div>
+
+            <h4 style="margin-bottom: 15px; color: #0b1329;">Selecione o Bloco (1 a 9):</h4>
+            <div class="blocks-grid" id="grid-blocos"></div>
+
+            <!-- QUIZ DO BLOCO -->
+            <div class="quiz-container" id="quiz-container">
+                <h3 id="quiz-titulo" style="color: #0b1329; margin-bottom: 10px;">Bloco 1</h3>
+                <p id="quiz-pergunta" style="font-size: 1.05rem; margin-bottom: 20px; font-weight: 600;"></p>
+                <div id="quiz-opcoes"></div>
+                <div id="quiz-feedback" style="margin-top: 15px; font-weight: 700;"></div>
+            </div>
         </div>
     </div>
 
+    <!-- MODAL DE CERTIFICADO -->
+    <div class="modal-overlay" id="modal-certificado">
+        <div class="modal-card">
+            <h2 style="color: #0b1329; margin-bottom: 10px;">Parabéns! 🎓</h2>
+            <p id="modal-mensagem" style="color: #64748b; font-size: 0.9rem;"></p>
+            
+            <div class="certificado-box">
+                <h3 style="color: #0b1329; font-size: 1rem;">CERTIFICADO DIGITAL</h3>
+                <p style="font-size: 0.8rem; margin: 5px 0;">Certificamos que</p>
+                <h4 id="cert-nome" style="color: #f59e0b; font-size: 1.1rem;">Nome do Aluno</h4>
+                <p style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">concluiu o <span id="cert-nivel">Nível Básico</span> com sucesso na Dream Bridge USA.</p>
+            </div>
+
+            <div style="display: flex; gap: 10px; flex-direction: column;">
+                <button class="btn-primary" onclick="avancarProximoNivel()">Continuar para Próximo Nível</button>
+                <button onclick="fecharModalECconcluir()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">Terminar por aqui (Guardar Conclusão)</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Dream Bridge USA. Todos os direitos reservados.</p>
+        <p style="margin-top: 6px; color: #f59e0b; font-weight: 600;">🇧🇷 Plataforma de Ensino de Inglês para Brasileiros</p>
+    </footer>
+
     <script>
+        let aluno = { nome: "", nivelAtual: "basico", blocoAtual: 1, questaoAtual: 0 };
+
+        // 10 questões por nível para demonstração interativa dos blocos
+        const bancoPerguntas = {
+            basico: [
+                { p: "Como se diz 'Bom dia' em inglês?", o: ["Good night", "Good morning", "Goodbye"], r: 1 },
+                { p: "Traduza 'I am a student':", o: ["Eu sou um estudante", "Eu tenho um carro", "Eu moro aqui"], r: 0 },
+                { p: "Como perguntar 'Como você está?'", o: ["Who are you?", "How are you?", "What is this?"], r: 1 },
+                { p: "Qual o significado de 'Thank you'?", o: ["Por favor", "Com licença", "Obrigado"], r: 2 },
+                { p: "Como se diz 'Água'?", o: ["Water", "Milk", "Juice"], r: 0 },
+                { p: "Qual o verbo To Be correto para 'You'?", o: ["Am", "Is", "Are"], r: 2 },
+                { p: "Como dizer 'Até logo'?", o: ["Hello", "Goodbye", "Please"], r: 1 },
+                { p: "Traduza 'Cat':", o: ["Cachorro", "Gato", "Pássaro"], r: 1 },
+                { p: "Como responder a 'Thank you'?", o: ["You're welcome", "Good morning", "Sorry"], r: 0 },
+                { p: "Qual número é 'Five'?", o: ["4", "5", "6"], r: 1 }
+            ],
+            intermediario: [
+                { p: "Passado simples do verbo 'go':", o: ["goed", "went", "gone"], r: 1 },
+                { p: "Complete: 'If I ___ rich...'", o: ["am", "were", "be"], r: 1 },
+                { p: "Significado de 'Look forward to':", o: ["Olhar para trás", "Aguardar ansiosamente", "Desistir"], r: 1 },
+                { p: "Frase no Present Perfect:", o: ["I played", "I have played", "I will play"], r: 1 },
+                { p: "Traduza 'Business':", o: ["Negócio", "Loja", "Casa"], r: 0 },
+                { p: "Sinônimo de 'Glad':", o: ["Sad", "Happy", "Angry"], r: 1 },
+                { p: "Traduza 'By the way':", o: ["A propósito", "No caminho", "Até logo"], r: 0 },
+                { p: "Complete: 'She ___ every day.'", o: ["study", "studies", "studying"], r: 1 },
+                { p: "Oposto de 'Expensive':", o: ["Big", "Cheap", "Fast"], r: 1 },
+                { p: "Traduza 'Airport':", o: ["Estação", "Aeroporto", "Porto"], r: 1 }
+            ],
+            avancado: [
+                { p: "Significado de 'Piece of cake':", o: ["Pedaço de bolo", "Muito fácil", "Difícil"], r: 1 },
+                { p: "Frase na voz passiva:", o: ["He chased", "It was chased", "He runs"], r: 1 },
+                { p: "Significado de 'Break a leg':", o: ["Machucar", "Boa sorte", "Correr"], r: 1 },
+                { p: "Significado de 'Nonetheless':", o: ["Portanto", "No entanto", "Antes"], r: 1 },
+                { p: "Pronome relativo: 'The man ___ spoke...'", o: ["which", "who", "whose"], r: 1 },
+                { p: "O que é 'Touch base'?", o: ["Fazer contato", "Jogar", "Tocar"], r: 0 },
+                { p: "Palavra de incerteza:", o: ["Certainly", "Perhaps", "Definitely"], r: 1 },
+                { p: "Significado de 'Out of the blue':", o: ["De repente", "Azul", "Triste"], r: 0 },
+                { p: "Conditionals: 'Had I known...'", o: ["would do", "would have done", "will do"], r: 1 },
+                { p: "Significado de 'Call it a day':", o: ["Ligar", "Encerrar expediente", "Trabalhar"], r: 1 }
+            ]
+        };
+
         function mostrarLogin() {
             document.getElementById('welcome-section').style.display = 'none';
+            document.getElementById('hero-banner').style.padding = '30px 20px';
             document.getElementById('login-box').style.display = 'block';
         }
 
-        function iniciarCurso(event) {
+        function iniciarCursoDoAluno(event) {
             event.preventDefault();
-            const nome = document.getElementById('nome').value;
-            const nivel = document.getElementById('nivel').value;
-            
+            aluno.nome = document.getElementById('aluno-nome').value;
+            aluno.nivelAtual = document.getElementById('aluno-nivel').value;
+
+            document.getElementById('user-greeting').innerText = 'Olá, ' + aluno.nome + '!';
             document.getElementById('login-box').style.display = 'none';
             document.getElementById('course-area').style.display = 'block';
-            document.getElementById('titulo-curso').innerText = 'Olá, ' + nome + '! Seu curso (' + nivel + ') está liberado.';
+
+            atualizarPainelNivel();
+        }
+
+        function atualizarPainelNivel() {
+            const titulos = { basico: "Nível 1: Básico", intermediario: "Nível 2: Intermediário", avancado: "Nível 3: Avançado" };
+            document.getElementById('display-nivel-titulo').innerText = titulos[aluno.nivelAtual];
+            
+            const grid = document.getElementById('grid-blocos');
+            grid.innerHTML = '';
+
+            for (let i = 1; i <= 9; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'block-btn';
+                btn.innerText = 'Bloco ' + i;
+                btn.onclick = () => carregarBloco(i);
+                grid.appendChild(btn);
+            }
+            document.getElementById('quiz-container').style.display = 'none';
+        }
+
+        function carregarBloco(numBloco) {
+            aluno.blocoAtual = numBloco;
+            aluno.questaoAtual = 0;
+            document.getElementById('quiz-container').style.display = 'block';
+            exibirQuestao();
+        }
+
+        function exibirQuestao() {
+            const qList = bancoPerguntas[aluno.nivelAtual];
+            const questao = qList[aluno.questaoAtual % qList.length];
+
+            document.getElementById('quiz-titulo').innerText = `Bloco ${aluno.blocoAtual} — Questão ${aluno.questaoAtual + 1} de 10`;
+            document.getElementById('quiz-pergunta').innerText = questao.p;
+            document.getElementById('quiz-feedback').innerText = '';
+
+            const divOp = document.getElementById('quiz-opcoes');
+            divOp.innerHTML = '';
+
+            questao.o.forEach((texto, idx) => {
+                const btnOp = document.createElement('button');
+                btnOp.className = 'quiz-option';
+                btnOp.innerText = texto;
+                btnOp.onclick = () => verificarResp(idx, questao.r);
+                divOp.appendChild(btnOp);
+            });
+        }
+
+        function verificarResp(selecionada, correta) {
+            const fb = document.getElementById('quiz-feedback');
+            if (selecionada === correta) {
+                fb.style.color = '#10b981';
+                fb.innerText = '✅ Resposta Correta!';
+            } else {
+                fb.style.color = '#ef4444';
+                fb.innerText = '❌ Resposta Incorreta!';
+            }
+
+            setTimeout(() => {
+                aluno.questaoAtual++;
+                if (aluno.questaoAtual < 10) {
+                    exibirQuestao();
+                } else {
+                    document.getElementById('quiz-container').style.display = 'none';
+                    if (aluno.blocoAtual === 9) {
+                        mostrarCertificado();
+                    } else {
+                        alert(`Parabéns! Bloco ${aluno.blocoAtual} concluído.`);
+                        carregarBloco(aluno.blocoAtual + 1);
+                    }
+                }
+            }, 1000);
+        }
+
+        function mostrarCertificado() {
+            const mod = document.getElementById('modal-certificado');
+            const nomes = { basico: "Nível Básico", intermediario: "Nível Intermediário", avancado: "Nível Avançado" };
+            
+            document.getElementById('cert-nome').innerText = aluno.nome;
+            document.getElementById('cert-nivel').innerText = nomes[aluno.nivelAtual];
+            document.getElementById('modal-mensagem').innerText = `Você concluiu os 9 blocos do ${nomes[aluno.nivelAtual]} com sucesso!`;
+            mod.style.display = 'flex';
+        }
+
+        function avancarProximoNivel() {
+            document.getElementById('modal-certificado').style.display = 'none';
+            if (aluno.nivelAtual === 'basico') aluno.nivelAtual = 'intermediario';
+            else if (aluno.nivelAtual === 'intermediario') aluno.nivelAtual = 'avancado';
+            atualizarPainelNivel();
+        }
+
+        function fecharModalECconcluir() {
+            document.getElementById('modal-certificado').style.display = 'none';
+            alert('Certificado guardado com sucesso!');
+        }
+
+        function trocarNivelManual() {
+            const n = prompt("Escolha o nível (basico, intermediario ou avancado):");
+            if (n && bancoPerguntas[n]) {
+                aluno.nivelAtual = n;
+                atualizarPainelNivel();
+            }
         }
     </script>
-
 </body>
 </html>
