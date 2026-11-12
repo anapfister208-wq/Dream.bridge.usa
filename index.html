@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dream Bridge USA | Plataforma de Inglês para Brasileiros</title>
+    <title>Dream Bridge USA 🇺🇲 | Plataforma de Inglês para Brasileiros</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -50,11 +50,14 @@
         .btn-primary:hover {
             background-color: #d97706;
         }
+        /* Hero com imagem de fundo e overlay azul marinho translúcido */
         .hero {
-            background: #0b1329;
+            position: relative;
+            background: linear-gradient(rgba(11, 19, 41, 0.85), rgba(11, 19, 41, 0.85)), 
+                        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
             color: white;
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
         .container {
             max-width: 900px;
@@ -85,7 +88,6 @@
             border-radius: 6px;
             font-size: 1rem;
         }
-        /* Área do Curso */
         #course-area {
             display: none;
         }
@@ -103,7 +105,7 @@
         }
         .blocks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
             gap: 12px;
             margin-bottom: 30px;
         }
@@ -111,16 +113,25 @@
             background: white;
             border: 2px solid #cbd5e1;
             border-radius: 10px;
-            padding: 12px;
+            padding: 12px 8px;
             text-align: center;
             font-weight: 700;
             color: #0b1329;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
-        .block-btn:hover {
+        .block-btn.unlocked:hover {
             border-color: #f59e0b;
             transform: translateY(-2px);
+            background: #fffbeb;
+        }
+        .block-btn.locked {
+            background: #e2e8f0;
+            color: #94a3b8;
+            border-color: #cbd5e1;
+            cursor: not-allowed;
+            opacity: 0.7;
         }
         .quiz-container {
             background: white;
@@ -145,7 +156,6 @@
         .quiz-option:hover {
             background: #e2e8f0;
         }
-        /* Modal de Certificado */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -189,15 +199,15 @@
     </header>
 
     <section class="hero" id="hero-banner">
-        <h1 style="font-size: 2rem; margin-bottom: 10px;">Plataforma de Inglês para Brasileiros</h1>
-        <p>Do Básico ao Avançado no seu Ritmo</p>
+        <h1 style="font-size: 2.2rem; margin-bottom: 10px;">Dream Bridge USA 🇺🇸</h1>
+        <p style="font-size: 1.1rem; font-weight: 600; color: #f59e0b;">Seja Bem Vindo a Plataforma</p>
     </section>
 
     <div class="container">
         <!-- TELA 1: BOTÃO INICIAL -->
         <div id="welcome-section">
-            <h2 style="color: #0b1329; margin-bottom: 15px;">Pronto para Fluência?</h2>
-            <p style="color: #64748b; margin-bottom: 25px;">Clique abaixo para iniciar sua jornada e escolher seu nível.</p>
+            <h2 style="color: #0b1329; margin-bottom: 15px;">Pronto para a sua jornada bilíngue?</h2>
+            <p style="color: #64748b; margin-bottom: 25px;">Clique abaixo para iniciar, fazer login e acessar seus blocos.</p>
             <button class="btn-primary" onclick="mostrarLogin()">Começar curso</button>
         </div>
 
@@ -222,17 +232,17 @@
             </form>
         </div>
 
-        <!-- TELA 3: ÁREA DO CURSO (9 BLOCOS) -->
+        <!-- TELA 3: ÁREA DO CURSO -->
         <div id="course-area">
             <div class="dashboard-header">
                 <div>
                     <h3 id="display-nivel-titulo" style="color: #0b1329;">Nível Básico</h3>
-                    <p style="font-size: 0.85rem; color: #64748b;">9 Blocos de estudo (10 questões interativas cada).</p>
+                    <p style="font-size: 0.85rem; color: #64748b;">Complete o Bloco 1 para desbloquear os seguintes.</p>
                 </div>
                 <button class="btn-primary" style="padding: 6px 12px; font-size: 0.8rem; background: #e2e8f0; color: #0f172a;" onclick="trocarNivelManual()">Trocar Nível</button>
             </div>
 
-            <h4 style="margin-bottom: 15px; color: #0b1329;">Selecione o Bloco (1 a 9):</h4>
+            <h4 style="margin-bottom: 15px; color: #0b1329;">Trilha de Blocos (1 a 9):</h4>
             <div class="blocks-grid" id="grid-blocos"></div>
 
             <!-- QUIZ DO BLOCO -->
@@ -260,7 +270,7 @@
 
             <div style="display: flex; gap: 10px; flex-direction: column;">
                 <button class="btn-primary" onclick="avancarProximoNivel()">Continuar para Próximo Nível</button>
-                <button onclick="fecharModalECconcluir()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">Terminar por aqui (Guardar Conclusão)</button>
+                <button onclick="fecharModalECconcluir()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">Terminar por aqui</button>
             </div>
         </div>
     </div>
@@ -271,9 +281,8 @@
     </footer>
 
     <script>
-        let aluno = { nome: "", nivelAtual: "basico", blocoAtual: 1, questaoAtual: 0 };
+        let aluno = { nome: "", nivelAtual: "basico", blocoAtual: 1, questaoAtual: 0, progressoMaximo: 1 };
 
-        // 10 questões por nível para demonstração interativa dos blocos
         const bancoPerguntas = {
             basico: [
                 { p: "Como se diz 'Bom dia' em inglês?", o: ["Good night", "Good morning", "Goodbye"], r: 1 },
@@ -315,7 +324,7 @@
 
         function mostrarLogin() {
             document.getElementById('welcome-section').style.display = 'none';
-            document.getElementById('hero-banner').style.padding = '30px 20px';
+            document.getElementById('hero-banner').style.padding = '40px 20px';
             document.getElementById('login-box').style.display = 'block';
         }
 
@@ -323,6 +332,7 @@
             event.preventDefault();
             aluno.nome = document.getElementById('aluno-nome').value;
             aluno.nivelAtual = document.getElementById('aluno-nivel').value;
+            aluno.progressoMaximo = 1;
 
             document.getElementById('user-greeting').innerText = 'Olá, ' + aluno.nome + '!';
             document.getElementById('login-box').style.display = 'none';
@@ -341,8 +351,16 @@
             for (let i = 1; i <= 9; i++) {
                 const btn = document.createElement('button');
                 btn.className = 'block-btn';
-                btn.innerText = 'Bloco ' + i;
-                btn.onclick = () => carregarBloco(i);
+                
+                if (i <= aluno.progressoMaximo) {
+                    btn.classList.add('unlocked');
+                    btn.innerHTML = `Bloco ${i}<br><span style="font-size:0.7rem; color:#10b981;">Liberado</span>`;
+                    btn.onclick = () => carregarBloco(i);
+                } else {
+                    btn.classList.add('locked');
+                    btn.innerHTML = `Bloco ${i}<br><span style="font-size:0.7rem;">🔒 Bloqueado</span>`;
+                    btn.onclick = () => alert("Complete o bloco anterior para desbloquear este!");
+                }
                 grid.appendChild(btn);
             }
             document.getElementById('quiz-container').style.display = 'none';
@@ -394,8 +412,11 @@
                     if (aluno.blocoAtual === 9) {
                         mostrarCertificado();
                     } else {
-                        alert(`Parabéns! Bloco ${aluno.blocoAtual} concluído.`);
-                        carregarBloco(aluno.blocoAtual + 1);
+                        alert(`Parabéns! Bloco ${aluno.blocoAtual} concluído com sucesso! Próximo bloco desbloqueado.`);
+                        if (aluno.blocoAtual + 1 > aluno.progressoMaximo) {
+                            aluno.progressoMaximo = aluno.blocoAtual + 1;
+                        }
+                        atualizarPainelNivel();
                     }
                 }
             }, 1000);
@@ -407,7 +428,7 @@
             
             document.getElementById('cert-nome').innerText = aluno.nome;
             document.getElementById('cert-nivel').innerText = nomes[aluno.nivelAtual];
-            document.getElementById('modal-mensagem').innerText = `Você concluiu os 9 blocos do ${nomes[aluno.nivelAtual]} com sucesso!`;
+            document.getElementById('modal-mensagem').innerText = `Você concluiu com sucesso todos os 9 blocos do ${nomes[aluno.nivelAtual]}!`;
             mod.style.display = 'flex';
         }
 
@@ -415,18 +436,20 @@
             document.getElementById('modal-certificado').style.display = 'none';
             if (aluno.nivelAtual === 'basico') aluno.nivelAtual = 'intermediario';
             else if (aluno.nivelAtual === 'intermediario') aluno.nivelAtual = 'avancado';
+            aluno.progressoMaximo = 1;
             atualizarPainelNivel();
         }
 
         function fecharModalECconcluir() {
             document.getElementById('modal-certificado').style.display = 'none';
-            alert('Certificado guardado com sucesso!');
+            alert('Parabéns pela conclusão do nível!');
         }
 
         function trocarNivelManual() {
             const n = prompt("Escolha o nível (basico, intermediario ou avancado):");
             if (n && bancoPerguntas[n]) {
                 aluno.nivelAtual = n;
+                aluno.progressoMaximo = 1;
                 atualizarPainelNivel();
             }
         }
