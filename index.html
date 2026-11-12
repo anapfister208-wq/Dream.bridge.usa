@@ -564,4 +564,356 @@
         <!-- TELA DE LEMBRETES E CALENDÁRIO (MENU) -->
         <div class="app-view" id="view-lembretes">
             <h2 style="color: #0b1329; margin-bottom: 10px;">⏰ Lembretes de Aula e Calendário</h2>
-            <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 25px;">Personalize os dias e horários em que dese
+            <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 25px;">Personalize os dias e horários em que deseja receber lembretes para manter o foco nos estudos.</p>
+            
+            <form onsubmit="salvarLembretes(event)">
+                <label style="font-weight: 600; color: #0b1329; font-size: 0.9rem;">Horário do Lembrete Diário</label>
+                <input type="time" id="input-horario" value="19:00" style="width: 100%; padding: 12px; margin: 8px 0 20px 0; border: 1px solid #cbd5e1; border-radius: 6px;">
+
+                <label style="font-weight: 600; color: #0b1329; font-size: 0.9rem;">Dias da Semana para Estudar</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 10px 0 25px 0;">
+                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Segunda" checked> Segunda</label>
+                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Terça" checked> Terça</label>
+                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Quarta" checked> Quarta</label>
+                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Quinta" checked> Quinta</label>
+                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Sexta" checked> Sexta</label>
+                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Sábado"> Sábado</label>
+                    <label style="font-weight: normal; font-size: 0.9rem;"><input type="checkbox" name="dia" value="Domingo"> Domingo</label>
+                </div>
+
+                <button type="submit" class="btn-primary">Salvar Configurações de Lembrete</button>
+            </form>
+        </div>
+
+        <!-- ÁREA DO CURSO (SALA DE AULA) -->
+        <div id="course-area" class="app-view" style="display: none; background: transparent; padding: 0; box-shadow: none;">
+            <div class="dashboard-header">
+                <div>
+                    <h3 id="display-nivel-titulo" style="color: #0b1329;">Nível Básico</h3>
+                    <p style="font-size: 0.85rem; color: #64748b;">Complete o Bloco 1 para desbloquear os seguintes.</p>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-primary" style="padding: 6px 12px; font-size: 0.8rem; background: #e2e8f0; color: #0f172a;" onclick="indicarCurso()">Indicar Curso</button>
+                    <button class="btn-primary" style="padding: 6px 12px; font-size: 0.8rem; background: #e2e8f0; color: #0f172a;" onclick="trocarNivelManual()">Trocar Nível</button>
+                </div>
+            </div>
+
+            <h4 style="margin-bottom: 15px; color: #0b1329;">Trilha de Blocos (1 a 9):</h4>
+            <div class="blocks-grid" id="grid-blocos"></div>
+
+            <!-- QUIZ DO BLOCO -->
+            <div class="quiz-container" id="quiz-container">
+                <h3 id="quiz-titulo" style="color: #0b1329; margin-bottom: 10px;">Bloco 1</h3>
+                <p id="quiz-pergunta" style="font-size: 1.05rem; margin-bottom: 20px; font-weight: 600;"></p>
+                <div id="quiz-opcoes"></div>
+                <div id="quiz-feedback" style="margin-top: 15px; font-weight: 700;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CERTIFICADO DE VERDADE -->
+    <div class="modal-overlay" id="modal-certificado">
+        <div class="modal-card">
+            <div class="certificado-diploma">
+                <p style="font-size: 0.75rem; color: #64748b; letter-spacing: 2px;">DREAM BRIDGE USA 🇺🇸</p>
+                <h3 style="margin-top: 5px;">CERTIFICADO DE CONCLUSÃO</h3>
+                <p style="font-size: 0.85rem; font-style: italic; color: #475569; margin: 15px 0;">Parabéns pelo excelente desempenho e dedicação!</p>
+                
+                <p style="font-size: 0.85rem; color: #0b1329;">Certificamos com muito orgulho que o(a) aluno(a)</p>
+                <h4 id="cert-nome">Nome do Aluno</h4>
+                <p style="font-size: 0.85rem; color: #0b1329; line-height: 1.6;">
+                    finalizou com sucesso todos os 9 blocos de ensino da plataforma online oficial da <strong style="color: #0b1329;">Dream Bridge USA</strong>, concluindo com aproveitamento o <span id="cert-nivel" style="font-weight: 700; color: #f59e0b;">Nível Básico</span>.
+                </p>
+
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; padding: 0 20px;">
+                    <div style="text-align: center;">
+                        <p style="font-size: 0.75rem; color: #64748b;" id="cert-data">Data: 12/11/2026</p>
+                        <div style="border-top: 1px solid #0b1329; width: 130px; margin-top: 4px;"></div>
+                        <p style="font-size: 0.7rem; font-weight: 600; color: #0b1329;">Data de Emissão</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-family: 'Playfair Display', serif; font-size: 1rem; color: #0b1329; font-style: italic;">Dream Bridge Team</p>
+                        <div style="border-top: 1px solid #0b1329; width: 130px; margin-top: 4px;"></div>
+                        <p style="font-size: 0.7rem; font-weight: 600; color: #0b1329;">Direção Acadêmica</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; flex-direction: column; margin-top: 15px;">
+                <button class="btn-primary" onclick="avancarProximoNivel()">Avançar para Próximo Nível</button>
+                <button onclick="indicarCurso()" class="btn-secondary" style="width: 100%; margin: 0;">Indicar Curso para Amigos</button>
+                <button onclick="fecharModalECconcluir()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">Finalizar e Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Dream Bridge USA. Todos os direitos reservados.</p>
+        <p style="margin-top: 6px; color: #f59e0b; font-weight: 600;">🇧🇷 Plataforma de Ensino de Inglês para Brasileiros</p>
+        <p style="margin-top: 15px; font-size: 0.9rem; color: #94a3b8;">Fale Conosco: <a href="mailto:anapfister208@gmail.com">anapfister208@gmail.com</a></p>
+    </footer>
+
+    <script>
+        let aluno = { nome: "", apelido: "", email: "", nivelAtual: "basico", blocoAtual: 1, questaoAtual: 0, progressoMaximo: 1 };
+
+        const bancoPerguntas = {
+            basico: [
+                { p: "Como se diz 'Bom dia' em inglês?", o: ["Good night", "Good morning", "Goodbye"], r: 1 },
+                { p: "Traduza 'I am a student':", o: ["Eu sou um estudante", "Eu tenho um carro", "Eu moro aqui"], r: 0 },
+                { p: "Como perguntar 'Como você está?'", o: ["Who are you?", "How are you?", "What is this?"], r: 1 },
+                { p: "Qual o significado de 'Thank you'?", o: ["Por favor", "Com licença", "Obrigado"], r: 2 },
+                { p: "Como se diz 'Água'?", o: ["Water", "Milk", "Juice"], r: 0 },
+                { p: "Qual o verbo To Be correto para 'You'?", o: ["Am", "Is", "Are"], r: 2 },
+                { p: "Como dizer 'Até logo'?", o: ["Hello", "Goodbye", "Please"], r: 1 },
+                { p: "Traduza 'Cat':", o: ["Cachorro", "Gato", "Pássaro"], r: 1 },
+                { p: "Como responder a 'Thank you'?", o: ["You're welcome", "Good morning", "Sorry"], r: 0 },
+                { p: "Qual número é 'Five'?", o: ["4", "5", "6"], r: 1 }
+            ],
+            intermediario: [
+                { p: "Passado simples do verbo 'go':", o: ["goed", "went", "gone"], r: 1 },
+                { p: "Complete: 'If I ___ rich...'", o: ["am", "were", "be"], r: 1 },
+                { p: "Significado de 'Look forward to':", o: ["Olhar para trás", "Aguardar ansiosamente", "Desistir"], r: 1 },
+                { p: "Frase no Present Perfect:", o: ["I played", "I have played", "I will play"], r: 1 },
+                { p: "Traduza 'Business':", o: ["Negócio", "Loja", "Casa"], r: 0 },
+                { p: "Sinônimo de 'Glad':", o: ["Sad", "Happy", "Angry"], r: 1 },
+                { p: "Traduza 'By the way':", o: ["A propósito", "No caminho", "Até logo"], r: 0 },
+                { p: "Complete: 'She ___ every day.'", o: ["study", "studies", "studying"], r: 1 },
+                { p: "Oposto de 'Expensive':", o: ["Big", "Cheap", "Fast"], r: 1 },
+                { p: "Traduza 'Airport':", o: ["Estação", "Aeroporto", "Porto"], r: 1 }
+            ],
+            avancado: [
+                { p: "Significado de 'Piece of cake':", o: ["Pedaço de bolo", "Muito fácil", "Difícil"], r: 1 },
+                { p: "Frase na voz passiva:", o: ["He chased", "It was chased", "He runs"], r: 1 },
+                { p: "Significado de 'Break a leg':", o: ["Machucar", "Boa sorte", "Correr"], r: 1 },
+                { p: "Significado de 'Nonetheless':", o: ["Portanto", "No entanto", "Antes"], r: 1 },
+                { p: "Pronome relativo: 'The man ___ spoke...'", o: ["which", "who", "whose"], r: 1 },
+                { p: "O que é 'Touch base'?", o: ["Fazer contato", "Jogar", "Tocar"], r: 0 },
+                { p: "Palavra de incerteza:", o: ["Certainly", "Perhaps", "Definitely"], r: 1 },
+                { p: "Significado de 'Out of the blue':", o: ["De repente", "Azul", "Triste"], r: 0 },
+                { p: "Conditionals: 'Had I known...'", o: ["would do", "would have done", "will do"], r: 1 },
+                { p: "Significado de 'Call it a day':", o: ["Ligar", "Encerrar expediente", "Trabalhar"], r: 1 }
+            ]
+        };
+
+        function irParaLogin() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('login-box').style.display = 'block';
+            window.scrollTo({ top: 100, behavior: 'smooth' });
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebar-overlay').classList.toggle('open');
+        }
+
+        function esconderTodasAsSecoes() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('login-box').style.display = 'none';
+            document.getElementById('course-area').style.display = 'none';
+            document.getElementById('view-perfil').style.display = 'none';
+            document.getElementById('view-lembretes').style.display = 'none';
+        }
+
+        function mostrarSecao(secao) {
+            esconderTodasAsSecoes();
+            toggleSidebar();
+
+            if (secao === 'sala-aula') {
+                document.getElementById('course-area').style.display = 'block';
+                atualizarPainelNivel();
+            } else if (secao === 'perfil') {
+                atualizarDadosPerfil();
+                document.getElementById('view-perfil').style.display = 'block';
+            } else if (secao === 'lembretes') {
+                document.getElementById('view-lembretes').style.display = 'block';
+            }
+            window.scrollTo({ top: 50, behavior: 'smooth' });
+        }
+
+        function iniciarCursoDoAluno(event) {
+            event.preventDefault();
+            aluno.nome = document.getElementById('aluno-nome').value;
+            aluno.apelido = document.getElementById('aluno-apelido').value;
+            aluno.email = document.getElementById('aluno-email').value;
+            aluno.nivelAtual = document.getElementById('aluno-nivel').value;
+            aluno.progressoMaximo = 1;
+
+            document.getElementById('user-greeting').innerText = 'Olá, ' + aluno.apelido + '!';
+            document.getElementById('menu-btn').style.display = 'flex'; // Exibe o menu de 3 risquinhos
+
+            alert(`📧 Um e-mail de boas-vindas foi enviado com sucesso para: ${aluno.email}`);
+            mostrarSecao('sala-aula');
+        }
+
+        function atualizarDadosPerfil() {
+            document.getElementById('pf-nome').innerText = aluno.nome;
+            document.getElementById('pf-apelido').innerText = aluno.apelido;
+            document.getElementById('pf-email').innerText = aluno.email;
+            
+            const iniciais = aluno.apelido ? aluno.apelido.substring(0, 2).toUpperCase() : "DB";
+            document.getElementById('profile-initials').innerText = iniciais;
+
+            const titulosNivel = { basico: "Básico", intermediario: "Intermediário", avancado: "Avançado" };
+            document.getElementById('pf-nivel-txt').innerText = titulosNivel[aluno.nivelAtual];
+            document.getElementById('pf-bloco-txt').innerText = `Bloco ${aluno.progressoMaximo} de 9`;
+
+            // Cálculo do gráfico de porcentagem (baseado no progresso dos 9 blocos)
+            const porcentagem = Math.round((aluno.progressoMaximo / 9) * 100);
+            document.getElementById('pf-porcentagem').innerText = porcentagem + '%';
+            document.getElementById('pf-progress-fill').style.width = porcentagem + '%';
+
+            const statusEvolucao = document.getElementById('pf-status-evolucao');
+            if (aluno.progressoMaximo <= 3) {
+                statusEvolucao.innerText = "Início consistente! Continue focado para acelerar sua fluência.";
+            } else if (aluno.progressoMaximo <= 6) {
+                statusEvolucao.innerText = "Excelente ritmo de estudo! Você está evoluindo muito bem.";
+            } else {
+                statusEvolucao.innerText = "Ritmo avançado fantástico! Reta final para o diploma!";
+            }
+        }
+
+        function salvarLembretes(event) {
+            event.preventDefault();
+            const horario = document.getElementById('input-horario').value;
+            alert(`⏰ Lembretes configurados com sucesso para as ${horario} nos dias selecionados! O site irá avisar você.`);
+            mostrarSecao('sala-aula');
+        }
+
+        function indicarCurso() {
+            const linkCompartilhar = "https://dreambridgeusa.vercel.app";
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Dream Bridge USA',
+                    text: 'Venha aprender inglês de graça na plataforma Dream Bridge USA!',
+                    url: linkCompartilhar,
+                }).catch(() => {});
+            } else {
+                prompt("Copie o link abaixo para indicar o curso para seus amigos:", linkCompartilhar);
+            }
+        }
+
+        function sairDaPlataforma() {
+            if (confirm("Deseja realmente sair da conta?")) {
+                location.reload();
+            }
+        }
+
+        function atualizarPainelNivel() {
+            const titulos = { basico: "Nível 1: Básico", intermediario: "Nível 2: Intermediário", avancado: "Nível 3: Avançado" };
+            document.getElementById('display-nivel-titulo').innerText = titulos[aluno.nivelAtual];
+            
+            const grid = document.getElementById('grid-blocos');
+            grid.innerHTML = '';
+
+            for (let i = 1; i <= 9; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'block-btn';
+                
+                if (i <= aluno.progressoMaximo) {
+                    btn.classList.add('unlocked');
+                    btn.innerHTML = `Bloco ${i}<br><span style="font-size:0.7rem; color:#10b981;">Liberado</span>`;
+                    btn.onclick = () => carregarBloco(i);
+                } else {
+                    btn.classList.add('locked');
+                    btn.innerHTML = `Bloco ${i}<br><span style="font-size:0.7rem;">🔒 Bloqueado</span>`;
+                    btn.onclick = () => alert("Complete o bloco anterior para desbloquear este!");
+                }
+                grid.appendChild(btn);
+            }
+            document.getElementById('quiz-container').style.display = 'none';
+        }
+
+        function carregarBloco(numBloco) {
+            aluno.blocoAtual = numBloco;
+            aluno.questaoAtual = 0;
+            document.getElementById('quiz-container').style.display = 'block';
+            exibirQuestao();
+            window.scrollTo({ top: document.getElementById('quiz-container').offsetTop - 50, behavior: 'smooth' });
+        }
+
+        function exibirQuestao() {
+            const qList = bancoPerguntas[aluno.nivelAtual];
+            const questao = qList[aluno.questaoAtual % qList.length];
+
+            document.getElementById('quiz-titulo').innerText = `Bloco ${aluno.blocoAtual} — Questão ${aluno.questaoAtual + 1} de 10`;
+            document.getElementById('quiz-pergunta').innerText = questao.p;
+            document.getElementById('quiz-feedback').innerText = '';
+
+            const divOp = document.getElementById('quiz-opcoes');
+            divOp.innerHTML = '';
+
+            questao.o.forEach((texto, idx) => {
+                const btnOp = document.createElement('button');
+                btnOp.className = 'quiz-option';
+                btnOp.innerText = texto;
+                btnOp.onclick = () => verificarResp(idx, questao.r);
+                divOp.appendChild(btnOp);
+            });
+        }
+
+        function verificarResp(selecionada, correta) {
+            const fb = document.getElementById('quiz-feedback');
+            if (selecionada === correta) {
+                fb.style.color = '#10b981';
+                fb.innerText = '✅ Resposta Correta!';
+            } else {
+                fb.style.color = '#ef4444';
+                fb.innerText = '❌ Resposta Incorreta!';
+            }
+
+            setTimeout(() => {
+                aluno.questaoAtual++;
+                if (aluno.questaoAtual < 10) {
+                    exibirQuestao();
+                } else {
+                    document.getElementById('quiz-container').style.display = 'none';
+                    if (aluno.blocoAtual === 9) {
+                        mostrarCertificado();
+                    } else {
+                        alert(`Parabéns! Bloco ${aluno.blocoAtual} concluído com sucesso! Próximo bloco desbloqueado.`);
+                        if (aluno.blocoAtual + 1 > aluno.progressoMaximo) {
+                            aluno.progressoMaximo = aluno.blocoAtual + 1;
+                        }
+                        atualizarPainelNivel();
+                    }
+                }
+            }, 1000);
+        }
+
+        function mostrarCertificado() {
+            const mod = document.getElementById('modal-certificado');
+            const nomes = { basico: "Nível Básico", intermediario: "Nível Intermediário", avancado: "Nível Avançado" };
+            
+            document.getElementById('cert-nome').innerText = aluno.nome;
+            document.getElementById('cert-nivel').innerText = nomes[aluno.nivelAtual];
+            
+            const hoje = new Date().toLocaleDateString('pt-BR');
+            document.getElementById('cert-data').innerText = `Data: ${hoje}`;
+
+            mod.style.display = 'flex';
+        }
+
+        function avancarProximoNivel() {
+            document.getElementById('modal-certificado').style.display = 'none';
+            if (aluno.nivelAtual === 'basico') aluno.nivelAtual = 'intermediario';
+            else if (aluno.nivelAtual === 'intermediario') aluno.nivelAtual = 'avancado';
+            aluno.progressoMaximo = 1;
+            mostrarSecao('sala-aula');
+        }
+
+        function fecharModalECconcluir() {
+            document.getElementById('modal-certificado').style.display = 'none';
+            alert('Parabéns pela conclusão do nível!');
+        }
+
+        function trocarNivelManual() {
+            const n = prompt("Escolha o nível (basico, intermediario ou avancado):");
+            if (n && bancoPerguntas[n]) {
+                aluno.nivelAtual = n;
+                aluno.progressoMaximo = 1;
+                atualizarPainelNivel();
+            }
+        }
+    </script>
+</body>
+</html>
