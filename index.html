@@ -51,28 +51,35 @@
         .btn-primary:hover {
             background-color: #d97706;
         }
-        /* Hero com a imagem do logotipo enviada e overlay azul marinho translúcido */
+        /* Hero com fundo azul marinho e a foto original do logotipo nitidamente exibida */
         .hero {
             position: relative;
-            background: linear-gradient(rgba(11, 19, 41, 0.85), rgba(11, 19, 41, 0.85)), 
-                        url('https://i.ibb.co/6R22z38/29045.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(11, 19, 41, 0.88), rgba(11, 19, 41, 0.88)), 
+                        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
             color: white;
             text-align: center;
-            padding: 80px 20px;
+            padding: 50px 20px;
         }
         .hero-content-box {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
+            background: #ffffff;
+            padding: 25px;
             border-radius: 12px;
-            max-width: 550px;
+            max-width: 520px;
             margin: 0 auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border-top: 5px solid #f59e0b;
+        }
+        .hero-logo-img {
+            width: 100%;
+            max-height: 180px;
+            object-fit: contain;
+            margin-bottom: 12px;
+            border-radius: 6px;
         }
         .hero-content-box h1 {
             color: #0b1329;
-            font-size: 2rem;
-            margin-bottom: 8px;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
         }
 
         /* Seção Explicativa Estilo Duolingo / Empresa */
@@ -220,7 +227,7 @@
             background: #e2e8f0;
         }
 
-        /* MODAL DE CERTIFICADO ESTILO DIPLOMA REAL */
+        /* MODAL DE CERTIFICADO DE VERDADE */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -284,12 +291,12 @@
         <span id="user-greeting" style="font-size: 0.9rem; color: #f59e0b; font-weight: 600;"></span>
     </header>
 
-    <!-- HERO COM O LOGÓTIPO OFICIAL NO FUNDO -->
+    <!-- HERO COM A FOTO NITIDA DO LOGOTIPO EM CIMA DO TEXTO DE BEM-VINDO -->
     <section class="hero" id="hero-banner">
         <div class="hero-content-box">
+            <img src="https://i.ibb.co/6R22z38/29045.jpg" alt="Dream Bridge USA Logo" class="hero-logo-img">
             <h1>Dream Bridge USA 🇺🇸</h1>
-            <p style="font-size: 1.1rem; font-weight: 700; color: #f59e0b; margin-top: 5px;">Seja Bem Vindo a Plataforma</p>
-            <p style="font-size: 0.8rem; color: #64748b; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px;">Connecting Dreams & Opportunities</p>
+            <p style="font-size: 1rem; font-weight: 700; color: #f59e0b; margin-top: 4px;">SEJA BEM VINDO A PLATAFORMA</p>
         </div>
     </section>
 
@@ -461,7 +468,4 @@
 
         function iniciarCursoDoAluno(event) {
             event.preventDefault();
-            const nomeInput = document.getElementById('aluno-nome').value;
-            const emailInput = document.querySelector('input[type="email"]').value;
-            aluno.nome = nomeInput;
-            aluno.nivelAtual = document.getElementById('aluno-ni
+            const nomeInput = document.getElementById('al
