@@ -24,8 +24,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
             border-bottom: 3px solid #f59e0b;
         }
         .logo {
@@ -36,20 +34,6 @@
         .logo span {
             color: #f59e0b;
         }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .lang-badge {
-            background: #1e293b;
-            color: #ffffff;
-            border: 1px solid #334155;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
         .btn-primary {
             background-color: #f59e0b;
             color: #0b1329;
@@ -59,221 +43,54 @@
             border-radius: 8px;
             border: none;
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
             text-decoration: none;
             display: inline-block;
+            transition: background 0.3s;
         }
         .btn-primary:hover {
             background-color: #d97706;
-            transform: scale(1.02);
         }
         .hero {
-            background: linear-gradient(rgba(11, 19, 41, 0.92), rgba(11, 19, 41, 0.88)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            background: #0b1329;
             color: white;
             text-align: center;
             padding: 70px 20px;
         }
-        .badge-br {
-            display: inline-block;
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid #f59e0b;
-            color: #f59e0b;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        .hero h1 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-        }
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 650px;
-            margin: 0 auto 25px auto;
-            color: #e2e8f0;
-        }
         .container {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 40px auto;
             padding: 0 20px;
         }
-        /* Ecrã Inicial / Apresentação */
         #welcome-section {
             text-align: center;
             background: white;
             padding: 50px 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border-top: 4px solid #0b1329;
-            max-width: 600px;
-            margin: 0 auto;
+            border-top: 4px solid #f59e0b;
         }
-        /* Caixa de Login Social e Nível */
         .login-box {
             background: white;
-            max-width: 500px;
-            margin: 0 auto;
             padding: 35px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             border-top: 4px solid #0b1329;
             display: none;
-            text-align: left;
-        }
-        .login-box h2 {
-            text-align: center;
-            margin-bottom: 8px;
-            color: #0b1329;
-        }
-        .login-box label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #334155;
-            margin-top: 15px;
-            margin-bottom: 5px;
         }
         .login-box input, .login-box select {
             width: 100%;
             padding: 12px;
+            margin: 10px 0;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             font-size: 1rem;
-            background-color: #fff;
         }
-        .social-login {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .btn-social {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            background: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background 0.2s;
-        }
-        .btn-social:hover {
-            background: #f1f5f9;
-        }
-        .divider {
-            text-align: center;
-            margin: 15px 0;
-            color: #64748b;
-            font-size: 0.9rem;
-            position: relative;
-        }
-        
-        /* Área do Curso */
         #course-area {
             display: none;
-        }
-        .dashboard-header {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .blocks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .block-btn {
-            background: white;
-            border: 2px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            font-weight: 700;
-            color: #0b1329;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .block-btn:hover {
-            border-color: #f59e0b;
-            transform: translateY(-2px);
-        }
-        .block-btn.active-block {
-            background: #0b1329;
-            color: #f59e0b;
-            border-color: #0b1329;
-        }
-        .block-btn.completed {
-            background: #10b981;
-            color: white;
-            border-color: #10b981;
-        }
-        .quiz-container {
             background: white;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            display: none;
-        }
-        .quiz-option {
-            display: block;
-            width: 100%;
-            text-align: left;
-            padding: 12px 15px;
-            margin: 10px 0;
-            background: #f8fafc;
-            color: #0b1329;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.2s;
-        }
-        .quiz-option:hover {
-            background: #e2e8f0;
-        }
-        /* Modal de Conclusão / Certificado */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            padding: 20px;
-        }
-        .modal-card {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            border-top: 6px solid #f59e0b;
-        }
-        .certificado-box {
-            border: 4px double #0b1329;
-            padding: 25px;
-            margin: 20px 0;
-            background: #fdfbf7;
-        }
-        footer {
-            background: #0b1329;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
     </style>
 </head>
@@ -281,205 +98,65 @@
 
     <header>
         <div class="logo">Dream Bridge <span>USA</span></div>
-        <div class="header-actions">
-            <span class="lang-badge">🇧🇷 Português (Brasil)</span>
-            <span id="user-greeting" style="font-size: 0.9rem; color: #f59e0b; font-weight: 600;"></span>
-        </div>
     </header>
 
-    <section class="hero" id="hero-banner">
-        <div class="badge-br">🇧🇷 Plataforma de Inglês para Brasileiros</div>
-        <h1>Do Básico ao Avançado no seu Ritmo</h1>
-        <p>Aprenda inglês de forma prática, escolha seu nível, complete os blocos de estudo e conquiste seu certificado digital.</p>
+    <section class="hero">
+        <h1>Plataforma de Inglês para Brasileiros</h1>
+        <p>Do Básico ao Avançado</p>
     </section>
 
     <div class="container">
-        
         <!-- TELA 1: BOTÃO INICIAL -->
         <div id="welcome-section">
-            <h2 style="color: #0b1329; margin-bottom: 15px;">Pronto para Fluência?</h2>
-            <p style="color: #475569; margin-bottom: 25px;">Clique abaixo para iniciar sua jornada, entrar com sua conta e definir seu nível atual.</p>
-            <button class="btn-primary" onclick="mostrarLogin()" style="width: 100%;">Começar curso</button>
+            <h2 style="color: #0b1329; margin-bottom: 15px;">Comece a sua jornada</h2>
+            <p style="color: #64748b; margin-bottom: 25px;">Faça login e escolha o seu nível para iniciar os estudos.</p>
+            <button class="btn-primary" onclick="mostrarLogin()">Começar curso</button>
         </div>
 
-        <!-- TELA 2: LOGIN E ESCOLHA DE NÍVEL -->
+        <!-- TELA 2: LOGIN E NÍVEL -->
         <div class="login-box" id="login-box">
-            <h2>Acessar Plataforma</h2>
-            <p style="text-align: center; font-size: 0.85rem; color: #64748b; margin-bottom: 20px;">Entre com sua conta preferida</p>
-            
-            <div class="social-login">
-                <button type="button" class="btn-social" onclick="simularLoginSocial('Google')">🔵 Google</button>
-                <button type="button" class="btn-social" onclick="simularLoginSocial('Facebook')">📘 Facebook</button>
-            </div>
-
-            <div class="divider">ou use seu e-mail</div>
-
-            <form onsubmit="iniciarCursoDoAluno(event)">
-                <label>Seu Nome</label>
-                <input type="text" id="aluno-nome" placeholder="Digite seu nome completo" required>
+            <h2 style="color: #0b1329; margin-bottom: 15px; text-align: center;">Acessar Plataforma</h2>
+            <form onsubmit="iniciarCurso(event)">
+                <label style="font-weight: 600; font-size: 0.9rem;">Seu Nome</label>
+                <input type="text" id="nome" placeholder="Digite seu nome" required>
                 
-                <label>E-mail</label>
-                <input type="email" id="aluno-email" placeholder="seu@email.com" required>
+                <label style="font-weight: 600; font-size: 0.9rem;">E-mail</label>
+                <input type="email" placeholder="seu@email.com" required>
                 
-                <label>Senha</label>
-                <input type="password" placeholder="Sua senha" required>
-
-                <label>Qual é o seu nível atual de inglês?</label>
-                <select id="aluno-nivel-escolhido">
-                    <option value="basico">Nível 1: Básico</option>
-                    <option value="intermediario">Nível 2: Intermediário</option>
-                    <option value="avancado">Nível 3: Avançado</option>
+                <label style="font-weight: 600; font-size: 0.9rem;">Nível de Inglês</label>
+                <select id="nivel">
+                    <option value="Básico (Nível 1)">Básico (Nível 1)</option>
+                    <option value="Intermediário (Nível 2)">Intermediário (Nível 2)</option>
+                    <option value="Avançado (Nível 3)">Avançado (Nível 3)</option>
                 </select>
 
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">Entrar na Sala de Aula</button>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px;">Entrar no Curso</button>
             </form>
         </div>
 
-        <!-- TELA 3: ÁREA DE ESTUDO (BLOCO A BLOCO) -->
+        <!-- TELA 3: CURSO -->
         <div id="course-area">
-            <div class="dashboard-header">
-                <div>
-                    <h3 id="display-nivel-titulo" style="color: #0b1329;">Nível Básico</h3>
-                    <p style="font-size: 0.9rem; color: #64748b;">Cada nível possui 9 blocos de estudo (10 questões por bloco).</p>
-                </div>
-                <button class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem; background: #e2e8f0; color: #0f172a;" onclick="trocarNivelManual()">Trocar Nível</button>
-            </div>
-
-            <h4 style="margin-bottom: 15px; color: #0b1329;">Escolha o Bloco (1 a 9):</h4>
-            <div class="blocks-grid" id="grid-blocos">
-                <!-- Gerado por JavaScript -->
-            </div>
-
-            <!-- QUIZ DO BLOCO SELECIONADO -->
-            <div class="quiz-container" id="quiz-container">
-                <h3 id="quiz-titulo" style="color: #0b1329; margin-bottom: 10px;">Bloco 1</h3>
-                <p id="quiz-pergunta" style="font-size: 1.1rem; margin-bottom: 20px; font-weight: 600;"></p>
-                <div id="quiz-opcoes"></div>
-                <div id="quiz-feedback" style="margin-top: 15px; font-weight: 700;"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- MODAL DE CERTIFICADO / CONCLUSÃO DE NÍVEL -->
-    <div class="modal-overlay" id="modal-certificado">
-        <div class="modal-card">
-            <h2 style="color: #0b1329; margin-bottom: 10px;">Parabéns! 🎓</h2>
-            <p id="modal-mensagem" style="color: #475569; font-size: 0.95rem;"></p>
-            
-            <div class="certificado-box">
-                <h3 style="color: #0b1329; font-size: 1.1rem;">CERTIFICADO DIGITAL</h3>
-                <p style="font-size: 0.85rem; margin: 8px 0;">Certificamos que</p>
-                <h4 id="cert-nome" style="color: #f59e0b; font-size: 1.2rem;">Nome do Aluno</h4>
-                <p style="font-size: 0.8rem; color: #475569; margin-top: 5px;">concluiu com êxito o <span id="cert-nivel">Nível Básico</span> na Dream Bridge USA.</p>
-            </div>
-
-            <div id="opcoes-fim-nivel" style="display: flex; gap: 10px; flex-direction: column;">
-                <button class="btn-primary" onclick="avancarProximoNivel()">Continuar para o Próximo Nível</button>
-                <button class="btn-social" onclick="fecharModalECconcluir()" style="background: #f1f5f9; padding: 12px;">Terminar por aqui (Guardar Conclusão)</button>
-            </div>
+            <h2 id="titulo-curso" style="color: #0b1329; margin-bottom: 15px;">Bem-vindo ao Curso!</h2>
+            <p style="color: #475569;">Os blocos de estudo e questões do seu nível estão prontos. Vamos começar!</p>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2026 Dream Bridge USA. Todos os direitos reservados.</p>
-        <p style="margin-top: 8px; color: #f59e0b; font-weight: 600;">🇧🇷 Plataforma de Ensino de Inglês para Brasileiros</p>
-    </footer>
 
     <script>
-        let aluno = { nome: "", email: "", nivelAtual: "basico", blocoAtual: 1, questaoAtual: 0, corretasNobloco: 0 };
-
-        // Banco de perguntas simuladas por nível (9 blocos por nível)
-        const bancoPerguntas = {
-            basico: [
-                { p: "Como se diz 'Bom dia' em inglês?", o: ["Good night", "Good morning", "Goodbye"], r: 1 },
-                { p: "Qual a tradução correta para 'I am a student'?", o: ["Eu sou um estudante", "Eu tenho um carro", "Eu moro aqui"], r: 0 },
-                { p: "Como perguntar 'Como você está?'", o: ["Who are you?", "How are you?", "What is this?"], r: 1 },
-                { p: "Qual o significado de 'Thank you'?", o: ["Por favor", "Com licença", "Obrigado"], r: 2 },
-                { p: "Como se diz 'Água' em inglês?", o: ["Water", "Milk", "Juice"], r: 0 },
-                { p: "Qual a forma correta do verbo To Be para 'You'?", o: ["Am", "Is", "Are"], r: 2 },
-                { p: "Como dizer 'Até logo' em inglês?", o: ["Hello", "Goodbye", "Please"], r: 1 },
-                { p: "Traduza 'Cat':", o: ["Cachorro", "Gato", "Pássaro"], r: 1 },
-                { p: "Como responder a 'Thank you'?", o: ["You're welcome", "Good morning", "Sorry"], r: 0 },
-                { p: "Qual número é 'Five'?", o: ["4", "5", "6"], r: 1 }
-            ],
-            intermediario: [
-                { p: "Qual o passado simples do verbo 'go' (ir)?", o: ["goed", "went", "gone"], r: 1 },
-                { p: "Complete: 'If I ___ rich, I would travel.'", o: ["am", "were", "be"], r: 1 },
-                { p: "O que significa 'Look forward to'?", o: ["Olhar para trás", "Aguardar ansiosamente", "Desistir"], r: 1 },
-                { p: "Qual frase está no Present Perfect?", o: ["I played soccer", "I have played soccer", "I will play soccer"], r: 1 },
-                { p: "Como se diz 'Empreendimento / Negócio'?", o: ["Business", "Store", "House"], r: 0 },
-                { p: "Qual o sinônimo de 'Glad'?", o: ["Sad", "Happy", "Angry"], r: 1 },
-                { p: "Traduza a expressão 'By the way':", o: ["Por sinal / A propósito", "No caminho", "Até logo"], r: 0 },
-                { p: "Complete: 'She ___ English every day.'", o: ["study", "studies", "studying"], r: 1 },
-                { p: "Qual o oposto de 'Expensive' (caro)?", o: ["Big", "Cheap", "Fast"], r: 1 },
-                { p: "Como se diz 'Aeroporto' em inglês?", o: ["Station", "Airport", "Port"], r: 1 }
-            ],
-            avancado: [
-                { p: "O que significa a expressão idiomática 'Piece of cake'?", o: ["Um pedaço de bolo", "Algo muito fácil", "Uma tarefa difícil"], r: 1 },
-                { p: "Identifique a frase na voz passiva:", o: ["The dog chased the cat", "The cat was chased by the dog", "The cat chased the dog"], r: 1 },
-                { p: "O que quer dizer 'To break a leg'?", o: ["Machucar a perna", "Desejar boa sorte", "Correr rápido"], r: 1 },
-                { p: "Qual o significado de 'Nonetheless'?", o: ["Portanto", "No entanto / Imenso", "Apesar disso / No entanto"], r: 2 },
-                { p: "Complete com o pronome relativo correto: 'The man ___ spoke to me was kind.'", o: ["which", "who", "whose"], r: 1 },
-                { p: "O que significa 'To touch base'?", o: ["Jogar baseball", "Fazer contato / Conversar brevemente", "Tocar a base"], r: 1 },
-                { p: "Qual destas palavras denota incerteza?", o: ["Certainly", "Perhaps", "Definitely"], r: 1 },
-                { p: "O que significa 'Out of the blue'?", o: ["De repente / Inesperadamente", "Azul escuro", "Triste"], r: 0 },
-                { p: "Complete o conditional avançado: 'Had I known, I ___ different.'", o: ["would do", "would have done", "will do"], r: 1 },
-                { p: "O que significa 'To call it a day'?", o: ["Ligar para o trabalho", "Encerrar o expediente / o dia", "Trabalhar o dia todo"], r: 1 }
-            ]
-        };
-
         function mostrarLogin() {
             document.getElementById('welcome-section').style.display = 'none';
-            document.getElementById('hero-banner').style.padding = '40px 20px';
             document.getElementById('login-box').style.display = 'block';
         }
 
-        function simularLoginSocial(provedor) {
-            alert('Login com ' + provedor + ' realizado com sucesso!');
-            document.getElementById('aluno-nome').value = 'Usuário ' + provedor;
-            document.getElementById('aluno-email').value = 'usuario@' + provedor.toLowerCase() + '.com';
-        }
-
-        function iniciarCursoDoAluno(event) {
+        function iniciarCurso(event) {
             event.preventDefault();
-            aluno.nome = document.getElementById('aluno-nome').value;
-            aluno.email = document.getElementById('aluno-email').value;
-            aluno.nivelAtual = document.getElementById('aluno-nivel-escolhido').value;
-
-            document.getElementById('user-greeting').innerText = 'Olá, ' + aluno.nome + '!';
+            const nome = document.getElementById('nome').value;
+            const nivel = document.getElementById('nivel').value;
+            
             document.getElementById('login-box').style.display = 'none';
             document.getElementById('course-area').style.display = 'block';
-
-            atualizarPainelNivel();
+            document.getElementById('titulo-curso').innerText = 'Olá, ' + nome + '! Seu curso (' + nivel + ') está liberado.';
         }
+    </script>
 
-        function atualizarPainelNivel() {
-            const titulos = { basico: "Nível 1: Básico", intermediario: "Nível 2: Intermediário", avancado: "Nível 3: Avançado" };
-            document.getElementById('display-nivel-titulo').innerText = titulos[aluno.nivelAtual];
-            
-            const grid = document.getElementById('grid-blocos');
-            grid.innerHTML = '';
-
-            for (let i = 1; i <= 9; i++) {
-                const btn = document.createElement('button');
-                btn.className = 'block-btn';
-                btn.innerText = 'Bloco ' + i;
-                btn.onclick = () => carregarBloco(i);
-                grid.appendChild(btn);
-            }
-            document.getElementById('quiz-container').style.display = 'none';
-        }
-
-        function carregarBloco(numeroBloco) {
-            aluno.blocoAtual = numeroBloco;
-            aluno.questaoAtual = 0;
-            aluno.corretasNobloco = 0;
-
-            document.getElementById('quiz-container').style.display = 'block';
-            exibirQuestaoAtual();
-        }
-
-        function exibirQuestaoAtual() {
-            const qList = bancoPerguntas[aluno.nivelAtual];
-            const qIndex = a
+</body>
+</html>
