@@ -51,10 +51,10 @@
         .btn-primary:hover {
             background-color: #d97706;
         }
-        /* Hero com fundo azul marinho e a foto original do logotipo nitidamente exibida */
+        /* Hero com fundo azul marinho e logótipo em destaque nítido */
         .hero {
             position: relative;
-            background: linear-gradient(rgba(11, 19, 41, 0.88), rgba(11, 19, 41, 0.88)), 
+            background: linear-gradient(rgba(11, 19, 41, 0.9), rgba(11, 19, 41, 0.9)), 
                         url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
             color: white;
             text-align: center;
@@ -69,16 +69,37 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border-top: 5px solid #f59e0b;
         }
-        .hero-logo-img {
+        .hero-logo-container {
             width: 100%;
-            max-height: 180px;
-            object-fit: contain;
-            margin-bottom: 12px;
-            border-radius: 6px;
+            background: #0b1329;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #f59e0b;
+        }
+        .hero-logo-container h2 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .hero-logo-container span {
+            color: #f59e0b;
+        }
+        .hero-logo-container p {
+            color: #94a3b8;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            margin-top: 4px;
+            text-transform: uppercase;
         }
         .hero-content-box h1 {
             color: #0b1329;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 5px;
         }
 
@@ -291,12 +312,15 @@
         <span id="user-greeting" style="font-size: 0.9rem; color: #f59e0b; font-weight: 600;"></span>
     </header>
 
-    <!-- HERO COM A FOTO NITIDA DO LOGOTIPO EM CIMA DO TEXTO DE BEM-VINDO -->
+    <!-- HERO COM LOGÓTIPO EM DESTAQUE NÍDITO EM CIMA DO TEXTO DE BEM-VINDO -->
     <section class="hero" id="hero-banner">
         <div class="hero-content-box">
-            <img src="https://i.ibb.co/6R22z38/29045.jpg" alt="Dream Bridge USA Logo" class="hero-logo-img">
+            <div class="hero-logo-container">
+                <h2>DREAM BRIDGE <span>USA</span></h2>
+                <p>★ USA ★ • Connecting Dreams & Opportunities</p>
+            </div>
             <h1>Dream Bridge USA 🇺🇸</h1>
-            <p style="font-size: 1rem; font-weight: 700; color: #f59e0b; margin-top: 4px;">SEJA BEM VINDO A PLATAFORMA</p>
+            <p style="font-size: 0.95rem; font-weight: 700; color: #f59e0b; margin-top: 4px; letter-spacing: 0.5px;">SEJA BEM VINDO A PLATAFORMA</p>
         </div>
     </section>
 
@@ -400,72 +424,3 @@
                     </div>
                     <div style="text-align: center;">
                         <p style="font-family: 'Playfair Display', serif; font-size: 1rem; color: #0b1329; font-style: italic;">Dream Bridge Team</p>
-                        <div style="border-top: 1px solid #0b1329; width: 130px; margin-top: 4px;"></div>
-                        <p style="font-size: 0.7rem; font-weight: 600; color: #0b1329;">Direção Acadêmica</p>
-                    </div>
-                </div>
-            </div>
-
-            <div style="display: flex; gap: 10px; flex-direction: column; margin-top: 15px;">
-                <button class="btn-primary" onclick="avancarProximoNivel()">Avançar para Próximo Nível</button>
-                <button onclick="fecharModalECconcluir()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">Finalizar e Sair</button>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Dream Bridge USA. Todos os direitos reservados.</p>
-        <p style="margin-top: 6px; color: #f59e0b; font-weight: 600;">🇧🇷 Plataforma de Ensino de Inglês para Brasileiros</p>
-    </footer>
-
-    <script>
-        let aluno = { nome: "", nivelAtual: "basico", blocoAtual: 1, questaoAtual: 0, progressoMaximo: 1 };
-
-        const bancoPerguntas = {
-            basico: [
-                { p: "Como se diz 'Bom dia' em inglês?", o: ["Good night", "Good morning", "Goodbye"], r: 1 },
-                { p: "Traduza 'I am a student':", o: ["Eu sou um estudante", "Eu tenho um carro", "Eu moro aqui"], r: 0 },
-                { p: "Como perguntar 'Como você está?'", o: ["Who are you?", "How are you?", "What is this?"], r: 1 },
-                { p: "Qual o significado de 'Thank you'?", o: ["Por favor", "Com licença", "Obrigado"], r: 2 },
-                { p: "Como se diz 'Água'?", o: ["Water", "Milk", "Juice"], r: 0 },
-                { p: "Qual o verbo To Be correto para 'You'?", o: ["Am", "Is", "Are"], r: 2 },
-                { p: "Como dizer 'Até logo'?", o: ["Hello", "Goodbye", "Please"], r: 1 },
-                { p: "Traduza 'Cat':", o: ["Cachorro", "Gato", "Pássaro"], r: 1 },
-                { p: "Como responder a 'Thank you'?", o: ["You're welcome", "Good morning", "Sorry"], r: 0 },
-                { p: "Qual número é 'Five'?", o: ["4", "5", "6"], r: 1 }
-            ],
-            intermediario: [
-                { p: "Passado simples do verbo 'go':", o: ["goed", "went", "gone"], r: 1 },
-                { p: "Complete: 'If I ___ rich...'", o: ["am", "were", "be"], r: 1 },
-                { p: "Significado de 'Look forward to':", o: ["Olhar para trás", "Aguardar ansiosamente", "Desistir"], r: 1 },
-                { p: "Frase no Present Perfect:", o: ["I played", "I have played", "I will play"], r: 1 },
-                { p: "Traduza 'Business':", o: ["Negócio", "Loja", "Casa"], r: 0 },
-                { p: "Sinônimo de 'Glad':", o: ["Sad", "Happy", "Angry"], r: 1 },
-                { p: "Traduza 'By the way':", o: ["A propósito", "No caminho", "Até logo"], r: 0 },
-                { p: "Complete: 'She ___ every day.'", o: ["study", "studies", "studying"], r: 1 },
-                { p: "Oposto de 'Expensive':", o: ["Big", "Cheap", "Fast"], r: 1 },
-                { p: "Traduza 'Airport':", o: ["Estação", "Aeroporto", "Porto"], r: 1 }
-            ],
-            avancado: [
-                { p: "Significado de 'Piece of cake':", o: ["Pedaço de bolo", "Muito fácil", "Difícil"], r: 1 },
-                { p: "Frase na voz passiva:", o: ["He chased", "It was chased", "He runs"], r: 1 },
-                { p: "Significado de 'Break a leg':", o: ["Machucar", "Boa sorte", "Correr"], r: 1 },
-                { p: "Significado de 'Nonetheless':", o: ["Portanto", "No entanto", "Antes"], r: 1 },
-                { p: "Pronome relativo: 'The man ___ spoke...'", o: ["which", "who", "whose"], r: 1 },
-                { p: "O que é 'Touch base'?", o: ["Fazer contato", "Jogar", "Tocar"], r: 0 },
-                { p: "Palavra de incerteza:", o: ["Certainly", "Perhaps", "Definitely"], r: 1 },
-                { p: "Significado de 'Out of the blue':", o: ["De repente", "Azul", "Triste"], r: 0 },
-                { p: "Conditionals: 'Had I known...'", o: ["would do", "would have done", "will do"], r: 1 },
-                { p: "Significado de 'Call it a day':", o: ["Ligar", "Encerrar expediente", "Trabalhar"], r: 1 }
-            ]
-        };
-
-        function mostrarLogin() {
-            document.getElementById('welcome-section').style.display = 'none';
-            document.getElementById('login-box').style.display = 'block';
-            window.scrollTo({ top: document.getElementById('login-box').offsetTop - 50, behavior: 'smooth' });
-        }
-
-        function iniciarCursoDoAluno(event) {
-            event.preventDefault();
-            const nomeInput = document.getElementById('al
