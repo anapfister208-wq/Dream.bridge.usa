@@ -3,17 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dream Bridge U.S.A | Plataforma de Inglês para Brasileiros</title>
+    <title>Dream Bridge USA | Plataforma de Inglês para Brasileiros</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
         body { background-color: #f1f5f9; color: #0f172a; line-height: 1.6; }
-        header { background: #0b1329; color: white; padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #f59e0b; }
+        header { background: #0b1329; color: white; padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #f59e0b; position: relative; z-index: 100; }
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .menu-toggle { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; gap: 5px; padding: 5px; display: none; }
+        .menu-toggle span { display: block; width: 25px; height: 3px; background-color: #ffffff; border-radius: 2px; }
         .logo { font-size: 1.6rem; font-weight: 700; color: #ffffff; }
         .logo span { color: #f59e0b; }
+        
         .btn-primary { background-color: #f59e0b; color: #0b1329; padding: 14px 28px; font-weight: 700; font-size: 1rem; border-radius: 8px; border: none; cursor: pointer; text-align: center; display: inline-block; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
         .btn-secondary { background-color: #ffffff; color: #0b1329; border: 2px solid #0b1329; padding: 12px 20px; font-weight: 700; font-size: 0.9rem; border-radius: 8px; cursor: pointer; text-align: center; display: inline-block; }
+
+        /* MENU LATERAL */
+        .sidebar { position: fixed; top: 0; left: -300px; width: 300px; height: 100%; background: #0b1329; color: white; z-index: 3000; transition: left 0.3s ease; box-shadow: 5px 0 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; }
+        .sidebar.open { left: 0; }
+        .sidebar-header { padding: 20px; background: #070c1b; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f59e0b; }
+        .sidebar-close { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        .sidebar-menu { list-style: none; padding: 20px 0; flex-grow: 1; }
+        .sidebar-menu li { padding: 12px 25px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; font-weight: 600; }
+        .sidebar-menu li:hover { background: #1e293b; color: #f59e0b; }
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2500; display: none; }
+        .sidebar-overlay.open { display: block; }
+
+        .app-view { display: none; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 30px; }
         
         .hero { background: #0b1329; color: white; text-align: center; padding: 70px 20px; border-bottom: 4px solid #f59e0b; }
         .hero h1 { font-size: 2.2rem; margin-bottom: 15px; }
@@ -25,7 +42,7 @@
         .about-container p { color: #475569; font-size: 1.05rem; margin-bottom: 30px; }
 
         .container { max-width: 850px; margin: 30px auto; padding: 0 20px; }
-        .login-box, .app-view, .quiz-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 20px; }
+        .login-box, .quiz-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 20px; }
         
         .login-box input, .login-box select { width: 100%; padding: 12px; margin: 8px 0 16px 0; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; }
         .login-box label { font-weight: 600; font-size: 0.9rem; color: #0b1329; }
@@ -38,8 +55,15 @@
         .quiz-option { display: block; width: 100%; text-align: left; padding: 12px; margin: 8px 0; background: #f8fafc; color: #0b1329; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 1rem; }
         .quiz-option:hover { background: #e2e8f0; }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
-        .modal-card { background: white; padding: 25px; border-radius: 12px; max-width: 600px; width: 100%; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .progress-bar-container { background: #e2e8f0; border-radius: 8px; height: 12px; width: 100%; overflow: hidden; margin: 5px 0 15px 0; }
+        .progress-bar-fill { background: #10b981; height: 100%; width: 0%; transition: width 0.3s; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 4000; padding: 15px; }
+        .modal-card { background: white; padding: 25px; border-radius: 12px; max-width: 700px; width: 100%; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); max-height: 95vh; overflow-y: auto; }
+        
+        .certificado-diploma { border: 8px double #0b1329; padding: 35px; background: #fffdf9; text-align: center; margin-bottom: 20px; }
+        .certificado-diploma h3 { font-family: 'Playfair Display', serif; color: #0b1329; font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 10px; }
+        .certificado-diploma h4 { font-family: 'Playfair Display', serif; color: #f59e0b; font-size: 2rem; margin: 15px 0; border-bottom: 2px solid #e2e8f0; display: inline-block; padding-bottom: 5px; }
 
         footer { background: #0b1329; color: white; text-align: center; padding: 25px 20px; margin-top: 50px; }
         footer a { color: #f59e0b; text-decoration: none; font-weight: 600; }
@@ -48,25 +72,51 @@
 <body>
 
     <header>
-        <div class="logo">Dream Bridge <span>USA</span></div>
+        <div class="header-left">
+            <button type="button" class="menu-toggle" id="menu-btn" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="logo">Dream Bridge <span>USA</span></div>
+        </div>
         <span id="user-greeting" style="font-size: 0.9rem; color: #f59e0b; font-weight: 600;"></span>
     </header>
+
+    <!-- MENU LATERAL -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3 style="font-size: 1.1rem; color: #f59e0b;">Menu da Plataforma</h3>
+            <button type="button" class="sidebar-close" onclick="toggleSidebar()">×</button>
+        </div>
+        <ul class="sidebar-menu">
+            <li onclick="mostrarSecao('sala-aula')">📚 Sala de Aula (Blocos)</li>
+            <li onclick="mostrarSecao('perfil')">👤 Meu Perfil e Gráficos</li>
+            <li onclick="mostrarSecao('lembretes')">⏰ Lembretes e Calendário</li>
+            <li onclick="indicarCurso()">💡 Indicar Curso</li>
+            <li onclick="sairDaPlataforma()" style="color: #ef4444;">🚪 Sair / Limpar Conta</li>
+        </ul>
+    </div>
 
     <!-- PÁGINA INICIAL -->
     <div id="landing-page">
         <section class="hero">
- <h1>Dream Bridge U.S.A  </h1>
+            <h1>Dream Bridge USA 🇺🇸</h1>
             <p>Conectando brasileiros e transformando vidas para ajudar você a realizar o grande sonho de morar, trabalhar ou viajar para fora do país!</p>
         </section>
 
         <section class="about-section">
             <div class="about-container">
-                <h2>Como Funciona o Curso e Quais são nossos Objetivos</h2>
+                <h2>Como Funciona o Curso e Nossos Objetivos</h2>
                 <p>
-                    A <strong>Dream Bridge U.S.A</strong> foi criada para tornar a fluência em inglês acessível, prática e dinâmica. 
-                    Nosso objetivo é guiar você passo a passo, do básico ao avançado, preparando-o para vencer barreiras linguísticas e conquistar novas oportunidades no exterior.
+                    A <strong>Dream Bridge USA</strong> foi criada para tornar a fluência em inglês acessível, prática e dinâmica. 
+                    Com matérias universitárias americanas, guie você passo a passo do básico ao avançado.
                 </p>
-                <button type="button" class="btn-primary" onclick="irParaLogin()">Fazer Login</button>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button type="button" class="btn-primary" onclick="irParaLogin()">Fazer Login</button>
+                    <button type="button" class="btn-secondary" onclick="indicarCurso()">💡 Indicar Curso para Amigos</button>
+                </div>
             </div>
         </section>
     </div>
@@ -96,25 +146,82 @@
             </form>
         </div>
 
-        <!-- ÁREA DO CURSO -->
-        <div id="course-area" style="display: none;">
-            <div class="dashboard-header" style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+        <!-- TELA DE PERFIL E GRÁFICOS DE PORCENTAGEM -->
+        <div class="app-view" id="view-perfil">
+            <h2 style="color: #0b1329; margin-bottom: 20px;">👤 Meu Perfil e Progresso</h2>
+            
+            <div style="background: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 20px; display: flex; align-items: center; gap: 20px;">
+                <div id="profile-initials" style="width: 60px; height: 60px; border-radius: 50%; background: #0b1329; color: #f59e0b; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700;">DB</div>
                 <div>
-                    <h3 id="display-nivel-titulo" style="color: #0b1329;">Nível Básico</h3>
-                    <p style="font-size: 0.85rem; color: #64748b;">Complete o Bloco 1 para desbloquear os seguintes.</p>
+                    <h3 id="pf-nome" style="color: #0b1329;">Nome</h3>
+                    <p style="color: #64748b; font-size: 0.9rem;">E-mail: <span id="pf-email">email@email.com</span></p>
+                    <p style="color: #64748b; font-size: 0.9rem;">Nível: <strong id="pf-nivel" style="text-transform: uppercase; color: #f59e0b;">Básico</strong></p>
                 </div>
-                <button type="button" class="btn-secondary" onclick="trocarNivelManual()">Trocar Nível</button>
             </div>
 
-            <h4 style="margin-bottom: 15px; color: #0b1329;">Trilha de Blocos (1 a 9):</h4>
+            <h3 style="color: #0b1329; margin-bottom: 15px;">📊 Porcentagem de Evolução por Bloco (1 a 9)</h3>
+            <div id="graficos-blocos-container"></div>
+
+            <button type="button" class="btn-primary" style="margin-top: 20px;" onclick="mostrarSecao('sala-aula')">Voltar aos Estudos</button>
+        </div>
+
+        <!-- TELA DE LEMBRETES E CALENDÁRIO -->
+        <div class="app-view" id="view-lembretes">
+            <h2 style="color: #0b1329; margin-bottom: 15px;">⏰ Lembretes e Calendário Universitário</h2>
+            <p style="color: #64748b; margin-bottom: 20px;">Configure os horários e dias da semana para receber notificações de estudo.</p>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <label>Horário do Lembrete: <input type="time" id="lembrete-hora" value="20:00" style="padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1; margin-left: 10px;"></label>
+                <p style="font-weight: 600; color: #0b1329;">Dias de Estudo:</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <label><input type="checkbox" checked> Seg</label>
+                    <label><input type="checkbox" checked> Ter</label>
+                    <label><input type="checkbox" checked> Qua</label>
+                    <label><input type="checkbox" checked> Qui</label>
+                    <label><input type="checkbox" checked> Sex</label>
+                    <label><input type="checkbox"> Sáb</label>
+                    <label><input type="checkbox"> Dom</label>
+                </div>
+                <button type="button" class="btn-primary" onclick="alert('Lembretes salvos com sucesso!'); mostrarSecao('sala-aula');">Salvar Lembretes</button>
+            </div>
+        </div>
+
+        <!-- ÁREA DO CURSO -->
+        <div id="course-area" style="display: none;">
+            <div class="dashboard-header" style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div>
+                    <h3 id="display-nivel-titulo" style="color: #0b1329;">Nível Básico</h3>
+                    <p style="font-size: 0.85rem; color: #64748b;">Trilha Universitária Americana (Blocos 1 ao 9)</p>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="button" class="btn-secondary" onclick="indicarCurso()">💡 Indicar Curso</button>
+                    <button type="button" class="btn-secondary" onclick="trocarNivelManual()">Trocar Nível</button>
+                </div>
+            </div>
+
+            <h4 style="margin-bottom: 15px; color: #0b1329;">Trilha de Blocos:</h4>
             <div class="blocks-grid" id="grid-blocos"></div>
 
             <!-- QUIZ -->
             <div class="quiz-container" id="quiz-container">
-                <h3 id="quiz-titulo" style="color: #0b1329; margin-bottom: 10px;">Bloco 1</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3 id="quiz-titulo" style="color: #0b1329;">Bloco 1</h3>
+                    <span id="quiz-materia-tag" style="background: #fef3c7; color: #d97706; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">História dos EUA</span>
+                </div>
                 <p id="quiz-pergunta" style="font-size: 1.05rem; margin-bottom: 20px; font-weight: 600;"></p>
                 <div id="quiz-opcoes"></div>
                 <div id="quiz-feedback" style="margin-top: 15px; font-weight: 700;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ERROS (> 5 ERROS) -->
+    <div class="modal-overlay" id="modal-erros-aula">
+        <div class="modal-card">
+            <h2 style="color: #ef4444; margin-bottom: 10px;">⚠️ Atenção ao Desempenho</h2>
+            <p style="color: #475569; margin-bottom: 20px;">Você errou 5 ou mais questões neste bloco. O que deseja fazer agora?</p>
+            <div style="display: flex; gap: 10px; flex-direction: column;">
+                <button type="button" class="btn-primary" onclick="revisarBlocoAtual()">🔄 Revisar Matéria Novamente</button>
+                <button type="button" class="btn-secondary" onclick="escolherProximaMateriaUniversitaria()" style="width: 100%;">📚 Escolher Próxima Aula Universitária (História, Gramática, Verbos...)</button>
             </div>
         </div>
     </div>
@@ -131,15 +238,36 @@
     <!-- MODAL CERTIFICADO -->
     <div class="modal-overlay" id="modal-certificado">
         <div class="modal-card">
-            <div class="certificado-diploma" id="area-certificado-pdf" style="border: 6px double #0b1329; padding: 20px; background: #fffdf9;">
-                <h3 style="color: #0b1329;">CERTIFICADO DE CONCLUSÃO</h3>
-                <p style="font-size: 0.85rem; margin: 10px 0;">Certificamos que</p>
-                <h4 id="cert-nome" style="color: #f59e0b; font-size: 1.5rem;">Nome</h4>
-                <p style="font-size: 0.85rem; margin-top: 10px;">concluiu com sucesso o <span id="cert-nivel" style="font-weight: 700;">Básico</span> na Dream Bridge USA.</p>
+            <div class="certificado-diploma" id="area-certificado-pdf">
+                <p style="font-size: 0.8rem; color: #64748b; letter-spacing: 2px;">DREAM BRIDGE USA 🇺🇸</p>
+                <h3>CERTIFICADO DE CONCLUSÃO</h3>
+                <p style="font-size: 0.9rem; font-style: italic; color: #475569; margin: 10px 0;">Parabéns pelo excelente desempenho acadêmico!</p>
+                
+                <p style="font-size: 0.9rem; color: #0b1329;">Certificamos com muito orgulho que o(a) aluno(a)</p>
+                <h4 id="cert-nome">Nome do Aluno</h4>
+                <p style="font-size: 0.9rem; color: #0b1329; line-height: 1.6;">
+                    completou com aproveitamento a grade universitária de 9 blocos na <strong style="color: #0b1329;">Dream Bridge USA</strong>, concluindo o <span id="cert-nivel" style="font-weight: 700; color: #f59e0b;">Nível Básico</span>.
+                </p>
+
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 35px; padding: 0 15px;">
+                    <div style="text-align: center;">
+                        <p style="font-size: 0.75rem; color: #64748b;" id="cert-data">Data: 12/11/2026</p>
+                        <div style="border-top: 1px solid #0b1329; width: 120px; margin-top: 4px;"></div>
+                        <p style="font-size: 0.7rem; font-weight: 600; color: #0b1329;">Emissão Oficial</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #0b1329; font-style: italic;">University Board</p>
+                        <div style="border-top: 1px solid #0b1329; width: 120px; margin-top: 4px;"></div>
+                        <p style="font-size: 0.7rem; font-weight: 600; color: #0b1329;">Direção Acadêmica</p>
+                    </div>
+                </div>
             </div>
+
             <div style="display: flex; gap: 10px; flex-direction: column; margin-top: 15px;">
-                <button type="button" class="btn-primary" onclick="window.print()">📥 Baixar PDF</button>
-                <button type="button" class="btn-secondary" onclick="fecharModalECconcluir()">Sair</button>
+                <button type="button" class="btn-primary" onclick="window.print()">📥 Baixar Certificado em PDF</button>
+                <button type="button" class="btn-secondary" onclick="salvarNaGaleria()" style="width: 100%; margin: 0;">🖼️ Salvar Foto na Galeria</button>
+                <button type="button" class="btn-secondary" onclick="indicarCurso()">💡 Indicar Curso para Amigos</button>
+                <button type="button" onclick="fecharModalECconcluir()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">Finalizar e Sair</button>
             </div>
         </div>
     </div>
@@ -150,175 +278,28 @@
     </footer>
 
     <script>
-        let aluno = { nome: "", apelido: "", email: "", nivelAtual: "basico", blocoAtual: 1, questaoAtual: 0, progressoMaximo: 1 };
-
-        const bancoPerguntas = {
-            basico: [
-                { p: "Como se diz 'Bom dia' em inglês?", o: ["Good night", "Good morning", "Goodbye"], r: 1 },
-                { p: "Traduza 'I am a student':", o: ["Eu sou um estudante", "Eu tenho um carro", "Eu moro aqui"], r: 0 },
-                { p: "Como perguntar 'Como você está?'", o: ["Who are you?", "How are you?", "What is this?"], r: 1 },
-                { p: "Qual o significado de 'Thank you'?", o: ["Por favor", "Com licença", "Obrigado"], r: 2 },
-                { p: "Como se diz 'Água'?", o: ["Water", "Milk", "Juice"], r: 0 },
-                { p: "Qual o verbo To Be correto para 'You'?", o: ["Am", "Is", "Are"], r: 2 },
-                { p: "Como dizer 'Até logo'?", o: ["Hello", "Goodbye", "Please"], r: 1 },
-                { p: "Traduza 'Cat':", o: ["Cachorro", "Gato", "Pássaro"], r: 1 },
-                { p: "Como responder a 'Thank you'?", o: ["You're welcome", "Good morning", "Sorry"], r: 0 },
-                { p: "Qual número é 'Five'?", o: ["4", "5", "6"], r: 1 }
-            ],
-            intermediario: [
-                { p: "Passado simples do verbo 'go':", o: ["goed", "went", "gone"], r: 1 },
-                { p: "Complete: 'If I ___ rich...'", o: ["am", "were", "be"], r: 1 },
-                { p: "Significado de 'Look forward to':", o: ["Olhar para trás", "Aguardar ansiosamente", "Desistir"], r: 1 },
-                { p: "Frase no Present Perfect:", o: ["I played", "I have played", "I will play"], r: 1 },
-                { p: "Traduza 'Business':", o: ["Negócio", "Loja", "Casa"], r: 0 },
-                { p: "Sinônimo de 'Glad':", o: ["Sad", "Happy", "Angry"], r: 1 },
-                { p: "Traduza 'By the way':", o: ["A propósito", "No caminho", "Até logo"], r: 0 },
-                { p: "Complete: 'She ___ every day.'", o: ["study", "studies", "studying"], r: 1 },
-                { p: "Oposto de 'Expensive':", o: ["Big", "Cheap", "Fast"], r: 1 },
-                { p: "Traduza 'Airport':", o: ["Estação", "Aeroporto", "Porto"], r: 1 }
-            ],
-            avancado: [
-                { p: "Significado de 'Piece of cake':", o: ["Pedaço de bolo", "Muito fácil", "Difícil"], r: 1 },
-                { p: "Frase na voz passiva:", o: ["He chased", "It was chased", "He runs"], r: 1 },
-                { p: "Significado de 'Break a leg':", o: ["Machucar", "Boa sorte", "Correr"], r: 1 },
-                { p: "Significado de 'Nonetheless':", o: ["Portanto", "No entanto", "Antes"], r: 1 },
-                { p: "Pronome relativo: 'The man ___ spoke...'", o: ["which", "who", "whose"], r: 1 },
-                { p: "O que é 'Touch base'?", o: ["Fazer contato", "Jogar", "Tocar"], r: 0 },
-                { p: "Palavra de incerteza:", o: ["Certainly", "Perhaps", "Definitely"], r: 1 },
-                { p: "Significado de 'Out of the blue':", o: ["De repente", "Azul", "Triste"], r: 0 },
-                { p: "Conditionals: 'Had I known...'", o: ["would do", "would have done", "will do"], r: 1 },
-                { p: "Significado de 'Call it a day':", o: ["Ligar", "Encerrar expediente", "Trabalhar"], r: 1 }
-            ]
+        let aluno = { 
+            nome: "", 
+            apelido: "", 
+            email: "", 
+            nivelAtual: "basico", 
+            blocoAtual: 1, 
+            questaoAtual: 0, 
+            progressoMaximo: 1,
+            errosNestaAula: 0,
+            progressoBlocos: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 }
         };
 
-        function irParaLogin() {
-            document.getElementById('landing-page').style.display = 'none';
-            document.getElementById('login-box').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        const materiasBlocos = {
+            1: "História dos EUA (American History)",
+            2: "Gramática Avançada (Advanced Grammar)",
+            3: "Verbos e Tempos (Verb Tenses)",
+            4: "Literatura Americana (American Literature)",
+            5: "Economia e Negócios (Business & Economics)",
+            6: "Sociologia e Cultura (Sociology & Culture)",
+            7: "Ciência Política (Political Science)",
+            8: "Psicologia Acadêmica (Academic Psychology)",
+            9: "Oratória e Debate (Public Speaking & Debate)"
+        };
 
-        function iniciarCursoDoAluno(event) {
-            event.preventDefault();
-            aluno.nome = document.getElementById('aluno-nome').value;
-            aluno.apelido = document.getElementById('aluno-apelido').value;
-            aluno.email = document.getElementById('aluno-email').value;
-            aluno.nivelAtual = document.getElementById('aluno-nivel').value;
-            aluno.progressoMaximo = 1;
-
-            document.getElementById('user-greeting').innerText = 'Olá, ' + aluno.apelido + '!';
-            document.getElementById('login-box').style.display = 'none';
-            document.getElementById('course-area').style.display = 'block';
-
-            atualizarPainelNivel();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function atualizarPainelNivel() {
-            const titulos = { basico: "Nível 1: Básico", intermediario: "Nível 2: Intermediário", avancado: "Nível 3: Avançado" };
-            document.getElementById('display-nivel-titulo').innerText = titulos[aluno.nivelAtual];
-            
-            const grid = document.getElementById('grid-blocos');
-            grid.innerHTML = '';
-
-            for (let i = 1; i <= 9; i++) {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'block-btn';
-                
-                if (i <= aluno.progressoMaximo) {
-                    btn.classList.add('unlocked');
-                    btn.innerHTML = `Bloco ${i}<br><span style="font-size:0.7rem; color:#10b981;">Liberado</span>`;
-                    btn.onclick = () => carregarBloco(i);
-                } else {
-                    btn.classList.add('locked');
-                    btn.innerHTML = `Bloco ${i}<br><span style="font-size:0.7rem;">🔒</span>`;
-                    btn.onclick = () => alert("Complete o bloco anterior!");
-                }
-                grid.appendChild(btn);
-            }
-            document.getElementById('quiz-container').style.display = 'none';
-        }
-
-        function carregarBloco(numBloco) {
-            aluno.blocoAtual = numBloco;
-            aluno.questaoAtual = 0;
-            document.getElementById('quiz-container').style.display = 'block';
-            exibirQuestao();
-        }
-
-        function exibirQuestao() {
-            const qList = bancoPerguntas[aluno.nivelAtual];
-            const questao = qList[aluno.questaoAtual % qList.length];
-
-            document.getElementById('quiz-titulo').innerText = `Bloco ${aluno.blocoAtual} — Questão ${aluno.questaoAtual + 1} de 10`;
-            document.getElementById('quiz-pergunta').innerText = questao.p;
-            document.getElementById('quiz-feedback').innerText = '';
-
-            const divOp = document.getElementById('quiz-opcoes');
-            divOp.innerHTML = '';
-
-            questao.o.forEach((texto, idx) => {
-                const btnOp = document.createElement('button');
-                btnOp.type = 'button';
-                btnOp.className = 'quiz-option';
-                btnOp.innerText = texto;
-                btnOp.onclick = () => verificarResp(idx, questao.r);
-                divOp.appendChild(btnOp);
-            });
-        }
-
-        function verificarResp(selecionada, correta) {
-            const fb = document.getElementById('quiz-feedback');
-            if (selecionada === correta) {
-                fb.style.color = '#10b981';
-                fb.innerText = '✅ Resposta Correta!';
-            } else {
-                fb.style.color = '#ef4444';
-                fb.innerText = '❌ Resposta Incorreta!';
-            }
-
-            setTimeout(() => {
-                aluno.questaoAtual++;
-                if (aluno.questaoAtual < 10) {
-                    exibirQuestao();
-                } else {
-                    document.getElementById('quiz-container').style.display = 'none';
-                    if (aluno.blocoAtual === 9) {
-                        mostrarCertificado();
-                    } else {
-                        document.getElementById('mensagem-bloco-concluido').innerText = `Parabéns ${aluno.apelido}! Você concluiu o Bloco ${aluno.blocoAtual}.`;
-                        document.getElementById('modal-bloco-concluido').style.display = 'flex';
-                    }
-                }
-            }, 1000);
-        }
-
-        function avancarParaProximoBloco() {
-            document.getElementById('modal-bloco-concluido').style.display = 'none';
-            if (aluno.blocoAtual + 1 > aluno.progressoMaximo) {
-                aluno.progressoMaximo = aluno.blocoAtual + 1;
-            }
-            atualizarPainelNivel();
-            carregarBloco(aluno.blocoAtual);
-        }
-
-        function mostrarCertificado() {
-            document.getElementById('cert-nome').innerText = aluno.nome;
-            document.getElementById('modal-certificado').style.display = 'flex';
-        }
-
-        function fecharModalECconcluir() {
-            document.getElementById('modal-certificado').style.display = 'none';
-        }
-
-        function trocarNivelManual() {
-            const n = prompt("Escolha o nível (basico, intermediario ou avancado):");
-            if (n && bancoPerguntas[n]) {
-                aluno.nivelAtual = n;
-                aluno.progressoMaximo = 1;
-                atualizarPainelNivel();
-            }
-        }
-    </script>
-</body>
-</html>
+     
