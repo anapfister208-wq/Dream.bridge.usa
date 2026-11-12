@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dream Bridge USA | Venha aprender inglês com a gente/title>
-    <meta name="description" content="Ajudamos brasileiros a aprender inglês de um jeito diferente e so final de do curso, receberá um certificado oficial do nosso curso..">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Dream Bridge USA | Plataforma de Inglês para Brasileiros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,230 +13,473 @@
             font-family: 'Montserrat', sans-serif;
         }
         body {
-            background-color: #f8fafc;
+            background-color: #f1f5f9;
             color: #0f172a;
             line-height: 1.6;
         }
         header {
-            background: linear-gradient(135deg, #0b1c3d 0%, #1e3a8a 100%);
+            background: #0b1329;
             color: white;
-            padding: 1.5rem 5%;
+            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 15px;
+            border-bottom: 3px solid #f59e0b;
         }
-        .logo-area {
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .logo span {
+            color: #f59e0b;
+        }
+        .header-actions {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        .logo-area h1 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: #fff;
+        .lang-badge {
+            background: #1e293b;
+            color: #ffffff;
+            border: 1px solid #334155;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
-        .logo-area span {
-            color: #f59e0b;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #f59e0b;
-        }
-        .hero {
-            background: linear-gradient(135deg, #0b1c3d 0%, #1e3a8a 100%);
-            color: white;
-            padding: 5rem 5%;
-            text-align: center;
-        }
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-        }
-        .hero h2 span {
-            color: #f59e0b;
-        }
-        .hero p {
-            font-size: 1.15rem;
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-            color: #cbd5e1;
-        }
-        .btn {
+        .btn-primary {
             background-color: #f59e0b;
-            color: #0b1c3d;
-            padding: 14px 32px;
-            border-radius: 8px;
+            color: #0b1329;
+            padding: 14px 28px;
             font-weight: 700;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
             text-decoration: none;
             display: inline-block;
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
         }
-        .btn:hover {
+        .btn-primary:hover {
             background-color: #d97706;
-            transform: translateY(-2px);
+            transform: scale(1.02);
         }
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 3rem 5%;
-            background: white;
-            flex-wrap: wrap;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-        .stat-item {
+        .hero {
+            background: linear-gradient(rgba(11, 19, 41, 0.92), rgba(11, 19, 41, 0.88)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
             text-align: center;
+            padding: 70px 20px;
         }
-        .stat-item h3 {
-            font-size: 2rem;
-            color: #1e3a8a;
-            font-weight: 800;
+        .badge-br {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid #f59e0b;
+            color: #f59e0b;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
         }
-        .stat-item p {
-            color: #64748b;
-            font-size: 0.9rem;
-            font-weight: 500;
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
         }
-        .section {
-            padding: 5rem 5%;
-            max-width: 1200px;
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto 25px auto;
+            color: #e2e8f0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        /* Ecrã Inicial / Apresentação */
+        #welcome-section {
+            text-align: center;
+            background: white;
+            padding: 50px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid #0b1329;
+            max-width: 600px;
             margin: 0 auto;
         }
-        .section-title {
+        /* Caixa de Login Social e Nível */
+        .login-box {
+            background: white;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid #0b1329;
+            display: none;
+            text-align: left;
+        }
+        .login-box h2 {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 8px;
+            color: #0b1329;
         }
-        .section-title h2 {
-            font-size: 2rem;
-            color: #0b1c3d;
-            margin-bottom: 0.5rem;
+        .login-box label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #334155;
+            margin-top: 15px;
+            margin-bottom: 5px;
         }
-        .section-title p {
+        .login-box input, .login-box select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            background-color: #fff;
+        }
+        .social-login {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .btn-social {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .btn-social:hover {
+            background: #f1f5f9;
+        }
+        .divider {
+            text-align: center;
+            margin: 15px 0;
             color: #64748b;
+            font-size: 0.9rem;
+            position: relative;
         }
-        .services-grid {
+        
+        /* Área do Curso */
+        #course-area {
+            display: none;
+        }
+        .dashboard-header {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .blocks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
         }
-        .service-card {
+        .block-btn {
+            background: white;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            font-weight: 700;
+            color: #0b1329;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .block-btn:hover {
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+        }
+        .block-btn.active-block {
+            background: #0b1329;
+            color: #f59e0b;
+            border-color: #0b1329;
+        }
+        .block-btn.completed {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        .quiz-container {
             background: white;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border-top: 4px solid #1e3a8a;
-            transition: transform 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: none;
         }
-        .service-card:hover {
-            transform: translateY(-5px);
+        .quiz-option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px 15px;
+            margin: 10px 0;
+            background: #f8fafc;
+            color: #0b1329;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
         }
-        .service-card h3 {
-            color: #0b1c3d;
-            margin-bottom: 15px;
-            font-size: 1.25rem;
+        .quiz-option:hover {
+            background: #e2e8f0;
         }
-        .service-card p {
-            color: #475569;
-            font-size: 0.95rem;
+        /* Modal de Conclusão / Certificado */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-top: 6px solid #f59e0b;
+        }
+        .certificado-box {
+            border: 4px double #0b1329;
+            padding: 25px;
+            margin: 20px 0;
+            background: #fdfbf7;
         }
         footer {
-            background: #0b1c3d;
+            background: #0b1329;
             color: white;
             text-align: center;
-            padding: 3rem 5%;
-            margin-top: 4rem;
-        }
-        footer p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-        @media(max-width: 768px) {
-            nav { display: none; }
-            .hero h2 { font-size: 2rem; }
+            padding: 30px 20px;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-area">
-            <h1>DREAM BRIDGE <span>USA</span></h1>
+        <div class="logo">Dream Bridge <span>USA</span></div>
+        <div class="header-actions">
+            <span class="lang-badge">🇧🇷 Português (Brasil)</span>
+            <span id="user-greeting" style="font-size: 0.9rem; color: #f59e0b; font-weight: 600;"></span>
         </div>
-        <nav>
-            <a href="#sobre">Sobre</a>
-            <a href="#servicos">Serviços</a>
-            <a href="#contato" class="btn" style="padding: 8px 16px; font-size: 0.85rem;">Fale Conosco</a>
-        </nav>
     </header>
 
-    <section class="hero">
-        <h2>Connecting Dreams & <span>Opportunities</span></h2>
-        <p>O Ajudamos você a melhorar seu inglês para conseguir oportunidads nos Estados Unidos</p>
-        <a href="#contato" class="btn">Começar Curso</a>
+    <section class="hero" id="hero-banner">
+        <div class="badge-br">🇧🇷 Plataforma de Inglês para Brasileiros</div>
+        <h1>Do Básico ao Avançado no seu Ritmo</h1>
+        <p>Aprenda inglês de forma prática, escolha seu nível, complete os blocos de estudo e conquiste seu certificado digital.</p>
     </section>
 
-    <div class="stats">
-        <div class="stat-item">
-            <h3>0</h3>
-            <p>Alunos Apoiados</p>
+    <div class="container">
+        
+        <!-- TELA 1: BOTÃO INICIAL -->
+        <div id="welcome-section">
+            <h2 style="color: #0b1329; margin-bottom: 15px;">Pronto para Fluência?</h2>
+            <p style="color: #475569; margin-bottom: 25px;">Clique abaixo para iniciar sua jornada, entrar com sua conta e definir seu nível atual.</p>
+            <button class="btn-primary" onclick="mostrarLogin()" style="width: 100%;">Começar curso</button>
         </div>
-        <div class="stat-item">
-            <h3></h3>
-            <p></p>
+
+        <!-- TELA 2: LOGIN E ESCOLHA DE NÍVEL -->
+        <div class="login-box" id="login-box">
+            <h2>Acessar Plataforma</h2>
+            <p style="text-align: center; font-size: 0.85rem; color: #64748b; margin-bottom: 20px;">Entre com sua conta preferida</p>
+            
+            <div class="social-login">
+                <button type="button" class="btn-social" onclick="simularLoginSocial('Google')">🔵 Google</button>
+                <button type="button" class="btn-social" onclick="simularLoginSocial('Facebook')">📘 Facebook</button>
+            </div>
+
+            <div class="divider">ou use seu e-mail</div>
+
+            <form onsubmit="iniciarCursoDoAluno(event)">
+                <label>Seu Nome</label>
+                <input type="text" id="aluno-nome" placeholder="Digite seu nome completo" required>
+                
+                <label>E-mail</label>
+                <input type="email" id="aluno-email" placeholder="seu@email.com" required>
+                
+                <label>Senha</label>
+                <input type="password" placeholder="Sua senha" required>
+
+                <label>Qual é o seu nível atual de inglês?</label>
+                <select id="aluno-nivel-escolhido">
+                    <option value="basico">Nível 1: Básico</option>
+                    <option value="intermediario">Nível 2: Intermediário</option>
+                    <option value="avancado">Nível 3: Avançado</option>
+                </select>
+
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">Entrar na Sala de Aula</button>
+            </form>
         </div>
-        <div class="stat-item">
-            <h3></h3>
-            <p></p>
+
+        <!-- TELA 3: ÁREA DE ESTUDO (BLOCO A BLOCO) -->
+        <div id="course-area">
+            <div class="dashboard-header">
+                <div>
+                    <h3 id="display-nivel-titulo" style="color: #0b1329;">Nível Básico</h3>
+                    <p style="font-size: 0.9rem; color: #64748b;">Cada nível possui 9 blocos de estudo (10 questões por bloco).</p>
+                </div>
+                <button class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem; background: #e2e8f0; color: #0f172a;" onclick="trocarNivelManual()">Trocar Nível</button>
+            </div>
+
+            <h4 style="margin-bottom: 15px; color: #0b1329;">Escolha o Bloco (1 a 9):</h4>
+            <div class="blocks-grid" id="grid-blocos">
+                <!-- Gerado por JavaScript -->
+            </div>
+
+            <!-- QUIZ DO BLOCO SELECIONADO -->
+            <div class="quiz-container" id="quiz-container">
+                <h3 id="quiz-titulo" style="color: #0b1329; margin-bottom: 10px;">Bloco 1</h3>
+                <p id="quiz-pergunta" style="font-size: 1.1rem; margin-bottom: 20px; font-weight: 600;"></p>
+                <div id="quiz-opcoes"></div>
+                <div id="quiz-feedback" style="margin-top: 15px; font-weight: 700;"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL DE CERTIFICADO / CONCLUSÃO DE NÍVEL -->
+    <div class="modal-overlay" id="modal-certificado">
+        <div class="modal-card">
+            <h2 style="color: #0b1329; margin-bottom: 10px;">Parabéns! 🎓</h2>
+            <p id="modal-mensagem" style="color: #475569; font-size: 0.95rem;"></p>
+            
+            <div class="certificado-box">
+                <h3 style="color: #0b1329; font-size: 1.1rem;">CERTIFICADO DIGITAL</h3>
+                <p style="font-size: 0.85rem; margin: 8px 0;">Certificamos que</p>
+                <h4 id="cert-nome" style="color: #f59e0b; font-size: 1.2rem;">Nome do Aluno</h4>
+                <p style="font-size: 0.8rem; color: #475569; margin-top: 5px;">concluiu com êxito o <span id="cert-nivel">Nível Básico</span> na Dream Bridge USA.</p>
+            </div>
+
+            <div id="opcoes-fim-nivel" style="display: flex; gap: 10px; flex-direction: column;">
+                <button class="btn-primary" onclick="avancarProximoNivel()">Continuar para o Próximo Nível</button>
+                <button class="btn-social" onclick="fecharModalECconcluir()" style="background: #f1f5f9; padding: 12px;">Terminar por aqui (Guardar Conclusão)</button>
+            </div>
         </div>
     </div>
 
-    <section class="section" id="servicos">
-        <div class="section-title">
-            <h2>Como Ajudamos a Realizar o Seu Sonho</h2>
-            <p>Soluções completas para cada etapa da sua jornada rumo aos Estados Unidos</p>
-        </div>
-        <div class="services-grid">
-            <div <a href="app.html" class="service-card" style="text-decoration: none; color: inherit; display: block;">
-    <h3>Planejamento Académico</h3>
-    <p>.</p>
-</a> <a href="app.html" class="service-card" style="text-decoration: none; color: inherit; display: block;">
-    <h3>Planejamento Académico</h3>
-    <p></p>
-</a>
-
-
-                <h3>Planeamento Académico</h3>
-                <p>Escolha das universidades americanas ideais para o seu perfil, orçamento e área de estudo desejada.</p>
-            </div>
-            <div class="service-card">
-                <h3>Candidaturas & Essays</h3>
-                <p>Apoio na construção de application essays de destaque, cartas de recomendação e histórico escolar.</p>
-            </div>
-            <div class="service-card">
-                <h3>Assessoria para Visto F-1</h3>
-                <p>Preparação completa para a entrevista consular, documentação necessária e suporte burocrático.</p>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <p>&copy; 2026 Dream Bridge USA. Todos os direitos reservados.</p>
-        <p style="margin-top: 10px; color: #f59e0b; font-weight: 600;">Connecting Dreams & Opportunities</p>
+        <p style="margin-top: 8px; color: #f59e0b; font-weight: 600;">🇧🇷 Plataforma de Ensino de Inglês para Brasileiros</p>
     </footer>
 
-</body>
-</html>
+    <script>
+        let aluno = { nome: "", email: "", nivelAtual: "basico", blocoAtual: 1, questaoAtual: 0, corretasNobloco: 0 };
+
+        // Banco de perguntas simuladas por nível (9 blocos por nível)
+        const bancoPerguntas = {
+            basico: [
+                { p: "Como se diz 'Bom dia' em inglês?", o: ["Good night", "Good morning", "Goodbye"], r: 1 },
+                { p: "Qual a tradução correta para 'I am a student'?", o: ["Eu sou um estudante", "Eu tenho um carro", "Eu moro aqui"], r: 0 },
+                { p: "Como perguntar 'Como você está?'", o: ["Who are you?", "How are you?", "What is this?"], r: 1 },
+                { p: "Qual o significado de 'Thank you'?", o: ["Por favor", "Com licença", "Obrigado"], r: 2 },
+                { p: "Como se diz 'Água' em inglês?", o: ["Water", "Milk", "Juice"], r: 0 },
+                { p: "Qual a forma correta do verbo To Be para 'You'?", o: ["Am", "Is", "Are"], r: 2 },
+                { p: "Como dizer 'Até logo' em inglês?", o: ["Hello", "Goodbye", "Please"], r: 1 },
+                { p: "Traduza 'Cat':", o: ["Cachorro", "Gato", "Pássaro"], r: 1 },
+                { p: "Como responder a 'Thank you'?", o: ["You're welcome", "Good morning", "Sorry"], r: 0 },
+                { p: "Qual número é 'Five'?", o: ["4", "5", "6"], r: 1 }
+            ],
+            intermediario: [
+                { p: "Qual o passado simples do verbo 'go' (ir)?", o: ["goed", "went", "gone"], r: 1 },
+                { p: "Complete: 'If I ___ rich, I would travel.'", o: ["am", "were", "be"], r: 1 },
+                { p: "O que significa 'Look forward to'?", o: ["Olhar para trás", "Aguardar ansiosamente", "Desistir"], r: 1 },
+                { p: "Qual frase está no Present Perfect?", o: ["I played soccer", "I have played soccer", "I will play soccer"], r: 1 },
+                { p: "Como se diz 'Empreendimento / Negócio'?", o: ["Business", "Store", "House"], r: 0 },
+                { p: "Qual o sinônimo de 'Glad'?", o: ["Sad", "Happy", "Angry"], r: 1 },
+                { p: "Traduza a expressão 'By the way':", o: ["Por sinal / A propósito", "No caminho", "Até logo"], r: 0 },
+                { p: "Complete: 'She ___ English every day.'", o: ["study", "studies", "studying"], r: 1 },
+                { p: "Qual o oposto de 'Expensive' (caro)?", o: ["Big", "Cheap", "Fast"], r: 1 },
+                { p: "Como se diz 'Aeroporto' em inglês?", o: ["Station", "Airport", "Port"], r: 1 }
+            ],
+            avancado: [
+                { p: "O que significa a expressão idiomática 'Piece of cake'?", o: ["Um pedaço de bolo", "Algo muito fácil", "Uma tarefa difícil"], r: 1 },
+                { p: "Identifique a frase na voz passiva:", o: ["The dog chased the cat", "The cat was chased by the dog", "The cat chased the dog"], r: 1 },
+                { p: "O que quer dizer 'To break a leg'?", o: ["Machucar a perna", "Desejar boa sorte", "Correr rápido"], r: 1 },
+                { p: "Qual o significado de 'Nonetheless'?", o: ["Portanto", "No entanto / Imenso", "Apesar disso / No entanto"], r: 2 },
+                { p: "Complete com o pronome relativo correto: 'The man ___ spoke to me was kind.'", o: ["which", "who", "whose"], r: 1 },
+                { p: "O que significa 'To touch base'?", o: ["Jogar baseball", "Fazer contato / Conversar brevemente", "Tocar a base"], r: 1 },
+                { p: "Qual destas palavras denota incerteza?", o: ["Certainly", "Perhaps", "Definitely"], r: 1 },
+                { p: "O que significa 'Out of the blue'?", o: ["De repente / Inesperadamente", "Azul escuro", "Triste"], r: 0 },
+                { p: "Complete o conditional avançado: 'Had I known, I ___ different.'", o: ["would do", "would have done", "will do"], r: 1 },
+                { p: "O que significa 'To call it a day'?", o: ["Ligar para o trabalho", "Encerrar o expediente / o dia", "Trabalhar o dia todo"], r: 1 }
+            ]
+        };
+
+        function mostrarLogin() {
+            document.getElementById('welcome-section').style.display = 'none';
+            document.getElementById('hero-banner').style.padding = '40px 20px';
+            document.getElementById('login-box').style.display = 'block';
+        }
+
+        function simularLoginSocial(provedor) {
+            alert('Login com ' + provedor + ' realizado com sucesso!');
+            document.getElementById('aluno-nome').value = 'Usuário ' + provedor;
+            document.getElementById('aluno-email').value = 'usuario@' + provedor.toLowerCase() + '.com';
+        }
+
+        function iniciarCursoDoAluno(event) {
+            event.preventDefault();
+            aluno.nome = document.getElementById('aluno-nome').value;
+            aluno.email = document.getElementById('aluno-email').value;
+            aluno.nivelAtual = document.getElementById('aluno-nivel-escolhido').value;
+
+            document.getElementById('user-greeting').innerText = 'Olá, ' + aluno.nome + '!';
+            document.getElementById('login-box').style.display = 'none';
+            document.getElementById('course-area').style.display = 'block';
+
+            atualizarPainelNivel();
+        }
+
+        function atualizarPainelNivel() {
+            const titulos = { basico: "Nível 1: Básico", intermediario: "Nível 2: Intermediário", avancado: "Nível 3: Avançado" };
+            document.getElementById('display-nivel-titulo').innerText = titulos[aluno.nivelAtual];
+            
+            const grid = document.getElementById('grid-blocos');
+            grid.innerHTML = '';
+
+            for (let i = 1; i <= 9; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'block-btn';
+                btn.innerText = 'Bloco ' + i;
+                btn.onclick = () => carregarBloco(i);
+                grid.appendChild(btn);
+            }
+            document.getElementById('quiz-container').style.display = 'none';
+        }
+
+        function carregarBloco(numeroBloco) {
+            aluno.blocoAtual = numeroBloco;
+            aluno.questaoAtual = 0;
+            aluno.corretasNobloco = 0;
+
+            document.getElementById('quiz-container').style.display = 'block';
+            exibirQuestaoAtual();
+        }
+
+        function exibirQuestaoAtual() {
+            const qList = bancoPerguntas[aluno.nivelAtual];
+            const qIndex = a
