@@ -25,6 +25,31 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 3px solid #f59e0b;
+            position: relative;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        /* Botão do Menu Hamburguer (3 risquinhos) */
+        .menu-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 5px;
+            display: none; /* Só aparece quando logado */
+        }
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: 0.3s;
         }
         .logo {
             font-size: 1.6rem;
@@ -37,20 +62,21 @@
         .btn-primary {
             background-color: #f59e0b;
             color: #0b1329;
-            padding: 14px 28px;
+            padding: 14px 32px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.05rem;
             border-radius: 8px;
             border: none;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            transition: background 0.3s;
-            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
             text-align: center;
         }
         .btn-primary:hover {
             background-color: #d97706;
+            transform: translateY(-2px);
         }
         .btn-secondary {
             background-color: #ffffff;
@@ -64,35 +90,141 @@
             transition: all 0.3s;
             text-align: center;
             display: inline-block;
-            margin-top: 10px;
         }
         .btn-secondary:hover {
             background-color: #f1f5f9;
         }
 
-        /* Hero com a foto oficial de fundo com overlay azul translúcido */
+        /* MENU LATERAL ESTILO APLICATIVO (SIDEBAR) */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background: #0b1329;
+            color: white;
+            z-index: 2000;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar.open {
+            left: 0;
+        }
+        .sidebar-header {
+            padding: 20px;
+            background: #070c1b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f59e0b;
+        }
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+        .sidebar-menu li {
+            padding: 12px 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: 600;
+        }
+        .sidebar-menu li:hover {
+            background: #1e293b;
+            color: #f59e0b;
+        }
+        .sidebar-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1500;
+            display: none;
+        }
+        .sidebar-overlay.open {
+            display: block;
+        }
+
+        /* SEÇÕES DO MENU (PERFIL, LEMBRETES, ETC) */
+        .app-view {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        .profile-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #0b1329;
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            border: 2px solid #f59e0b;
+        }
+        .progress-bar-container {
+            background: #e2e8f0;
+            border-radius: 8px;
+            height: 16px;
+            width: 100%;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-bar-fill {
+            background: #10b981;
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Hero e Apresentação */
         .hero {
             position: relative;
-            background: linear-gradient(rgba(11, 19, 41, 0.88), rgba(11, 19, 41, 0.88)), 
-                        url('https://i.ibb.co/6R22z38/29045.jpg') center/cover no-repeat;
+            background: #0b1329;
             color: white;
             text-align: center;
-            padding: 100px 20px;
+            padding: 80px 20px;
+            border-bottom: 4px solid #f59e0b;
         }
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             margin-bottom: 15px;
             color: #ffffff;
         }
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #f59e0b;
             font-weight: 600;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
         }
 
-        /* Seção Explicativa Estilo Empresa / Duolingo */
         .about-section {
             background: white;
             padding: 60px 20px;
@@ -145,7 +277,6 @@
             padding: 0 20px;
         }
 
-        /* CAIXA DE LOGIN */
         .login-box {
             background: white;
             padding: 40px;
@@ -239,7 +370,6 @@
             background: #e2e8f0;
         }
 
-        /* MODAL DE CERTIFICADO */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -294,49 +424,78 @@
             padding: 30px 20px;
             margin-top: 60px;
         }
+        footer a {
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Dream Bridge <span>USA</span></div>
+        <div class="header-left">
+            <!-- Botão dos 3 Risquinhos (Menu Hambúrguer) -->
+            <button class="menu-toggle" id="menu-btn" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="logo">Dream Bridge <span>USA</span></div>
+        </div>
         <span id="user-greeting" style="font-size: 0.9rem; color: #f59e0b; font-weight: 600;"></span>
     </header>
 
-    <!-- PÁGINA INICIAL COM LOGOTIPO DE FUNDO TRANSPARENTE E EXPLICAÇÃO -->
+    <!-- MENU LATERAL (SIDEBAR) ESTILO APLICATIVO -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3 style="font-size: 1.1rem; color: #f59e0b;">Menu da Plataforma</h3>
+            <button class="sidebar-close" onclick="toggleSidebar()">×</button>
+        </div>
+        <ul class="sidebar-menu">
+            <li onclick="mostrarSecao('sala-aula')">📚 Sala de Aula (Blocos)</li>
+            <li onclick="mostrarSecao('perfil')">👤 Meu Perfil</li>
+            <li onclick="mostrarSecao('lembretes')">⏰ Lembretes e Calendário</li>
+            <li onclick="indicarCurso()">💡 Indicar Curso</li>
+            <li onclick="sairDaPlataforma()" style="color: #ef4444;">🚪 Sair / Trocar Conta</li>
+        </ul>
+    </div>
+
+    <!-- PÁGINA INICIAL COM FRASE INSPIRADORA E EXPLICAÇÃO -->
     <div id="landing-page">
         <section class="hero">
             <h1>Dream Bridge USA 🇺🇸</h1>
-            <p>Connecting Dreams & Opportunities — Seja bem-vindo à plataforma de inglês feita para brasileiros.</p>
-            <button class="btn-primary" onclick="irParaLogin()">Fazer Login</button>
+            <p>Conectando brasileiros e transformando vidas para ajudar você a realizar o grande sonho de morar, trabalhar ou viajar para fora do país!</p>
         </section>
 
         <section class="about-section">
             <div class="about-container">
                 <h2>Como Funciona o Curso e Nossos Objetivos</h2>
                 <p>
-                    A <strong>Dream Bridge USA</strong> foi criada para transformar a sua fluência em inglês através de uma metodologia moderna, prática e gamificada. 
-                    Nosso objetivo principal é eliminar barreiras linguísticas e preparar você para oportunidades internacionais, permitindo evoluir do básico ao avançado no seu próprio ritmo.
+                    A <strong>Dream Bridge USA</strong> foi criada para tornar a fluência em inglês acessível, prática e dinâmica. 
+                    Nosso objetivo é guiar você passo a passo, do básico ao avançado, preparando-o para vencer barreiras linguísticas e conquistar novas oportunidades no exterior.
                 </p>
                 
                 <div class="features-grid">
                     <div class="feature-card">
                         <h4>🎯 Trilha Progressiva por Blocos</h4>
-                        <p>O aluno inicia com o Bloco 1 liberado. Conclua as questões de cada etapa para desbloquear o próximo desafio sequencialmente.</p>
+                        <p>O aluno começa com o Bloco 1 liberado. Conclua os desafios de cada etapa para desbloquear sequencialmente o próximo bloco.</p>
                     </div>
                     <div class="feature-card">
                         <h4>📚 Perguntas Segmentadas</h4>
-                        <p>Conteúdos divididos entre Níveis Básico, Intermediário e Avançado para acompanhar exatamente a sua evolução de aprendizado.</p>
+                        <p>Conteúdos divididos entre Níveis Básico, Intermediário e Avançado para acompanhar exatamente o seu ritmo de evolução.</p>
                     </div>
                     <div class="feature-card">
                         <h4>🎓 Certificado Oficial</h4>
-                        <p>Ao finalizar todos os blocos do seu nível, receba um certificado digital completo com o seu nome e data de conclusão.</p>
+                        <p>Ao concluir todos os blocos do seu nível, conquiste um certificado digital completo com o seu nome e data oficial.</p>
                     </div>
                 </div>
 
-                <div style="margin-top: 40px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                    <p style="color: #64748b; font-size: 0.95rem; font-weight: 600;">Já conhece a nossa proposta? Entre agora e comece a estudar:</p>
                     <button class="btn-primary" onclick="irParaLogin()">Fazer Login</button>
-                    <button class="btn-secondary" onclick="indicarCurso()">Indicar Curso</button>
+                    <button class="btn-secondary" onclick="indicarCurso()" style="margin-top: 5px;">Indicar Curso para Amigos</button>
                 </div>
             </div>
         </section>
@@ -355,7 +514,7 @@
                 <input type="text" id="aluno-apelido" placeholder="Ex: João, Mari, Teacher..." required>
                 
                 <label>E-mail</label>
-                <input type="email" placeholder="seu@email.com" required>
+                <input type="email" id="aluno-email" placeholder="seu@email.com" required>
                 
                 <label>Nível Inicial de Inglês</label>
                 <select id="aluno-nivel">
@@ -364,111 +523,45 @@
                     <option value="avancado">Nível 3: Avançado</option>
                 </select>
 
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Entrar no Curso</button>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Iniciar Curso</button>
                 <button type="button" class="btn-secondary" style="width: 100%; margin-top: 10px;" onclick="indicarCurso()">Indicar Curso</button>
             </form>
         </div>
 
-        <!-- ÁREA DO CURSO -->
-        <div id="course-area">
-            <div class="dashboard-header">
+        <!-- TELA DO PERFIL DO ALUNO (MENU) -->
+        <div class="app-view" id="view-perfil">
+            <h2 style="color: #0b1329; margin-bottom: 20px;">Meu Perfil na Plataforma</h2>
+            
+            <div class="profile-card">
+                <div class="profile-avatar" id="profile-initials">AB</div>
                 <div>
-                    <h3 id="display-nivel-titulo" style="color: #0b1329;">Nível Básico</h3>
-                    <p style="font-size: 0.85rem; color: #64748b;">Complete o Bloco 1 para desbloquear os seguintes.</p>
-                </div>
-                <div style="display: flex; gap: 10px;">
-                    <button class="btn-primary" style="padding: 6px 12px; font-size: 0.8rem; background: #e2e8f0; color: #0f172a;" onclick="indicarCurso()">Indicar Curso</button>
-                    <button class="btn-primary" style="padding: 6px 12px; font-size: 0.8rem; background: #e2e8f0; color: #0f172a;" onclick="trocarNivelManual()">Trocar Nível</button>
+                    <h3 id="pf-nome" style="color: #0b1329; font-size: 1.2rem;">Nome do Aluno</h3>
+                    <p style="color: #64748b; font-size: 0.9rem;">Apelido: <strong id="pf-apelido" style="color: #f59e0b;">-</strong></p>
+                    <p style="color: #64748b; font-size: 0.9rem;" id="pf-email">email@exemplo.com</p>
                 </div>
             </div>
 
-            <h4 style="margin-bottom: 15px; color: #0b1329;">Trilha de Blocos (1 a 9):</h4>
-            <div class="blocks-grid" id="grid-blocos"></div>
-
-            <!-- QUIZ DO BLOCO -->
-            <div class="quiz-container" id="quiz-container">
-                <h3 id="quiz-titulo" style="color: #0b1329; margin-bottom: 10px;">Bloco 1</h3>
-                <p id="quiz-pergunta" style="font-size: 1.05rem; margin-bottom: 20px; font-weight: 600;"></p>
-                <div id="quiz-opcoes"></div>
-                <div id="quiz-feedback" style="margin-top: 15px; font-weight: 700;"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DE CERTIFICADO DE VERDADE -->
-    <div class="modal-overlay" id="modal-certificado">
-        <div class="modal-card">
-            <div class="certificado-diploma">
-                <p style="font-size: 0.75rem; color: #64748b; letter-spacing: 2px;">DREAM BRIDGE USA 🇺🇸</p>
-                <h3 style="margin-top: 5px;">CERTIFICADO DE CONCLUSÃO</h3>
-                <p style="font-size: 0.85rem; font-style: italic; color: #475569; margin: 15px 0;">Parabéns pelo excelente desempenho e dedicação!</p>
+            <div style="background: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
+                <h4 style="color: #0b1329; margin-bottom: 10px;">📊 Estatísticas e Progresso</h4>
+                <p style="font-size: 0.95rem; color: #475569;">Nível Atual: <strong id="pf-nivel-txt" style="text-transform: uppercase; color: #f59e0b;">Básico</strong></p>
+                <p style="font-size: 0.95rem; color: #475569; margin-top: 5px;">Bloco Atual: <strong id="pf-bloco-txt">Bloco 1 de 9</strong></p>
                 
-                <p style="font-size: 0.85rem; color: #0b1329;">Certificamos com muito orgulho que o(a) aluno(a)</p>
-                <h4 id="cert-nome">Nome do Aluno</h4>
-                <p style="font-size: 0.85rem; color: #0b1329; line-height: 1.6;">
-                    finalizou com sucesso todos os 9 blocos de ensino da plataforma online oficial da <strong style="color: #0b1329;">Dream Bridge USA</strong>, concluindo com aproveitamento o <span id="cert-nivel" style="font-weight: 700; color: #f59e0b;">Nível Básico</span>.
-                </p>
-
-                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; padding: 0 20px;">
-                    <div style="text-align: center;">
-                        <p style="font-size: 0.75rem; color: #64748b;" id="cert-data">Data: 12/11/2026</p>
-                        <div style="border-top: 1px solid #0b1329; width: 130px; margin-top: 4px;"></div>
-                        <p style="font-size: 0.7rem; font-weight: 600; color: #0b1329;">Data de Emissão</p>
+                <div style="margin-top: 15px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600;">
+                        <span>Evolução no Nível</span>
+                        <span id="pf-porcentagem">11%</span>
                     </div>
-                    <div style="text-align: center;">
-                        <p style="font-family: 'Playfair Display', serif; font-size: 1rem; color: #0b1329; font-style: italic;">Dream Bridge Team</p>
-                        <div style="border-top: 1px solid #0b1329; width: 130px; margin-top: 4px;"></div>
-                        <p style="font-size: 0.7rem; font-weight: 600; color: #0b1329;">Direção Acadêmica</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="pf-progress-fill"></div>
                     </div>
+                    <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;" id="pf-status-evolucao">Ritmo constante! Continue praticando todos os dias.</p>
                 </div>
             </div>
 
-            <div style="display: flex; gap: 10px; flex-direction: column; margin-top: 15px;">
-                <button class="btn-primary" onclick="avancarProximoNivel()">Avançar para Próximo Nível</button>
-                <button onclick="indicarCurso()" class="btn-secondary" style="width: 100%; margin: 0;">Indicar Curso para Amigos</button>
-                <button onclick="fecharModalECconcluir()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">Finalizar e Sair</button>
-            </div>
+            <button class="btn-primary" onclick="mostrarSecao('sala-aula')">Voltar para os Estudos</button>
         </div>
-    </div>
 
-    <footer>
-        <p>&copy; 2026 Dream Bridge USA. Todos os direitos reservados.</p>
-        <p style="margin-top: 6px; color: #f59e0b; font-weight: 600;">🇧🇷 Plataforma de Ensino de Inglês para Brasileiros</p>
-    </footer>
-
-    <script>
-        let aluno = { nome: "", apelido: "", nivelAtual: "basico", blocoAtual: 1, questaoAtual: 0, progressoMaximo: 1 };
-
-        const bancoPerguntas = {
-            basico: [
-                { p: "Como se diz 'Bom dia' em inglês?", o: ["Good night", "Good morning", "Goodbye"], r: 1 },
-                { p: "Traduza 'I am a student':", o: ["Eu sou um estudante", "Eu tenho um carro", "Eu moro aqui"], r: 0 },
-                { p: "Como perguntar 'Como você está?'", o: ["Who are you?", "How are you?", "What is this?"], r: 1 },
-                { p: "Qual o significado de 'Thank you'?", o: ["Por favor", "Com licença", "Obrigado"], r: 2 },
-                { p: "Como se diz 'Água'?", o: ["Water", "Milk", "Juice"], r: 0 },
-                { p: "Qual o verbo To Be correto para 'You'?", o: ["Am", "Is", "Are"], r: 2 },
-                { p: "Como dizer 'Até logo'?", o: ["Hello", "Goodbye", "Please"], r: 1 },
-                { p: "Traduza 'Cat':", o: ["Cachorro", "Gato", "Pássaro"], r: 1 },
-                { p: "Como responder a 'Thank you'?", o: ["You're welcome", "Good morning", "Sorry"], r: 0 },
-                { p: "Qual número é 'Five'?", o: ["4", "5", "6"], r: 1 }
-            ],
-            intermediario: [
-                { p: "Passado simples do verbo 'go':", o: ["goed", "went", "gone"], r: 1 },
-                { p: "Complete: 'If I ___ rich...'", o: ["am", "were", "be"], r: 1 },
-                { p: "Significado de 'Look forward to':", o: ["Olhar para trás", "Aguardar ansiosamente", "Desistir"], r: 1 },
-                { p: "Frase no Present Perfect:", o: ["I played", "I have played", "I will play"], r: 1 },
-                { p: "Traduza 'Business':", o: ["Negócio", "Loja", "Casa"], r: 0 },
-                { p: "Sinônimo de 'Glad':", o: ["Sad", "Happy", "Angry"], r: 1 },
-                { p: "Traduza 'By the way':", o: ["A propósito", "No caminho", "Até logo"], r: 0 },
-                { p: "Complete: 'She ___ every day.'", o: ["study", "studies", "studying"], r: 1 },
-                { p: "Oposto de 'Expensive':", o: ["Big", "Cheap", "Fast"], r: 1 },
-                { p: "Traduza 'Airport':", o: ["Estação", "Aeroporto", "Porto"], r: 1 }
-            ],
-            avancado: [
-                { p: "Significado de 'Piece of cake':", o: ["Pedaço de bolo", "Muito fácil", "Difícil"], r: 1 },
-                { p: "Frase na voz passiva:", o: ["He chased", "It was chased", "He runs"], r: 1 },
-                { p: "Significado de 'Break a leg':", o: ["Machucar", "Boa sorte", "Correr"], r: 1 },
-                { p: "Significado de 'Nonetheless':", o: ["Portanto", "No entanto", "Antes"], r: 1 },
-                { p: "Pronome relativo: 'The man ___ spoke...'", o: ["which", "who", "whose"], r: 1 },
-                { p: "O que é 'Touch base'?", o: ["Fazer contato", "Jogar", "Tocar"], r: 0 },
-                { p: "Palavra 
+        <!-- TELA DE LEMBRETES E CALENDÁRIO (MENU) -->
+        <div class="app-view" id="view-lembretes">
+            <h2 style="color: #0b1329; margin-bottom: 10px;">⏰ Lembretes de Aula e Calendário</h2>
+            <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 25px;">Personalize os dias e horários em que dese
