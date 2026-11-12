@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dream Bridge USA | Plataforma de Inglês para Brasileiros</title>
+    <title>Dream Bridge U.S.A | Plataforma de Inglês para Brasileiros</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
         * {
@@ -465,15 +465,15 @@
     <!-- PÁGINA INICIAL COM FRASE INSPIRADORA E EXPLICAÇÃO -->
     <div id="landing-page">
         <section class="hero">
-            <h1>Dream Bridge USA 🇺🇸</h1>
+            <h1>Dream Bridge U.S.A 🇺🇸</h1>
             <p>Conectando brasileiros e transformando vidas para ajudar você a realizar o grande sonho de morar, trabalhar ou viajar para fora do país!</p>
         </section>
 
         <section class="about-section">
             <div class="about-container">
-                <h2>Como Funciona o Curso e Nossos Objetivos</h2>
+                <h2>Como Funciona o Curso </h2>
                 <p>
-                    A <strong>Dream Bridge USA</strong> foi criada para tornar a fluência em inglês acessível, prática e dinâmica. 
+                    A <strong>Dream Bridge U.S.A</strong> foi criada para tornar a fluência em inglês acessível, prática e dinâmica. 
                     Nosso objetivo é guiar você passo a passo, do básico ao avançado, preparando-o para vencer barreiras linguísticas e conquistar novas oportunidades no exterior.
                 </p>
                 
@@ -495,7 +495,7 @@
                 <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 15px;">
                     <p style="color: #64748b; font-size: 0.95rem; font-weight: 600;">Já conhece a nossa proposta? Entre agora e comece a estudar:</p>
                     <button class="btn-primary" onclick="irParaLogin()">Fazer Login</button>
-                    <button class="btn-secondary" onclick="indicarCurso()" style="margin-top: 5px;">Indicar Curso para Amigos</button>
+                    <button class="btn-secondary" onclick="indicarCurso()" style="margin-top: 5px;">Compartilhar Link do Curso </button>
                 </div>
             </div>
         </section>
@@ -598,7 +598,7 @@
                 </div>
             </div>
 
-            <h4 style="margin-bottom: 15px; color: #0b1329;">Trilha de Blocos (1 a 9):</h4>
+            <h4 style="margin-bottom: 15px; color: #0b1329;">Trilha de Blocos (1 a 10 ):</h4>
             <div class="blocks-grid" id="grid-blocos"></div>
 
             <!-- QUIZ DO BLOCO -->
@@ -615,14 +615,14 @@
     <div class="modal-overlay" id="modal-certificado">
         <div class="modal-card">
             <div class="certificado-diploma">
-                <p style="font-size: 0.75rem; color: #64748b; letter-spacing: 2px;">DREAM BRIDGE USA 🇺🇸</p>
+                <p style="font-size: 0.75rem; color: #64748b; letter-spacing: 2px;">DREAM BRIDGE U.S.A 🇺🇸</p>
                 <h3 style="margin-top: 5px;">CERTIFICADO DE CONCLUSÃO</h3>
                 <p style="font-size: 0.85rem; font-style: italic; color: #475569; margin: 15px 0;">Parabéns pelo excelente desempenho e dedicação!</p>
                 
                 <p style="font-size: 0.85rem; color: #0b1329;">Certificamos com muito orgulho que o(a) aluno(a)</p>
                 <h4 id="cert-nome">Nome do Aluno</h4>
                 <p style="font-size: 0.85rem; color: #0b1329; line-height: 1.6;">
-                    finalizou com sucesso todos os 9 blocos de ensino da plataforma online oficial da <strong style="color: #0b1329;">Dream Bridge USA</strong>, concluindo com aproveitamento o <span id="cert-nivel" style="font-weight: 700; color: #f59e0b;">Nível Básico</span>.
+                    finalizou com sucesso todos os 10 blocos de ensino da plataforma online oficial da <strong style="color: #0b1329;">Dream Bridge USA</strong>, concluindo com aproveitamento o <span id="cert-nivel" style="font-weight: 700; color: #f59e0b;">Nível Básico</span>.
                 </p>
 
                 <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; padding: 0 20px;">
@@ -757,8 +757,8 @@
             document.getElementById('pf-nivel-txt').innerText = titulosNivel[aluno.nivelAtual];
             document.getElementById('pf-bloco-txt').innerText = `Bloco ${aluno.progressoMaximo} de 9`;
 
-            // Cálculo do gráfico de porcentagem (baseado no progresso dos 9 blocos)
-            const porcentagem = Math.round((aluno.progressoMaximo / 9) * 100);
+            // Cálculo do gráfico  redondo de porcentagem (baseado no progresso dos 10 blocos)
+            const porcentagem = Math.round((aluno.progressoMaximo / 10) * 100);
             document.getElementById('pf-porcentagem').innerText = porcentagem + '%';
             document.getElementById('pf-progress-fill').style.width = porcentagem + '%';
 
@@ -783,12 +783,12 @@
             const linkCompartilhar = "https://dreambridgeusa.vercel.app";
             if (navigator.share) {
                 navigator.share({
-                    title: 'Dream Bridge USA',
-                    text: 'Venha aprender inglês de graça na plataforma Dream Bridge USA!',
+                    title: 'Dream Bridge U.S.A',
+                    text: 'Venha aprender inglês de graça na plataforma Dream Bridge U.S.A!',
                     url: linkCompartilhar,
                 }).catch(() => {});
             } else {
-                prompt("Copie o link abaixo para indicar o curso para seus amigos:", linkCompartilhar);
+                prompt("Copie o link abaixo para compartilhar link do curso:", linkCompartilhar);
             }
         }
 
@@ -805,7 +805,7 @@
             const grid = document.getElementById('grid-blocos');
             grid.innerHTML = '';
 
-            for (let i = 1; i <= 9; i++) {
+            for (let i = 1; i <= 10; i++) {
                 const btn = document.createElement('button');
                 btn.className = 'block-btn';
                 
