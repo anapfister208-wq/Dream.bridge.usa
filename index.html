@@ -105,7 +105,7 @@
             <li onclick="mostrarSecao('sala-aula')">📚 Sala de Aula (Blocos)</li>
             <li onclick="mostrarSecao('perfil')">👤 Meu Perfil e Gráficos</li>
             <li onclick="mostrarSecao('lembretes')">⏰ Lembretes e Calendário</li>
-            <li onclick="indicarCurso()">💡 Indicar Curso para Amigos</li>
+            <li onclick="abrirModalCompartilhar()">💡 Indicar Curso para Amigos</li>
             <li onclick="sairDaPlataforma()" style="color: #ef4444;">🚪 Sair / Limpar Conta</li>
         </ul>
     </div>
@@ -113,13 +113,13 @@
     <!-- PÁGINA INICIAL COM EXPLICAÇÃO E OBJETIVOS -->
     <div id="landing-page">
         <section class="hero">
-            <h1>Dream Bridge U.S.A 🇺🇸</h1>
+            <h1>Dream Bridge USA 🇺🇸</h1>
             <p>Conectando brasileiros e transformando vidas para ajudar você a realizar o grande sonho de morar, trabalhar ou viajar para fora do país!</p>
         </section>
 
         <section class="about-section">
             <div class="about-container">
-                <h2>O que é a Dream Bridge U.S.A</h2>
+                <h2>O que é a Dream Bridge USA e Nossos Objetivos</h2>
                 <p>
                     A <strong>Dream Bridge USA</strong> é uma plataforma de ensino inovadora criada especificamente para brasileiros que desejam dominar o inglês e destravar oportunidades internacionais. Nosso grande objetivo é eliminar a barreira do idioma, oferecendo uma imersão prática e estruturada.
                 </p>
@@ -144,7 +144,7 @@
 
                 <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
                     <button type="button" class="btn-acao" style="max-width: 250px;" onclick="irParaLogin()">Fazer Login</button>
-                    <button type="button" class="btn-secundario" style="max-width: 250px; margin-top: 0;" onclick="indicarCurso()">💡 Indicar para Amigos</button>
+                    <button type="button" class="btn-secundario" style="max-width: 250px; margin-top: 0;" onclick="abrirModalCompartilhar()">💡 Indicar para Amigos</button>
                 </div>
             </div>
         </section>
@@ -172,7 +172,7 @@
                 </select>
 
                 <button type="button" class="btn-acao" onclick="iniciarCursoDoAluno()">Iniciar Curso</button>
-                <button type="button" class="btn-secundario" onclick="indicarCurso()">💡 Indicar Curso para Amigos</button>
+                <button type="button" class="btn-secundario" onclick="abrirModalCompartilhar()">💡 Indicar Curso para Amigos</button>
             </div>
         </div>
 
@@ -213,7 +213,7 @@
                     <p style="font-size: 0.85rem; color: #64748b;">Currículo de Escolas Públicas dos EUA (Blocos 1 ao 9)</p>
                 </div>
                 <div style="display: flex; gap: 10px;">
-                    <button type="button" class="btn-secundario" style="margin: 0; width: auto; padding: 8px 15px;" onclick="indicarCurso()">💡 Indicar</button>
+                    <button type="button" class="btn-secundario" style="margin: 0; width: auto; padding: 8px 15px;" onclick="abrirModalCompartilhar()">💡 Indicar</button>
                     <button type="button" class="btn-secundario" style="margin: 0; width: auto; padding: 8px 15px;" onclick="trocarNivelManual()">Trocar Nível</button>
                 </div>
             </div>
@@ -230,6 +230,20 @@
                 <p id="quiz-pergunta" style="font-size: 1.05rem; margin-bottom: 20px; font-weight: 600;"></p>
                 <div id="quiz-opcoes"></div>
                 <div id="quiz-feedback" style="margin-top: 15px; font-weight: 700;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE COMPARTILHAMENTO -->
+    <div class="modal-overlay" id="modal-compartilhar">
+        <div class="modal-card">
+            <h2 style="color: #0b1329; margin-bottom: 10px;">💡 Indique a Dream Bridge USA</h2>
+            <p style="color: #475569; font-size: 0.95rem; margin-bottom: 15px;">Compartilhe a plataforma com os seus amigos:</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button type="button" class="btn-acao" style="background-color: #25d366; color: white;" onclick="compartilharWhatsApp()">💬 Compartilhar no WhatsApp</button>
+                <button type="button" class="btn-secundario" onclick="copiarLinkGeral()" style="width: 100%; margin: 0;">🔗 Copiar Link da Plataforma</button>
+                <button type="button" onclick="fecharModalCompartilhar()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 5px;">Fechar</button>
             </div>
         </div>
     </div>
@@ -271,18 +285,4 @@
 
                 <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 35px; padding: 0 15px;">
                     <div style="text-align: center;">
-                        <p style="font-size: 0.75rem; color: #64748b;" id="cert-data">Data: 12/11/2026</p>
-                        <div style="border-top: 1px solid #0b1329; width: 120px; margin-top: 4px;"></div>
-                        <p style="font-size: 0.7rem; font-weight: 600; color: #0b1329;">Emissão Oficial</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <p style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #0b1329; font-style: italic;">U.S. Public School Board</p>
-                        <div style="border-top: 1px solid #0b1329; width: 120px; margin-top: 4px;"></div>
-                        <p style="font-size: 0.7rem; font-weight: 600; color: #0b1329;">Direção Acadêmica</p>
-                    </div>
-                </div>
-            </div>
-
-            <div style="display: flex; gap: 10px; flex-direction: column; margin-top: 15px;">
-                <button type="button" class="btn-acao" onclick="window.print()">📥 Baixar Certificado em PDF</button>
-                <button type="button" class="btn-secundario" onclick="salvarNaGaleria()" style="width: 100%; margin: 0;">🖼️ Sal
+                        <p style="font-size: 0.75rem; color: #64748b;" id="cert-data">Data: 12
