@@ -9,34 +9,38 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
         body { background-color: #f1f5f9; color: #0f172a; line-height: 1.6; }
-        header { background: #0b1329; color: white; padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #f59e0b; position: relative; z-index: 100; }
+        
+        header { background: #0b1329; color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #f59e0b; position: sticky; top: 0; z-index: 100; }
         .header-left { display: flex; align-items: center; gap: 15px; }
-        .menu-toggle { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; gap: 5px; padding: 5px; display: none; }
-        .menu-toggle span { display: block; width: 25px; height: 3px; background-color: #ffffff; border-radius: 2px; }
-        .logo { font-size: 1.6rem; font-weight: 700; color: #ffffff; }
+        
+        /* Botão dos 3 risquinhos bem visível */
+        .menu-toggle { background: #1e293b; border: 2px solid #f59e0b; border-radius: 6px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px; display: none; }
+        .menu-toggle span { display: block; width: 22px; height: 3px; background-color: #f59e0b; border-radius: 2px; }
+        
+        .logo { font-size: 1.5rem; font-weight: 700; color: #ffffff; }
         .logo span { color: #f59e0b; }
         
-        .btn-primary { background-color: #f59e0b; color: #0b1329; padding: 14px 28px; font-weight: 700; font-size: 1rem; border-radius: 8px; border: none; cursor: pointer; text-align: center; display: inline-block; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
-        .btn-secondary { background-color: #ffffff; color: #0b1329; border: 2px solid #0b1329; padding: 12px 20px; font-weight: 700; font-size: 0.9rem; border-radius: 8px; cursor: pointer; text-align: center; display: inline-block; }
+        .btn-acao { background-color: #f59e0b; color: #0b1329; padding: 14px 28px; font-weight: 700; font-size: 1rem; border-radius: 8px; border: none; cursor: pointer; text-align: center; display: inline-block; width: 100%; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
+        .btn-secundario { background-color: #ffffff; color: #0b1329; border: 2px solid #0b1329; padding: 12px 20px; font-weight: 700; font-size: 0.9rem; border-radius: 8px; cursor: pointer; text-align: center; display: inline-block; width: 100%; margin-top: 10px; }
 
         /* MENU LATERAL */
         .sidebar { position: fixed; top: 0; left: -300px; width: 300px; height: 100%; background: #0b1329; color: white; z-index: 3000; transition: left 0.3s ease; box-shadow: 5px 0 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; }
         .sidebar.open { left: 0; }
         .sidebar-header { padding: 20px; background: #070c1b; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f59e0b; }
-        .sidebar-close { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        .sidebar-close { background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
         .sidebar-menu { list-style: none; padding: 20px 0; flex-grow: 1; }
-        .sidebar-menu li { padding: 12px 25px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; font-weight: 600; }
+        .sidebar-menu li { padding: 15px 25px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; font-weight: 600; font-size: 1rem; }
         .sidebar-menu li:hover { background: #1e293b; color: #f59e0b; }
         .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2500; display: none; }
         .sidebar-overlay.open { display: block; }
 
-        .app-view { display: none; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 30px; }
+        .app-view { display: none; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin: 30px auto; max-width: 850px; }
         
-        .hero { background: #0b1329; color: white; text-align: center; padding: 70px 20px; border-bottom: 4px solid #f59e0b; }
+        .hero { background: #0b1329; color: white; text-align: center; padding: 60px 20px; border-bottom: 4px solid #f59e0b; }
         .hero h1 { font-size: 2.2rem; margin-bottom: 15px; }
         .hero p { font-size: 1.1rem; color: #f59e0b; font-weight: 600; max-width: 650px; margin: 0 auto; }
 
-        .about-section { background: white; padding: 50px 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .about-section { background: white; padding: 40px 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
         .about-container { max-width: 850px; margin: 0 auto; }
         .about-container h2 { color: #0b1329; font-size: 1.8rem; margin-bottom: 15px; }
         .about-container p { color: #475569; font-size: 1.05rem; margin-bottom: 30px; }
@@ -48,7 +52,7 @@
         .login-box label { font-weight: 600; font-size: 0.9rem; color: #0b1329; }
 
         .blocks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; margin-bottom: 20px; }
-        .block-btn { background: white; border: 2px solid #cbd5e1; border-radius: 8px; padding: 10px; text-align: center; font-weight: 700; color: #0b1329; cursor: pointer; }
+        .block-btn { background: white; border: 2px solid #cbd5e1; border-radius: 8px; padding: 12px 8px; text-align: center; font-weight: 700; color: #0b1329; cursor: pointer; }
         .block-btn.unlocked { border-color: #10b981; background: #ecfdf5; }
         .block-btn.locked { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; }
 
@@ -94,7 +98,7 @@
             <li onclick="mostrarSecao('sala-aula')">📚 Sala de Aula (Blocos)</li>
             <li onclick="mostrarSecao('perfil')">👤 Meu Perfil e Gráficos</li>
             <li onclick="mostrarSecao('lembretes')">⏰ Lembretes e Calendário</li>
-            <li onclick="indicarCurso()">💡 Indicar Curso</li>
+            <li onclick="indicarCurso()">💡 Indicar Curso para Amigos</li>
             <li onclick="sairDaPlataforma()" style="color: #ef4444;">🚪 Sair / Limpar Conta</li>
         </ul>
     </div>
@@ -113,10 +117,7 @@
                     A <strong>Dream Bridge USA</strong> foi criada para tornar a fluência em inglês acessível, prática e dinâmica. 
                     Com matérias universitárias americanas, guie você passo a passo do básico ao avançado.
                 </p>
-                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                    <button type="button" class="btn-primary" onclick="irParaLogin()">Fazer Login</button>
-                    <button type="button" class="btn-secondary" onclick="indicarCurso()">💡 Indicar Curso para Amigos</button>
-                </div>
+                <button type="button" class="btn-acao" onclick="irParaLogin()" style="max-width: 300px;">Fazer Login</button>
             </div>
         </section>
     </div>
@@ -125,7 +126,7 @@
         <!-- TELA DE LOGIN -->
         <div class="login-box" id="login-box" style="display: none;">
             <h2 style="color: #0b1329; margin-bottom: 10px; text-align: center;">Acessar Plataforma</h2>
-            <form onsubmit="iniciarCursoDoAluno(event)">
+            <form id="form-login" onsubmit="iniciarCursoDoAluno(event)">
                 <label>Seu Nome Completo</label>
                 <input type="text" id="aluno-nome" placeholder="Digite seu nome" required>
                 
@@ -142,11 +143,12 @@
                     <option value="avancado">Nível 3: Avançado</option>
                 </select>
 
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Iniciar Curso</button>
+                <button type="submit" class="btn-acao">Iniciar Curso</button>
+                <button type="button" class="btn-secundario" onclick="indicarCurso()">💡 Indicar Curso para Amigos</button>
             </form>
         </div>
 
-        <!-- TELA DE PERFIL E GRÁFICOS DE PORCENTAGEM -->
+        <!-- TELA DE PERFIL E GRÁFICOS -->
         <div class="app-view" id="view-perfil">
             <h2 style="color: #0b1329; margin-bottom: 20px;">👤 Meu Perfil e Progresso</h2>
             
@@ -162,26 +164,16 @@
             <h3 style="color: #0b1329; margin-bottom: 15px;">📊 Porcentagem de Evolução por Bloco (1 a 9)</h3>
             <div id="graficos-blocos-container"></div>
 
-            <button type="button" class="btn-primary" style="margin-top: 20px;" onclick="mostrarSecao('sala-aula')">Voltar aos Estudos</button>
+            <button type="button" class="btn-acao" style="margin-top: 20px;" onclick="mostrarSecao('sala-aula')">Voltar aos Estudos</button>
         </div>
 
-        <!-- TELA DE LEMBRETES E CALENDÁRIO -->
+        <!-- TELA DE LEMBRETES -->
         <div class="app-view" id="view-lembretes">
             <h2 style="color: #0b1329; margin-bottom: 15px;">⏰ Lembretes e Calendário Universitário</h2>
-            <p style="color: #64748b; margin-bottom: 20px;">Configure os horários e dias da semana para receber notificações de estudo.</p>
+            <p style="color: #64748b; margin-bottom: 20px;">Configure os horários para receber notificações de estudo.</p>
             <div style="display: flex; flex-direction: column; gap: 15px;">
                 <label>Horário do Lembrete: <input type="time" id="lembrete-hora" value="20:00" style="padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1; margin-left: 10px;"></label>
-                <p style="font-weight: 600; color: #0b1329;">Dias de Estudo:</p>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <label><input type="checkbox" checked> Seg</label>
-                    <label><input type="checkbox" checked> Ter</label>
-                    <label><input type="checkbox" checked> Qua</label>
-                    <label><input type="checkbox" checked> Qui</label>
-                    <label><input type="checkbox" checked> Sex</label>
-                    <label><input type="checkbox"> Sáb</label>
-                    <label><input type="checkbox"> Dom</label>
-                </div>
-                <button type="button" class="btn-primary" onclick="alert('Lembretes salvos com sucesso!'); mostrarSecao('sala-aula');">Salvar Lembretes</button>
+                <button type="button" class="btn-acao" onclick="alert('Lembretes salvos com sucesso!'); mostrarSecao('sala-aula');">Salvar Lembretes</button>
             </div>
         </div>
 
@@ -193,8 +185,8 @@
                     <p style="font-size: 0.85rem; color: #64748b;">Trilha Universitária Americana (Blocos 1 ao 9)</p>
                 </div>
                 <div style="display: flex; gap: 10px;">
-                    <button type="button" class="btn-secondary" onclick="indicarCurso()">💡 Indicar Curso</button>
-                    <button type="button" class="btn-secondary" onclick="trocarNivelManual()">Trocar Nível</button>
+                    <button type="button" class="btn-secundario" style="margin: 0;" onclick="indicarCurso()">💡 Indicar Curso</button>
+                    <button type="button" class="btn-secundario" style="margin: 0;" onclick="trocarNivelManual()">Trocar Nível</button>
                 </div>
             </div>
 
@@ -220,8 +212,8 @@
             <h2 style="color: #ef4444; margin-bottom: 10px;">⚠️ Atenção ao Desempenho</h2>
             <p style="color: #475569; margin-bottom: 20px;">Você errou 5 ou mais questões neste bloco. O que deseja fazer agora?</p>
             <div style="display: flex; gap: 10px; flex-direction: column;">
-                <button type="button" class="btn-primary" onclick="revisarBlocoAtual()">🔄 Revisar Matéria Novamente</button>
-                <button type="button" class="btn-secondary" onclick="escolherProximaMateriaUniversitaria()" style="width: 100%;">📚 Escolher Próxima Aula Universitária (História, Gramática, Verbos...)</button>
+                <button type="button" class="btn-acao" onclick="revisarBlocoAtual()">🔄 Revisar Matéria Novamente</button>
+                <button type="button" class="btn-secundario" onclick="escolherProximaMateriaUniversitaria()" style="width: 100%; margin: 0;">📚 Escolher Matéria Universitária (História, Gramática, Verbos...)</button>
             </div>
         </div>
     </div>
@@ -231,7 +223,7 @@
         <div class="modal-card">
             <h2 style="color: #10b981; margin-bottom: 10px;">🎉 Parabéns!</h2>
             <p id="mensagem-bloco-concluido" style="color: #475569; margin-bottom: 20px;"></p>
-            <button type="button" class="btn-primary" onclick="avancarParaProximoBloco()">Ir para o Próximo Bloco</button>
+            <button type="button" class="btn-acao" onclick="avancarParaProximoBloco()">Ir para o Próximo Bloco</button>
         </div>
     </div>
 
@@ -264,9 +256,9 @@
             </div>
 
             <div style="display: flex; gap: 10px; flex-direction: column; margin-top: 15px;">
-                <button type="button" class="btn-primary" onclick="window.print()">📥 Baixar Certificado em PDF</button>
-                <button type="button" class="btn-secondary" onclick="salvarNaGaleria()" style="width: 100%; margin: 0;">🖼️ Salvar Foto na Galeria</button>
-                <button type="button" class="btn-secondary" onclick="indicarCurso()">💡 Indicar Curso para Amigos</button>
+                <button type="button" class="btn-acao" onclick="window.print()">📥 Baixar Certificado em PDF</button>
+                <button type="button" class="btn-secundario" onclick="salvarNaGaleria()" style="width: 100%; margin: 0;">🖼️ Salvar Foto na Galeria</button>
+                <button type="button" class="btn-secundario" onclick="indicarCurso()" style="width: 100%; margin: 0;">💡 Indicar Curso para Amigos</button>
                 <button type="button" onclick="fecharModalECconcluir()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">Finalizar e Sair</button>
             </div>
         </div>
@@ -302,4 +294,10 @@
             9: "Oratória e Debate (Public Speaking & Debate)"
         };
 
-     
+        const bancoPerguntas = {
+            basico: [
+                { p: "Como se diz 'Bom dia' em inglês?", o: ["Good night", "Good morning", "Goodbye"], r: 1 },
+                { p: "Traduza 'I am a student':", o: ["Eu sou um estudante", "Eu tenho um carro", "Eu moro aqui"], r: 0 },
+                { p: "Como perguntar 'Como você está?'", o: ["Who are you?", "How are you?", "What is this?"], r: 1 },
+                { p: "Qual o significado de 'Thank you'?", o: ["Por favor", "Com licença", "Obrigado"], r: 2 },
+                { p: "Como se diz 'Água'?", o:
